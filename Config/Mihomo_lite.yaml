@@ -20567,7 +20567,7 @@ dns:
   fake-ip-range: 198.18.0.0/16 # fake-ip 池设置
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - geosite:private
+    - geosite:private,CN
     - adguardteam.github.io
     - adrules.top
     - amobile.music.tc.qq.com
@@ -20694,6 +20694,7 @@ dns:
     - dns0.eu
     - dns.18bit.cn
     - 2025.dns1.top
+    - dns.ipv4dns.com
   nameserver-policy:
     "+.jp":
       - "https://public.dns.iij.jp/dns-query#h3=true" # IIJ （日本） DNS over H3
@@ -20703,6 +20704,7 @@ dns:
       - "quic://dns0.eu" # 公共（欧洲） DNS over DOQ
     "geosite:private,CN":
       - "quic://dns.18bit.cn" # 18bit DNS over DOQ
+      - "quic://dns.ipv4dns.com" # 清新云 DNS over DOQ
       - "quic://2025.dns1.top" # 关圣 DNS over DOQ
       - "quic://dns.alidns.com" # 阿里 DNS over DOQ
   nameserver:

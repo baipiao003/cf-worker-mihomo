@@ -46,21 +46,27 @@ router.get('/', async (ctx) => {
   }
 
   try {
-    let res, data, headers, status;
+    let res;
     if (singbox) {
       res = await singboxconfig({ urls, templateUrl, subapi });
     } else {
       res = await mihomoconfig({ urls, templateUrl, configUrl: Mihomo_default });
     }
+    // 过滤 headers 中的不安全字段，并转为普通对象
+    const rawHeaders = res.headers || {};
+    const headersToIgnore = ['transfer-encoding', 'content-length', 'content-encoding', 'connection'];
 
-    data = res.data;
-    headers = new Headers(res.headers || {});
-    status = res.status;
-    headers.set("Content-Type", "application/json; charset=utf-8");
+    const safeHeaders = {};
+    for (const [key, value] of Object.entries(rawHeaders)) {
+      if (!headersToIgnore.includes(key.toLowerCase())) {
+        safeHeaders[key] = value;
+      }
+    }
+    safeHeaders['Content-Type'] = 'application/json; charset=utf-8';
     
-    ctx.body = data;
-    ctx.status = status;
-    ctx.set(headers);
+    ctx.body = res.data;
+    ctx.status = res.status;
+    ctx.set(safeHeaders);
   } catch (err) {
     ctx.body = err.message;
     ctx.status = 500;

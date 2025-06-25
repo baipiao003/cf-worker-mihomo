@@ -240,7 +240,7 @@ sub-rules:
     - DOMAIN-KEYWORD,stun,💧泄漏拦截
   SUB-LAN:
     - RULE-SET,Private,🎯全球直连
-    - RULE-SET,Privatecidr,🎯全球直连,no-resolve #仅匹配ip，不解析域名
+    - RULE-SET,Privatecidr,🎯全球直连,no-resolve
   SUB-DOMAIN:
     - DOMAIN,ghfast.top,🎯全球直连
     - RULE-SET,AppStore,AppStore # App Store 应用商店
@@ -360,45 +360,45 @@ sub-rules:
     - RULE-SET,ByteDance,字节跳动 # 字节跳动，包含抖音、今日头条等
     - RULE-SET,Tencent,腾讯 # 腾讯相关服务，包括 QQ、腾讯云等
     - RULE-SET,Alibaba,阿里巴巴 # 阿里巴巴，涵盖云计算、电商等
-    - RULE-SET,China,PASS
-    - RULE-SET,Fakeip_Filter,PASS
+    - RULE-SET,China,⚪绕过连接
+    - RULE-SET,Fakeip_Filter,⚪绕过连接
   SUB-IPCIDR:
     # 国内服务
-    - RULE-SET,NetEasecidr,网易
-    - RULE-SET,iQIYIcidr,爱奇艺
-    - RULE-SET,NetEaseMusiccidr,网易云音乐
-    - RULE-SET,ByteDancecidr,字节跳动
-    - RULE-SET,Tencentcidr,腾讯
-    - RULE-SET,Alibabacidr,阿里巴巴
-    - RULE-SET,BiliBilicidr,哔哩哔哩
-    - RULE-SET,ChinaMediacidr,中国媒体 # 国内兜底媒体
-    - RULE-SET,Chinacidr,🎯全球直连 # 国内兜底 IP
+    - RULE-SET,NetEasecidr,网易,no-resolve
+    - RULE-SET,iQIYIcidr,爱奇艺,no-resolve
+    - RULE-SET,NetEaseMusiccidr,网易云音乐,no-resolve
+    - RULE-SET,ByteDancecidr,字节跳动,no-resolve
+    - RULE-SET,Tencentcidr,腾讯,no-resolve
+    - RULE-SET,Alibabacidr,阿里巴巴,no-resolve
+    - RULE-SET,BiliBilicidr,哔哩哔哩,no-resolve
+    - RULE-SET,ChinaMediacidr,中国媒体,no-resolve
+    - RULE-SET,Chinacidr,🎯全球直连
 
     # 国际服务
-    - RULE-SET,Applecidr,Apple
-    - RULE-SET,Spotifycidr,Spotify
-    - RULE-SET,Twitchcidr,Twitch
-    - RULE-SET,Telegramcidr,Telegram
-    - RULE-SET,Amazoncidr,亚马逊电商
-    - RULE-SET,Copilotcidr,OpenAI
-    - RULE-SET,OpenAIcidr,OpenAI
-    - RULE-SET,EHGallerycidr,E站,no-resolve #仅拦截ip，不解析域名
-    - RULE-SET,Blizzardcidr,暴雪
-    - RULE-SET,Supercellcidr,Supercell
-    - RULE-SET,GoogleFCMcidr,FCM
-    - RULE-SET,Linecidr,LINE
-    - RULE-SET,Talkatonecidr,Talkatone
-    - RULE-SET,Facebookcidr,Facebook
-    - RULE-SET,Twittercidr,Twitter
-    - RULE-SET,Netflixcidr,Netflix
-    - RULE-SET,Torcidr,Tor
-    - RULE-SET,Fastlycidr,Fastly
-    - RULE-SET,Googlecidr,Google
-    - RULE-SET,Trackercidr,BT追踪器,no-resolve #仅匹配ip，不解析域名
-    - RULE-SET,Qobuzcidr,Qobuz
-    - RULE-SET,YouTubecidr,YouTube
-    - RULE-SET,GlobalMediacidr,国际媒体,no-resolve #仅匹配ip，不解析域名 国外兜底媒体
-    - RULE-SET,Cloudflarecidr,Cloudflare # 国外兜底 IP
+    - RULE-SET,Applecidr,Apple,no-resolve
+    - RULE-SET,Spotifycidr,Spotify,no-resolve
+    - RULE-SET,Twitchcidr,Twitch,no-resolve
+    - RULE-SET,Telegramcidr,Telegram,no-resolve
+    - RULE-SET,Amazoncidr,亚马逊电商,no-resolve
+    - RULE-SET,Copilotcidr,OpenAI,no-resolve
+    - RULE-SET,OpenAIcidr,OpenAI,no-resolve
+    - RULE-SET,EHGallerycidr,E站,no-resolve
+    - RULE-SET,Blizzardcidr,暴雪,no-resolve
+    - RULE-SET,Supercellcidr,Supercell,no-resolve
+    - RULE-SET,GoogleFCMcidr,FCM,no-resolve
+    - RULE-SET,Linecidr,LINE,no-resolve
+    - RULE-SET,Talkatonecidr,Talkatone,no-resolve
+    - RULE-SET,Facebookcidr,Facebook,no-resolve
+    - RULE-SET,Twittercidr,Twitter,no-resolve
+    - RULE-SET,Netflixcidr,Netflix,no-resolve
+    - RULE-SET,Torcidr,Tor,no-resolve
+    - RULE-SET,Fastlycidr,Fastly,no-resolve
+    - RULE-SET,Googlecidr,Google,no-resolve
+    - RULE-SET,Trackercidr,BT追踪器,no-resolve
+    - RULE-SET,Qobuzcidr,Qobuz,no-resolve
+    - RULE-SET,YouTubecidr,YouTube,no-resolve
+    - RULE-SET,GlobalMediacidr,国际媒体,no-resolve
+    - RULE-SET,Cloudflarecidr,Cloudflare,no-resolve
 
 rule-providers:
   # ------------------------------------------------------------
