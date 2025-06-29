@@ -1,4 +1,6 @@
 u: &u { type: url-test, tolerance: 1, strategy: consistent-hashing, url: https://www.gstatic.com/generate_204, interval: 300, lazy: true, timeout: 5000, max-failed-times: 5, include-all: true }
+domain_mrs: &domain_mrs { type: http, interval: 86400, behavior: domain, format: mrs, proxy: 🎯全球直连 }
+ipcidr_mrs: &ipcidr_mrs { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: 🎯全球直连 }
 
 proxy-groups:
   - { name: 🚀全球代理, type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇹🇼台湾自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动, 🇰🇷韩国自动] }
@@ -23,8 +25,8 @@ proxy-groups:
 
 rules:
   - SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-REJECT
-  - GEOSITE,private,🎯全球直连
-  - GEOIP,CN,🎯全球直连
+  - RULE-SET,private,🎯全球直连
+  - RULE-SET,CNcidr,🎯全球直连
   - MATCH,🚀全球代理
 
 sub-rules:
@@ -40,5 +42,19 @@ sub-rules:
     - DOMAIN-KEYWORD,stun,💧泄漏拦截
 
 rule-providers:
-  Advertising-ads: { type: http, interval: 86400, behavior: domain, format: mrs, proxy: 🎯全球直连, url: https://cdn.jsdmirror.com/gh/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ads.mrs, path: ./ruleset/ads_Domain.mrs }
-  STUN: { type: http, interval: 86400, behavior: domain, format: mrs, proxy: 🎯全球直连, url: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/STUN/STUN_Domain.mrs, path: ./ruleset/STUN_Domain.mrs }
+  Advertising-ads:
+    <<: *domain_mrs
+    url: https://cdn.jsdmirror.com/gh/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ads.mrs
+    path: ./ruleset/Advertising_ads_Domain.mrs
+  STUN:
+    <<: *domain_mrs
+    url: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/STUN/STUN_Domain.mrs
+    path: ./ruleset/STUN_Domain.mrs
+  CNcidr:
+    <<: *ipcidr_mrs
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/cncidr.mrs"
+    path: ./ruleset/CN_IP.mrs
+  Private:
+    <<: *domain_mrs
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
+    path: ./ruleset/Private_Domain.mrs

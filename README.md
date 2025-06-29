@@ -1,25 +1,70 @@
-# cf-worker-mihomo
+# 🧰 Mihomo（Clash Meta）/ singbox 配置生成工具
 
-快速生成mihomo（clash  mate）配置
+![Mihomo Logo](./icon/icon.png)
 
-![](./icon/icon.png)
-## 编译
+Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 Clash/singbox 配置文件，并提供强大的分流与防护功能。
 
-- 安装依赖
+## 🌟 核心特性
+- **智能分流**：全面的规则分流机制
+- **隐私保护**：
+  - DNS 广告过滤（Adblock）
+  - 防止 DNS/WebRTC 泄漏
+  - 安全DNS/DoH支持
+- **多订阅汇聚**：
+  - 多订阅整合，统一入口
+  - 自定义分流规则
+  - Singbox 自动节点过滤
+  - 支持单节点地址
 
+## 🖥 Web 控制台
+访问在线配置生成器：
+👉 [mihomo.haxtop.ggff.net](https://mihomo.haxtop.ggff.net)
+
+> 💡 使用建议：关闭所有覆写功能（不是关闭功能，是关闭覆写）以确保配置正常生效。
+
+---
+
+## 🚀 部署指南
+
+### 1. Vercel 部署
+
+#### 准备工作
+- 注册 [Vercel 账号](https://vercel.com/signup)
+- 安装 [Node.js](https://nodejs.org/) (v16+)
+- 安装 [Git](https://git-scm.com/)
+
+#### 方法一：一键部署
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/Kwisma/cf-worker-mihomo)
+
+1. 点击上方按钮
+2. 登录 Vercel 账号
+3. 选择项目名称和存储位置（建议保持默认）
+4. 点击 **Deploy** 开始部署
+5. 等待约 1-3 分钟完成部署
+
+#### 方法二：命令行部署
 ```bash
+# 克隆项目
+git clone https://github.com/Kwisma/cf-worker-mihomo.git
+cd cf-worker-mihomo
+```
+```bash
+# 安装依赖
 npm install
 ```
-
-- 编译
-
 ```bash
+# 构建项目
 npm run build
 ```
+```bash
+# 部署到 Vercel
+npm run deploy
+```
+> 首次部署需按提示登录 Vercel 账号
 
-## 如何使用？
-### Workers 部署方法
+---
 
+### 2. Cloudflare Workers 部署
 1. 部署 CF Worker：
    - 在 CF Worker 控制台中创建一个新的 Worker。
    - 将 [worker.js](./worker.js) 的内容粘贴到 Worker 编辑器中。
@@ -27,39 +72,49 @@ npm run build
    - 在 workers控制台的 `触发器`选项卡，下方点击 `添加自定义域`。
    - 填入你已转入 CF 域名解析服务的次级域名，例如:`mihomo.haxtop.ggff.net`后 点击`添加自定义域`，等待证书生效即可。
 3. 使用方法：
-   - 自定义域传入url参数，可传入多个，用逗号分隔，如：
-   - https://mihomo.haxtop.ggff.net?url=订阅链接
+   ```
+   https://your-domain.com?url=订阅链接1,订阅链接2
+   ```
 
-### Pages 部署方法
+### 3. Cloudflare Pages 部署
 
-#### 创建 Pages 项目
-- 打开 Cloudflare 控制台，进入 [Pages 控制台](https://dash.cloudflare.com/?to=/:account/pages)。
-- 点击「创建项目」，选择你要托管的代码来源（GitHub/GitLab），或点击「直接上传」。
+#### 方法一：Git 仓库部署
+1. 进入 [Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages)
+2. 点击 **创建项目** → 选择你的 Git 提供商（GitHub/GitLab）
+3. 选择仓库 → 开始设置
+4. 配置选项：
+   - **构建命令**：`npm run build:workers`
+   - **输出目录**：`dist`
+5. 点击 **保存并部署**
 
-#### 如果使用 Git 仓库：
+#### 方法二：手动上传
 
-- 选择你的仓库并授权 Cloudflare 访问
-- 部署即可
+1. 下载项目中的  [_worker.js](./_worker.js) 文件
+2. 在 Pages 控制台选择 **直接上传**
+3. 选择 `_worker.js` 文件
 
-#### 如果使用直接上传：
+#### 自定义域名
+1. 进入 Pages 项目 → **自定义域**
+2. 输入你的域名（需已在 Cloudflare 托管）
+3. 系统会自动配置 DNS 和 SSL
 
-- 下载 [_worker.js](./_worker.js)
-- 点击「直接上传」，将下载的文件上传即可
+---
 
-#### 给 pages 绑定自定义域（可选）
-- 在 Pages 项目页面中，点击「自定义域」。
-- 绑定你在 Cloudflare 中托管的域名，例如 `pages.haxtop.ggff.net`。
-- 系统会自动为你配置 DNS 和 SSL 证书。
+## ⚙️ 配置参数
+| 参数名       | 说明               | 示例值                                                          |
+|--------------|--------------------|---------------------------------------------------------------|
+| `IMG`        | 背景图 URL         | `https://t.alcy.cc/ycy`                                        |
+| `SUB`        | 转换后端地址        | `https://url.v1.mk`                                            |
+| `MIHOMO`     | 配置模板           | `https://raw.githubusercontent.com/.../Mihomo_lite.yaml`       |
+| `BEIAN`      | 备案信息           | `萌ICP备20250001号`                                             |
+| `BEIANURL`   | 备案跳转链接        | `https://t.me/Marisa_kristi`                                   |
 
-### 3. 使用方法
+---
 
-- 部署完成后，你会获得一个类似 `https://your-project.pages.dev` 的访问地址。  
-- 如果你设置了自定义域名，也可以直接使用它来访问你的页面。
+## 🤝 参与贡献
+欢迎通过以下方式参与：
+- 提交 [Issue](https://github.com/Kwisma/cf-worker-mihomo/issues)
+- 发起 [Pull Request](https://github.com/Kwisma/cf-worker-mihomo/pulls)
 
-| 变量名         | 描述               | 示例值                      |
-|----------------|--------------------|-----------------------------|
-| `IMG`          | 背景图           | `https://t.alcy.cc/ycy` |
-| `SUB`          | 转换后端         | `https://url.v1.mk` |
-| `MIHOMO`       | mihomo头部配置   | `https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml` |
-| `BEIAN`        | 底部备案信息     | `萌ICP备20250001号`    |
-| `BEIANURL`     | 转跳地址         | `https://t.me/Marisa_kristi`  |
+## 📜 开源协议
+[MIT License](LICENSE) © 2025 Kwisma
