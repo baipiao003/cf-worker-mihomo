@@ -5,6 +5,928 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
+// node_modules/wrangler/node_modules/unenv/dist/runtime/_internal/utils.mjs
+// @__NO_SIDE_EFFECTS__
+function createNotImplementedError(name) {
+  return new Error(`[unenv] ${name} is not implemented yet!`);
+}
+__name(createNotImplementedError, "createNotImplementedError");
+// @__NO_SIDE_EFFECTS__
+function notImplemented(name) {
+  const fn = /* @__PURE__ */ __name(() => {
+    throw /* @__PURE__ */ createNotImplementedError(name);
+  }, "fn");
+  return Object.assign(fn, { __unenv__: true });
+}
+__name(notImplemented, "notImplemented");
+// @__NO_SIDE_EFFECTS__
+function notImplementedClass(name) {
+  return class {
+    __unenv__ = true;
+    constructor() {
+      throw new Error(`[unenv] ${name} is not implemented yet!`);
+    }
+  };
+}
+__name(notImplementedClass, "notImplementedClass");
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/perf_hooks/performance.mjs
+var _timeOrigin = globalThis.performance?.timeOrigin ?? Date.now();
+var _performanceNow = globalThis.performance?.now ? globalThis.performance.now.bind(globalThis.performance) : () => Date.now() - _timeOrigin;
+var nodeTiming = {
+  name: "node",
+  entryType: "node",
+  startTime: 0,
+  duration: 0,
+  nodeStart: 0,
+  v8Start: 0,
+  bootstrapComplete: 0,
+  environment: 0,
+  loopStart: 0,
+  loopExit: 0,
+  idleTime: 0,
+  uvMetricsInfo: {
+    loopCount: 0,
+    events: 0,
+    eventsWaiting: 0
+  },
+  detail: void 0,
+  toJSON() {
+    return this;
+  }
+};
+var PerformanceEntry = class {
+  static {
+    __name(this, "PerformanceEntry");
+  }
+  __unenv__ = true;
+  detail;
+  entryType = "event";
+  name;
+  startTime;
+  constructor(name, options) {
+    this.name = name;
+    this.startTime = options?.startTime || _performanceNow();
+    this.detail = options?.detail;
+  }
+  get duration() {
+    return _performanceNow() - this.startTime;
+  }
+  toJSON() {
+    return {
+      name: this.name,
+      entryType: this.entryType,
+      startTime: this.startTime,
+      duration: this.duration,
+      detail: this.detail
+    };
+  }
+};
+var PerformanceMark = class PerformanceMark2 extends PerformanceEntry {
+  static {
+    __name(this, "PerformanceMark");
+  }
+  entryType = "mark";
+  constructor() {
+    super(...arguments);
+  }
+  get duration() {
+    return 0;
+  }
+};
+var PerformanceMeasure = class extends PerformanceEntry {
+  static {
+    __name(this, "PerformanceMeasure");
+  }
+  entryType = "measure";
+};
+var PerformanceResourceTiming = class extends PerformanceEntry {
+  static {
+    __name(this, "PerformanceResourceTiming");
+  }
+  entryType = "resource";
+  serverTiming = [];
+  connectEnd = 0;
+  connectStart = 0;
+  decodedBodySize = 0;
+  domainLookupEnd = 0;
+  domainLookupStart = 0;
+  encodedBodySize = 0;
+  fetchStart = 0;
+  initiatorType = "";
+  name = "";
+  nextHopProtocol = "";
+  redirectEnd = 0;
+  redirectStart = 0;
+  requestStart = 0;
+  responseEnd = 0;
+  responseStart = 0;
+  secureConnectionStart = 0;
+  startTime = 0;
+  transferSize = 0;
+  workerStart = 0;
+  responseStatus = 0;
+};
+var PerformanceObserverEntryList = class {
+  static {
+    __name(this, "PerformanceObserverEntryList");
+  }
+  __unenv__ = true;
+  getEntries() {
+    return [];
+  }
+  getEntriesByName(_name, _type) {
+    return [];
+  }
+  getEntriesByType(type) {
+    return [];
+  }
+};
+var Performance = class {
+  static {
+    __name(this, "Performance");
+  }
+  __unenv__ = true;
+  timeOrigin = _timeOrigin;
+  eventCounts = /* @__PURE__ */ new Map();
+  _entries = [];
+  _resourceTimingBufferSize = 0;
+  navigation = void 0;
+  timing = void 0;
+  timerify(_fn, _options) {
+    throw createNotImplementedError("Performance.timerify");
+  }
+  get nodeTiming() {
+    return nodeTiming;
+  }
+  eventLoopUtilization() {
+    return {};
+  }
+  markResourceTiming() {
+    return new PerformanceResourceTiming("");
+  }
+  onresourcetimingbufferfull = null;
+  now() {
+    if (this.timeOrigin === _timeOrigin) {
+      return _performanceNow();
+    }
+    return Date.now() - this.timeOrigin;
+  }
+  clearMarks(markName) {
+    this._entries = markName ? this._entries.filter((e) => e.name !== markName) : this._entries.filter((e) => e.entryType !== "mark");
+  }
+  clearMeasures(measureName) {
+    this._entries = measureName ? this._entries.filter((e) => e.name !== measureName) : this._entries.filter((e) => e.entryType !== "measure");
+  }
+  clearResourceTimings() {
+    this._entries = this._entries.filter((e) => e.entryType !== "resource" || e.entryType !== "navigation");
+  }
+  getEntries() {
+    return this._entries;
+  }
+  getEntriesByName(name, type) {
+    return this._entries.filter((e) => e.name === name && (!type || e.entryType === type));
+  }
+  getEntriesByType(type) {
+    return this._entries.filter((e) => e.entryType === type);
+  }
+  mark(name, options) {
+    const entry = new PerformanceMark(name, options);
+    this._entries.push(entry);
+    return entry;
+  }
+  measure(measureName, startOrMeasureOptions, endMark) {
+    let start;
+    let end;
+    if (typeof startOrMeasureOptions === "string") {
+      start = this.getEntriesByName(startOrMeasureOptions, "mark")[0]?.startTime;
+      end = this.getEntriesByName(endMark, "mark")[0]?.startTime;
+    } else {
+      start = Number.parseFloat(startOrMeasureOptions?.start) || this.now();
+      end = Number.parseFloat(startOrMeasureOptions?.end) || this.now();
+    }
+    const entry = new PerformanceMeasure(measureName, {
+      startTime: start,
+      detail: {
+        start,
+        end
+      }
+    });
+    this._entries.push(entry);
+    return entry;
+  }
+  setResourceTimingBufferSize(maxSize) {
+    this._resourceTimingBufferSize = maxSize;
+  }
+  addEventListener(type, listener, options) {
+    throw createNotImplementedError("Performance.addEventListener");
+  }
+  removeEventListener(type, listener, options) {
+    throw createNotImplementedError("Performance.removeEventListener");
+  }
+  dispatchEvent(event) {
+    throw createNotImplementedError("Performance.dispatchEvent");
+  }
+  toJSON() {
+    return this;
+  }
+};
+var PerformanceObserver = class {
+  static {
+    __name(this, "PerformanceObserver");
+  }
+  __unenv__ = true;
+  static supportedEntryTypes = [];
+  _callback = null;
+  constructor(callback) {
+    this._callback = callback;
+  }
+  takeRecords() {
+    return [];
+  }
+  disconnect() {
+    throw createNotImplementedError("PerformanceObserver.disconnect");
+  }
+  observe(options) {
+    throw createNotImplementedError("PerformanceObserver.observe");
+  }
+  bind(fn) {
+    return fn;
+  }
+  runInAsyncScope(fn, thisArg, ...args) {
+    return fn.call(thisArg, ...args);
+  }
+  asyncId() {
+    return 0;
+  }
+  triggerAsyncId() {
+    return 0;
+  }
+  emitDestroy() {
+    return this;
+  }
+};
+var performance = globalThis.performance && "addEventListener" in globalThis.performance ? globalThis.performance : new Performance();
+
+// node_modules/wrangler/node_modules/@cloudflare/unenv-preset/dist/runtime/polyfill/performance.mjs
+globalThis.performance = performance;
+globalThis.Performance = Performance;
+globalThis.PerformanceEntry = PerformanceEntry;
+globalThis.PerformanceMark = PerformanceMark;
+globalThis.PerformanceMeasure = PerformanceMeasure;
+globalThis.PerformanceObserver = PerformanceObserver;
+globalThis.PerformanceObserverEntryList = PerformanceObserverEntryList;
+globalThis.PerformanceResourceTiming = PerformanceResourceTiming;
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/console.mjs
+import { Writable } from "node:stream";
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/mock/noop.mjs
+var noop_default = Object.assign(() => {
+}, { __unenv__: true });
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/console.mjs
+var _console = globalThis.console;
+var _ignoreErrors = true;
+var _stderr = new Writable();
+var _stdout = new Writable();
+var log = _console?.log ?? noop_default;
+var info = _console?.info ?? log;
+var trace = _console?.trace ?? info;
+var debug = _console?.debug ?? log;
+var table = _console?.table ?? log;
+var error = _console?.error ?? log;
+var warn = _console?.warn ?? error;
+var createTask = _console?.createTask ?? /* @__PURE__ */ notImplemented("console.createTask");
+var clear = _console?.clear ?? noop_default;
+var count = _console?.count ?? noop_default;
+var countReset = _console?.countReset ?? noop_default;
+var dir = _console?.dir ?? noop_default;
+var dirxml = _console?.dirxml ?? noop_default;
+var group = _console?.group ?? noop_default;
+var groupEnd = _console?.groupEnd ?? noop_default;
+var groupCollapsed = _console?.groupCollapsed ?? noop_default;
+var profile = _console?.profile ?? noop_default;
+var profileEnd = _console?.profileEnd ?? noop_default;
+var time = _console?.time ?? noop_default;
+var timeEnd = _console?.timeEnd ?? noop_default;
+var timeLog = _console?.timeLog ?? noop_default;
+var timeStamp = _console?.timeStamp ?? noop_default;
+var Console = _console?.Console ?? /* @__PURE__ */ notImplementedClass("console.Console");
+var _times = /* @__PURE__ */ new Map();
+var _stdoutErrorHandler = noop_default;
+var _stderrErrorHandler = noop_default;
+
+// node_modules/wrangler/node_modules/@cloudflare/unenv-preset/dist/runtime/node/console.mjs
+var workerdConsole = globalThis["console"];
+var {
+  assert,
+  clear: clear2,
+  // @ts-expect-error undocumented public API
+  context,
+  count: count2,
+  countReset: countReset2,
+  // @ts-expect-error undocumented public API
+  createTask: createTask2,
+  debug: debug2,
+  dir: dir2,
+  dirxml: dirxml2,
+  error: error2,
+  group: group2,
+  groupCollapsed: groupCollapsed2,
+  groupEnd: groupEnd2,
+  info: info2,
+  log: log2,
+  profile: profile2,
+  profileEnd: profileEnd2,
+  table: table2,
+  time: time2,
+  timeEnd: timeEnd2,
+  timeLog: timeLog2,
+  timeStamp: timeStamp2,
+  trace: trace2,
+  warn: warn2
+} = workerdConsole;
+Object.assign(workerdConsole, {
+  Console,
+  _ignoreErrors,
+  _stderr,
+  _stderrErrorHandler,
+  _stdout,
+  _stdoutErrorHandler,
+  _times
+});
+var console_default = workerdConsole;
+
+// node_modules/wrangler/_virtual_unenv_global_polyfill-@cloudflare-unenv-preset-node-console
+globalThis.console = console_default;
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/process/hrtime.mjs
+var hrtime = /* @__PURE__ */ Object.assign(/* @__PURE__ */ __name(function hrtime2(startTime) {
+  const now = Date.now();
+  const seconds = Math.trunc(now / 1e3);
+  const nanos = now % 1e3 * 1e6;
+  if (startTime) {
+    let diffSeconds = seconds - startTime[0];
+    let diffNanos = nanos - startTime[0];
+    if (diffNanos < 0) {
+      diffSeconds = diffSeconds - 1;
+      diffNanos = 1e9 + diffNanos;
+    }
+    return [diffSeconds, diffNanos];
+  }
+  return [seconds, nanos];
+}, "hrtime"), { bigint: /* @__PURE__ */ __name(function bigint() {
+  return BigInt(Date.now() * 1e6);
+}, "bigint") });
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/process/process.mjs
+import { EventEmitter } from "node:events";
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/tty/write-stream.mjs
+var WriteStream = class {
+  static {
+    __name(this, "WriteStream");
+  }
+  fd;
+  columns = 80;
+  rows = 24;
+  isTTY = false;
+  constructor(fd) {
+    this.fd = fd;
+  }
+  clearLine(dir3, callback) {
+    callback && callback();
+    return false;
+  }
+  clearScreenDown(callback) {
+    callback && callback();
+    return false;
+  }
+  cursorTo(x, y, callback) {
+    callback && typeof callback === "function" && callback();
+    return false;
+  }
+  moveCursor(dx, dy, callback) {
+    callback && callback();
+    return false;
+  }
+  getColorDepth(env2) {
+    return 1;
+  }
+  hasColors(count3, env2) {
+    return false;
+  }
+  getWindowSize() {
+    return [this.columns, this.rows];
+  }
+  write(str, encoding, cb) {
+    if (str instanceof Uint8Array) {
+      str = new TextDecoder().decode(str);
+    }
+    try {
+      console.log(str);
+    } catch {
+    }
+    cb && typeof cb === "function" && cb();
+    return false;
+  }
+};
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/tty/read-stream.mjs
+var ReadStream = class {
+  static {
+    __name(this, "ReadStream");
+  }
+  fd;
+  isRaw = false;
+  isTTY = false;
+  constructor(fd) {
+    this.fd = fd;
+  }
+  setRawMode(mode) {
+    this.isRaw = mode;
+    return this;
+  }
+};
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/process/node-version.mjs
+var NODE_VERSION = "22.14.0";
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/node/internal/process/process.mjs
+var Process = class _Process extends EventEmitter {
+  static {
+    __name(this, "Process");
+  }
+  env;
+  hrtime;
+  nextTick;
+  constructor(impl) {
+    super();
+    this.env = impl.env;
+    this.hrtime = impl.hrtime;
+    this.nextTick = impl.nextTick;
+    for (const prop of [...Object.getOwnPropertyNames(_Process.prototype), ...Object.getOwnPropertyNames(EventEmitter.prototype)]) {
+      const value = this[prop];
+      if (typeof value === "function") {
+        this[prop] = value.bind(this);
+      }
+    }
+  }
+  emitWarning(warning, type, code) {
+    console.warn(`${code ? `[${code}] ` : ""}${type ? `${type}: ` : ""}${warning}`);
+  }
+  emit(...args) {
+    return super.emit(...args);
+  }
+  listeners(eventName) {
+    return super.listeners(eventName);
+  }
+  #stdin;
+  #stdout;
+  #stderr;
+  get stdin() {
+    return this.#stdin ??= new ReadStream(0);
+  }
+  get stdout() {
+    return this.#stdout ??= new WriteStream(1);
+  }
+  get stderr() {
+    return this.#stderr ??= new WriteStream(2);
+  }
+  #cwd = "/";
+  chdir(cwd2) {
+    this.#cwd = cwd2;
+  }
+  cwd() {
+    return this.#cwd;
+  }
+  arch = "";
+  platform = "";
+  argv = [];
+  argv0 = "";
+  execArgv = [];
+  execPath = "";
+  title = "";
+  pid = 200;
+  ppid = 100;
+  get version() {
+    return `v${NODE_VERSION}`;
+  }
+  get versions() {
+    return { node: NODE_VERSION };
+  }
+  get allowedNodeEnvironmentFlags() {
+    return /* @__PURE__ */ new Set();
+  }
+  get sourceMapsEnabled() {
+    return false;
+  }
+  get debugPort() {
+    return 0;
+  }
+  get throwDeprecation() {
+    return false;
+  }
+  get traceDeprecation() {
+    return false;
+  }
+  get features() {
+    return {};
+  }
+  get release() {
+    return {};
+  }
+  get connected() {
+    return false;
+  }
+  get config() {
+    return {};
+  }
+  get moduleLoadList() {
+    return [];
+  }
+  constrainedMemory() {
+    return 0;
+  }
+  availableMemory() {
+    return 0;
+  }
+  uptime() {
+    return 0;
+  }
+  resourceUsage() {
+    return {};
+  }
+  ref() {
+  }
+  unref() {
+  }
+  umask() {
+    throw createNotImplementedError("process.umask");
+  }
+  getBuiltinModule() {
+    return void 0;
+  }
+  getActiveResourcesInfo() {
+    throw createNotImplementedError("process.getActiveResourcesInfo");
+  }
+  exit() {
+    throw createNotImplementedError("process.exit");
+  }
+  reallyExit() {
+    throw createNotImplementedError("process.reallyExit");
+  }
+  kill() {
+    throw createNotImplementedError("process.kill");
+  }
+  abort() {
+    throw createNotImplementedError("process.abort");
+  }
+  dlopen() {
+    throw createNotImplementedError("process.dlopen");
+  }
+  setSourceMapsEnabled() {
+    throw createNotImplementedError("process.setSourceMapsEnabled");
+  }
+  loadEnvFile() {
+    throw createNotImplementedError("process.loadEnvFile");
+  }
+  disconnect() {
+    throw createNotImplementedError("process.disconnect");
+  }
+  cpuUsage() {
+    throw createNotImplementedError("process.cpuUsage");
+  }
+  setUncaughtExceptionCaptureCallback() {
+    throw createNotImplementedError("process.setUncaughtExceptionCaptureCallback");
+  }
+  hasUncaughtExceptionCaptureCallback() {
+    throw createNotImplementedError("process.hasUncaughtExceptionCaptureCallback");
+  }
+  initgroups() {
+    throw createNotImplementedError("process.initgroups");
+  }
+  openStdin() {
+    throw createNotImplementedError("process.openStdin");
+  }
+  assert() {
+    throw createNotImplementedError("process.assert");
+  }
+  binding() {
+    throw createNotImplementedError("process.binding");
+  }
+  permission = { has: /* @__PURE__ */ notImplemented("process.permission.has") };
+  report = {
+    directory: "",
+    filename: "",
+    signal: "SIGUSR2",
+    compact: false,
+    reportOnFatalError: false,
+    reportOnSignal: false,
+    reportOnUncaughtException: false,
+    getReport: /* @__PURE__ */ notImplemented("process.report.getReport"),
+    writeReport: /* @__PURE__ */ notImplemented("process.report.writeReport")
+  };
+  finalization = {
+    register: /* @__PURE__ */ notImplemented("process.finalization.register"),
+    unregister: /* @__PURE__ */ notImplemented("process.finalization.unregister"),
+    registerBeforeExit: /* @__PURE__ */ notImplemented("process.finalization.registerBeforeExit")
+  };
+  memoryUsage = Object.assign(() => ({
+    arrayBuffers: 0,
+    rss: 0,
+    external: 0,
+    heapTotal: 0,
+    heapUsed: 0
+  }), { rss: /* @__PURE__ */ __name(() => 0, "rss") });
+  mainModule = void 0;
+  domain = void 0;
+  send = void 0;
+  exitCode = void 0;
+  channel = void 0;
+  getegid = void 0;
+  geteuid = void 0;
+  getgid = void 0;
+  getgroups = void 0;
+  getuid = void 0;
+  setegid = void 0;
+  seteuid = void 0;
+  setgid = void 0;
+  setgroups = void 0;
+  setuid = void 0;
+  _events = void 0;
+  _eventsCount = void 0;
+  _exiting = void 0;
+  _maxListeners = void 0;
+  _debugEnd = void 0;
+  _debugProcess = void 0;
+  _fatalException = void 0;
+  _getActiveHandles = void 0;
+  _getActiveRequests = void 0;
+  _kill = void 0;
+  _preload_modules = void 0;
+  _rawDebug = void 0;
+  _startProfilerIdleNotifier = void 0;
+  _stopProfilerIdleNotifier = void 0;
+  _tickCallback = void 0;
+  _disconnect = void 0;
+  _handleQueue = void 0;
+  _pendingMessage = void 0;
+  _channel = void 0;
+  _send = void 0;
+  _linkedBinding = void 0;
+};
+
+// node_modules/wrangler/node_modules/@cloudflare/unenv-preset/dist/runtime/node/process.mjs
+var globalProcess = globalThis["process"];
+var getBuiltinModule = globalProcess.getBuiltinModule;
+var { exit, platform, nextTick } = getBuiltinModule(
+  "node:process"
+);
+var unenvProcess = new Process({
+  env: globalProcess.env,
+  hrtime,
+  nextTick
+});
+var {
+  abort,
+  addListener,
+  allowedNodeEnvironmentFlags,
+  hasUncaughtExceptionCaptureCallback,
+  setUncaughtExceptionCaptureCallback,
+  loadEnvFile,
+  sourceMapsEnabled,
+  arch,
+  argv,
+  argv0,
+  chdir,
+  config,
+  connected,
+  constrainedMemory,
+  availableMemory,
+  cpuUsage,
+  cwd,
+  debugPort,
+  dlopen,
+  disconnect,
+  emit,
+  emitWarning,
+  env,
+  eventNames,
+  execArgv,
+  execPath,
+  finalization,
+  features,
+  getActiveResourcesInfo,
+  getMaxListeners,
+  hrtime: hrtime3,
+  kill,
+  listeners,
+  listenerCount,
+  memoryUsage,
+  on,
+  off,
+  once,
+  pid,
+  ppid,
+  prependListener,
+  prependOnceListener,
+  rawListeners,
+  release,
+  removeAllListeners,
+  removeListener,
+  report,
+  resourceUsage,
+  setMaxListeners,
+  setSourceMapsEnabled,
+  stderr,
+  stdin,
+  stdout,
+  title,
+  throwDeprecation,
+  traceDeprecation,
+  umask,
+  uptime,
+  version,
+  versions,
+  domain,
+  initgroups,
+  moduleLoadList,
+  reallyExit,
+  openStdin,
+  assert: assert2,
+  binding,
+  send,
+  exitCode,
+  channel,
+  getegid,
+  geteuid,
+  getgid,
+  getgroups,
+  getuid,
+  setegid,
+  seteuid,
+  setgid,
+  setgroups,
+  setuid,
+  permission,
+  mainModule,
+  _events,
+  _eventsCount,
+  _exiting,
+  _maxListeners,
+  _debugEnd,
+  _debugProcess,
+  _fatalException,
+  _getActiveHandles,
+  _getActiveRequests,
+  _kill,
+  _preload_modules,
+  _rawDebug,
+  _startProfilerIdleNotifier,
+  _stopProfilerIdleNotifier,
+  _tickCallback,
+  _disconnect,
+  _handleQueue,
+  _pendingMessage,
+  _channel,
+  _send,
+  _linkedBinding
+} = unenvProcess;
+var _process = {
+  abort,
+  addListener,
+  allowedNodeEnvironmentFlags,
+  hasUncaughtExceptionCaptureCallback,
+  setUncaughtExceptionCaptureCallback,
+  loadEnvFile,
+  sourceMapsEnabled,
+  arch,
+  argv,
+  argv0,
+  chdir,
+  config,
+  connected,
+  constrainedMemory,
+  availableMemory,
+  cpuUsage,
+  cwd,
+  debugPort,
+  dlopen,
+  disconnect,
+  emit,
+  emitWarning,
+  env,
+  eventNames,
+  execArgv,
+  execPath,
+  exit,
+  finalization,
+  features,
+  getBuiltinModule,
+  getActiveResourcesInfo,
+  getMaxListeners,
+  hrtime: hrtime3,
+  kill,
+  listeners,
+  listenerCount,
+  memoryUsage,
+  nextTick,
+  on,
+  off,
+  once,
+  pid,
+  platform,
+  ppid,
+  prependListener,
+  prependOnceListener,
+  rawListeners,
+  release,
+  removeAllListeners,
+  removeListener,
+  report,
+  resourceUsage,
+  setMaxListeners,
+  setSourceMapsEnabled,
+  stderr,
+  stdin,
+  stdout,
+  title,
+  throwDeprecation,
+  traceDeprecation,
+  umask,
+  uptime,
+  version,
+  versions,
+  // @ts-expect-error old API
+  domain,
+  initgroups,
+  moduleLoadList,
+  reallyExit,
+  openStdin,
+  assert: assert2,
+  binding,
+  send,
+  exitCode,
+  channel,
+  getegid,
+  geteuid,
+  getgid,
+  getgroups,
+  getuid,
+  setegid,
+  seteuid,
+  setgid,
+  setgroups,
+  setuid,
+  permission,
+  mainModule,
+  _events,
+  _eventsCount,
+  _exiting,
+  _maxListeners,
+  _debugEnd,
+  _debugProcess,
+  _fatalException,
+  _getActiveHandles,
+  _getActiveRequests,
+  _kill,
+  _preload_modules,
+  _rawDebug,
+  _startProfilerIdleNotifier,
+  _stopProfilerIdleNotifier,
+  _tickCallback,
+  _disconnect,
+  _handleQueue,
+  _pendingMessage,
+  _channel,
+  _send,
+  _linkedBinding
+};
+var process_default = _process;
+
+// node_modules/wrangler/_virtual_unenv_global_polyfill-@cloudflare-unenv-preset-node-process
+globalThis.process = process_default;
+
+// node_modules/wrangler/node_modules/unenv/dist/runtime/npm/node-fetch.mjs
+var fetch = /* @__PURE__ */ __name((...args) => globalThis.fetch(...args), "fetch");
+var Headers2 = globalThis.Headers;
+var Request = globalThis.Request;
+var Response2 = globalThis.Response;
+var AbortController = globalThis.AbortController;
+var redirectStatus = /* @__PURE__ */ new Set([
+  301,
+  302,
+  303,
+  307,
+  308
+]);
+var isRedirect = /* @__PURE__ */ __name((code) => redirectStatus.has(code), "isRedirect");
+fetch.Promise = globalThis.Promise;
+fetch.isRedirect = isRedirect;
+var node_fetch_default = fetch;
+
 // node_modules/yaml/browser/dist/index.js
 var dist_exports = {};
 __export(dist_exports, {
@@ -309,13 +1231,13 @@ var Directives = class _Directives {
           onError(0, "%YAML directive should contain exactly one part");
           return false;
         }
-        const [version] = parts;
-        if (version === "1.1" || version === "1.2") {
-          this.yaml.version = version;
+        const [version2] = parts;
+        if (version2 === "1.1" || version2 === "1.2") {
+          this.yaml.version = version2;
           return true;
         } else {
-          const isValid = /^\d+\.\d+$/.test(version);
-          onError(6, `Unsupported YAML version ${version}`, isValid);
+          const isValid = /^\d+\.\d+$/.test(version2);
+          onError(6, `Unsupported YAML version ${version2}`, isValid);
           return false;
         }
       }
@@ -354,8 +1276,8 @@ var Directives = class _Directives {
     if (prefix) {
       try {
         return prefix + decodeURIComponent(suffix);
-      } catch (error) {
-        onError(String(error));
+      } catch (error3) {
+        onError(String(error3));
         return null;
       }
     }
@@ -452,9 +1374,9 @@ function createNodeAnchors(doc, prefix) {
         if (typeof ref === "object" && ref.anchor && (isScalar(ref.node) || isCollection(ref.node))) {
           ref.node.anchor = ref.anchor;
         } else {
-          const error = new Error("Failed to resolve repeated object (this should not happen)");
-          error.source = source;
-          throw error;
+          const error3 = new Error("Failed to resolve repeated object (this should not happen)");
+          error3.source = source;
+          throw error3;
         }
       }
     }, "setAnchors"),
@@ -561,8 +1483,8 @@ var NodeBase = class {
     };
     const res = toJS(this, "", ctx);
     if (typeof onAnchor === "function")
-      for (const { count, res: res2 } of ctx.anchors.values())
-        onAnchor(res2, count);
+      for (const { count: count3, res: res2 } of ctx.anchors.values())
+        onAnchor(res2, count3);
     return typeof reviver === "function" ? applyReviver(reviver, { "": res }, "", res) : res;
   }
 };
@@ -658,13 +1580,13 @@ function getAliasCount(doc, node, anchors) {
     const anchor = anchors && source && anchors.get(source);
     return anchor ? anchor.count * anchor.aliasCount : 0;
   } else if (isCollection(node)) {
-    let count = 0;
+    let count3 = 0;
     for (const item of node.items) {
       const c = getAliasCount(doc, item, anchors);
-      if (c > count)
-        count = c;
+      if (c > count3)
+        count3 = c;
     }
-    return count;
+    return count3;
   } else if (isPair(node)) {
     const kc = getAliasCount(doc, node.key, anchors);
     const vc = getAliasCount(doc, node.value, anchors);
@@ -1563,12 +2485,12 @@ ${ctx.indent}`;
 __name(stringifyPair, "stringifyPair");
 
 // node_modules/yaml/browser/dist/log.js
-function warn(logLevel, warning) {
+function warn3(logLevel, warning) {
   if (logLevel === "debug" || logLevel === "warn") {
     console.warn(warning);
   }
 }
-__name(warn, "warn");
+__name(warn3, "warn");
 
 // node_modules/yaml/browser/dist/schema/yaml-1.1/merge.js
 var MERGE_KEY = "<<";
@@ -1665,7 +2587,7 @@ function stringifyKey(key, jsKey, ctx) {
       let jsonStr = JSON.stringify(strKey);
       if (jsonStr.length > 40)
         jsonStr = jsonStr.substring(0, 36) + '..."';
-      warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
+      warn3(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
       ctx.mapKeyWarned = true;
     }
     return strKey;
@@ -2940,9 +3862,9 @@ function stringifyDocument(doc, options) {
   const lines = [];
   let hasDirectives = options.directives === true;
   if (options.directives !== false && doc.directives) {
-    const dir = doc.directives.toString(doc);
-    if (dir) {
-      lines.push(dir);
+    const dir3 = doc.directives.toString(doc);
+    if (dir3) {
+      lines.push(dir3);
       hasDirectives = true;
     } else if (doc.directives.docStart)
       hasDirectives = true;
@@ -3036,14 +3958,14 @@ var Document = class _Document {
       version: "1.2"
     }, options);
     this.options = opt;
-    let { version } = opt;
+    let { version: version2 } = opt;
     if (options?._directives) {
       this.directives = options._directives.atDocument();
       if (this.directives.yaml.explicit)
-        version = this.directives.yaml.version;
+        version2 = this.directives.yaml.version;
     } else
-      this.directives = new Directives({ version });
-    this.setSchema(version, options);
+      this.directives = new Directives({ version: version2 });
+    this.setSchema(version2, options);
     this.contents = value === void 0 ? null : this.createNode(value, _replacer, options);
   }
   /**
@@ -3223,11 +4145,11 @@ var Document = class _Document {
    *
    * Overrides all previously set schema options.
    */
-  setSchema(version, options = {}) {
-    if (typeof version === "number")
-      version = String(version);
+  setSchema(version2, options = {}) {
+    if (typeof version2 === "number")
+      version2 = String(version2);
     let opt;
-    switch (version) {
+    switch (version2) {
       case "1.1":
         if (this.directives)
           this.directives.yaml.version = "1.1";
@@ -3238,9 +4160,9 @@ var Document = class _Document {
       case "1.2":
       case "next":
         if (this.directives)
-          this.directives.yaml.version = version;
+          this.directives.yaml.version = version2;
         else
-          this.directives = new Directives({ version });
+          this.directives = new Directives({ version: version2 });
         opt = { resolveKnownTags: true, schema: "core" };
         break;
       case null:
@@ -3249,7 +4171,7 @@ var Document = class _Document {
         opt = null;
         break;
       default: {
-        const sv = JSON.stringify(version);
+        const sv = JSON.stringify(version2);
         throw new Error(`Expected '1.1', '1.2' or null as first argument, but found: ${sv}`);
       }
     }
@@ -3272,8 +4194,8 @@ var Document = class _Document {
     };
     const res = toJS(this.contents, jsonArg ?? "", ctx);
     if (typeof onAnchor === "function")
-      for (const { count, res: res2 } of ctx.anchors.values())
-        onAnchor(res2, count);
+      for (const { count: count3, res: res2 } of ctx.anchors.values())
+        onAnchor(res2, count3);
     return typeof reviver === "function" ? applyReviver(reviver, { "": res }, "", res) : res;
   }
   /**
@@ -3332,12 +4254,12 @@ var YAMLWarning = class extends YAMLError {
     super("YAMLWarning", pos, code, message);
   }
 };
-var prettifyError = /* @__PURE__ */ __name((src, lc) => (error) => {
-  if (error.pos[0] === -1)
+var prettifyError = /* @__PURE__ */ __name((src, lc) => (error3) => {
+  if (error3.pos[0] === -1)
     return;
-  error.linePos = error.pos.map((pos) => lc.linePos(pos));
-  const { line, col } = error.linePos[0];
-  error.message += ` at line ${line}, column ${col}`;
+  error3.linePos = error3.pos.map((pos) => lc.linePos(pos));
+  const { line, col } = error3.linePos[0];
+  error3.message += ` at line ${line}, column ${col}`;
   let ci = col - 1;
   let lineStr = src.substring(lc.lineStarts[line - 1], lc.lineStarts[line]).replace(/[\n\r]+$/, "");
   if (ci >= 60 && lineStr.length > 80) {
@@ -3354,13 +4276,13 @@ var prettifyError = /* @__PURE__ */ __name((src, lc) => (error) => {
     lineStr = prev + lineStr;
   }
   if (/[^ ]/.test(lineStr)) {
-    let count = 1;
-    const end = error.linePos[1];
+    let count3 = 1;
+    const end = error3.linePos[1];
     if (end && end.line === line && end.col > col) {
-      count = Math.max(1, Math.min(end.col - col, 80 - ci));
+      count3 = Math.max(1, Math.min(end.col - col, 80 - ci));
     }
-    const pointer = " ".repeat(ci) + "^".repeat(count);
-    error.message += `:
+    const pointer = " ".repeat(ci) + "^".repeat(count3);
+    error3.message += `:
 
 ${lineStr}
 ${pointer}
@@ -4084,7 +5006,7 @@ function parseBlockScalarHeader({ offset, props }, strict, onError) {
   const mode = source[0];
   let indent = 0;
   let chomp = "";
-  let error = -1;
+  let error3 = -1;
   for (let i = 1; i < source.length; ++i) {
     const ch = source[i];
     if (!chomp && (ch === "-" || ch === "+"))
@@ -4093,12 +5015,12 @@ function parseBlockScalarHeader({ offset, props }, strict, onError) {
       const n = Number(ch);
       if (!indent && n)
         indent = n;
-      else if (error === -1)
-        error = offset + i;
+      else if (error3 === -1)
+        error3 = offset + i;
     }
   }
-  if (error !== -1)
-    onError(error, "UNEXPECTED_TOKEN", `Block scalar header includes extra characters: ${source}`);
+  if (error3 !== -1)
+    onError(error3, "UNEXPECTED_TOKEN", `Block scalar header includes extra characters: ${source}`);
   let hasSpace = false;
   let comment = "";
   let length = source.length;
@@ -4383,8 +5305,8 @@ function composeScalar(ctx, token, tagToken, onError) {
   try {
     const res = tag.resolve(value, (msg) => onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg), ctx.options);
     scalar = isScalar(res) ? res : new Scalar(res);
-  } catch (error) {
-    const msg = error instanceof Error ? error.message : String(error);
+  } catch (error3) {
+    const msg = error3 instanceof Error ? error3.message : String(error3);
     onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg);
     scalar = new Scalar(value);
   }
@@ -4735,11 +5657,11 @@ ${cb}` : comment;
         break;
       case "error": {
         const msg = token.source ? `${token.message}: ${JSON.stringify(token.source)}` : token.message;
-        const error = new YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg);
+        const error3 = new YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg);
         if (this.atDirectives || !this.doc)
-          this.errors.push(error);
+          this.errors.push(error3);
         else
-          this.doc.errors.push(error);
+          this.doc.errors.push(error3);
         break;
       }
       case "doc-end": {
@@ -4826,15 +5748,15 @@ function resolveAsScalar(token, strict = true, onError) {
   return null;
 }
 __name(resolveAsScalar, "resolveAsScalar");
-function createScalarToken(value, context) {
-  const { implicitKey = false, indent, inFlow = false, offset = -1, type = "PLAIN" } = context;
+function createScalarToken(value, context2) {
+  const { implicitKey = false, indent, inFlow = false, offset = -1, type = "PLAIN" } = context2;
   const source = stringifyString({ type, value }, {
     implicitKey,
     indent: indent > 0 ? " ".repeat(indent) : "",
     inFlow,
     options: { blockQuote: true, lineWidth: -1 }
   });
-  const end = context.end ?? [
+  const end = context2.end ?? [
     { type: "newline", offset: -1, indent, source: "\n" }
   ];
   switch (source[0]) {
@@ -4859,8 +5781,8 @@ function createScalarToken(value, context) {
   }
 }
 __name(createScalarToken, "createScalarToken");
-function setScalarValue(token, value, context = {}) {
-  let { afterKey = false, implicitKey = false, inFlow = false, type } = context;
+function setScalarValue(token, value, context2 = {}) {
+  let { afterKey = false, implicitKey = false, inFlow = false, type } = context2;
   let indent = "indent" in token ? token.indent : null;
   if (afterKey && typeof indent === "number")
     indent += 2;
@@ -6012,8 +6934,8 @@ var Parser = class {
   peek(n) {
     return this.stack[this.stack.length - n];
   }
-  *pop(error) {
-    const token = error ?? this.stack.pop();
+  *pop(error3) {
+    const token = error3 ?? this.stack.pop();
     if (!token) {
       const message = "Tried to pop an empty stack";
       yield { type: "error", offset: this.offset, source: "", message };
@@ -6702,7 +7624,7 @@ function parse(src, reviver, options) {
   const doc = parseDocument(src, options);
   if (!doc)
     return null;
-  doc.warnings.forEach((warning) => warn(doc.options.logLevel, warning));
+  doc.warnings.forEach((warning) => warn3(doc.options.logLevel, warning));
   if (doc.errors.length > 0) {
     if (doc.options.logLevel !== "silent")
       throw doc.errors[0];
@@ -6739,106 +7661,94 @@ __name(stringify3, "stringify");
 // node_modules/yaml/browser/index.js
 var browser_default = dist_exports;
 
-// src/index.js
-var index_default = {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    const userAgent = request.headers.get("User-Agent");
-    const isBrowser = /mozilla|chrome|safari|firefox|edge|opera|webkit|gecko|trident/i.test(userAgent);
-    const templateUrl = url.searchParams.get("template");
-    const singbox = url.searchParams.get("singbox");
-    let urls = url.searchParams.getAll("url");
-    let headers = new Headers(), data = "";
-    if (urls.length === 1 && urls[0].includes(",")) {
-      urls = urls[0].split(",").map((u) => u.trim());
-    }
-    if (urls.length === 0 || urls[0] === "") {
-      return new Response(await getFakePage(env.IMG), {
-        status: 200,
-        headers: {
-          "Content-Type": "text/html; charset=utf-8"
-        }
-      });
-    }
-    for (let u of urls) {
-      if (!isValidURL(u)) {
-        return new Response(await getFakePage(env.IMG), {
-          status: 200,
-          headers: {
-            "Content-Type": "text/html; charset=utf-8"
-          }
-        });
-      }
-    }
-    if (isBrowser) {
-      return new Response(
-        `
-                <!DOCTYPE html>
-                <html>
-                  <head>
-                    <title>Welcome</title>
-                    <style>
-                      /* \u5168\u5C40\u80CC\u666F\u56FE\uFF08\u4F7F\u7528\u5728\u7EBF\u56FE\u7247URL\uFF09 */
-                      body {
-                        background:rgba(179, 172, 172, 0.5);
-                        background-size: cover;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh;
-                        margin: 0;
-                        font-family: 'Arial', sans-serif;
-                      }
-
-                      /* \u6587\u5B57\u6846\u6837\u5F0F */
-                      .text-box {
-                        background: rgba(255, 255, 255, 0.8); /* \u534A\u900F\u660E\u767D\u8272\u80CC\u666F */
-                        backdrop-filter: blur(5px); /* \u6BDB\u73BB\u7483\u6548\u679C */
-                        border-radius: 15px;
-                        padding: 40px;
-                        max-width: 600px;
-                        text-align: center;
-                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                      }
-
-                      h1 {
-                        color: rgb(255, 0, 0);
-                        margin: 0 0 20px 0;
-                      }
-                    </style>
-                  </head>
-                  <body>
-                    <div class="text-box">
-                      <h1>\u8BF7\u4F7F\u7528mihomo\u5185\u6838\u7684\u4EE3\u7406\u5DE5\u5177\u8BA2\u9605\uFF01</h1>
-                    </div>
-                  </body>
-                </html>
-                `,
-        {
-          status: 400,
-          headers: { "Content-Type": "text/html; charset=utf-8" }
-        }
-      );
-    }
-    if (singbox) {
-      const res = await singboxconfig(urls, templateUrl);
-      data = res.data;
-      const responseHeaders = res.ResponseHeaders?.headers || {};
-      headers = new Headers(responseHeaders);
-    } else {
-      const res = await mihomoconfig(urls, templateUrl);
-      data = res.data;
-      const responseHeaders = res.ResponseHeaders?.headers || {};
-      headers = new Headers(responseHeaders);
-    }
-    headers.set("Content-Type", "application/json; charset=utf-8");
-    return new Response(data, {
-      status: 200,
-      headers
-    });
+// src/utils.js
+var backimg = "https://t.alcy.cc/ycy";
+var subapi = "https://url.v1.mk";
+var mihomo_top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml";
+var beiantext = base64DecodeUtf8("6JCMSUNQ5aSHMjAyNTAwMDHlj7c=");
+var beiandizi = atob("aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=");
+function base64DecodeUtf8(base64) {
+  const binary2 = atob(base64);
+  const bytes = Uint8Array.from(binary2, (char) => char.charCodeAt(0));
+  return new TextDecoder("utf-8").decode(bytes);
+}
+__name(base64DecodeUtf8, "base64DecodeUtf8");
+function buildApiUrl(rawUrl, BASE_API, ua) {
+  const params = new URLSearchParams({
+    target: ua,
+    url: rawUrl,
+    emoji: "true",
+    list: "true",
+    new_name: "true"
+  });
+  return `${BASE_API}/sub?${params}`;
+}
+__name(buildApiUrl, "buildApiUrl");
+async function fetchResponse(url, userAgent) {
+  if (!userAgent) {
+    userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3";
   }
-};
-async function getFakePage(image = "https://t.alcy.cc/ycy") {
+  let response;
+  try {
+    response = await node_fetch_default(url, {
+      method: "GET",
+      headers: {
+        "User-Agent": userAgent
+      }
+    });
+  } catch {
+    return true;
+  }
+  const headersObj = Object.fromEntries(response.headers.entries());
+  const textData = await response.text();
+  let jsonData;
+  try {
+    jsonData = browser_default.parse(textData, { maxAliasCount: -1, merge: true });
+  } catch (e) {
+    try {
+      jsonData = JSON.parse(textData);
+    } catch (yamlError) {
+      jsonData = textData;
+    }
+  }
+  return {
+    status: response.status,
+    headers: headersObj,
+    data: jsonData
+  };
+}
+__name(fetchResponse, "fetchResponse");
+function splitUrlsAndProxies(urls) {
+  const result = [];
+  let proxyText = "";
+  for (const url of urls) {
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      result.push(url);
+    } else {
+      if (proxyText) {
+        proxyText += "|";
+      }
+      proxyText += url;
+    }
+  }
+  if (proxyText) {
+    result.push(proxyText);
+  }
+  return result;
+}
+__name(splitUrlsAndProxies, "splitUrlsAndProxies");
+async function Top_Data(top) {
+  return await fetchResponse(top);
+}
+__name(Top_Data, "Top_Data");
+async function Rule_Data(rule) {
+  if (!rule) {
+    throw new Error(`\u7F3A\u5C11\u89C4\u5219\u6A21\u677F`);
+  }
+  return await fetchResponse(rule);
+}
+__name(Rule_Data, "Rule_Data");
+async function getFakePage(image, button_url, button_text, configdata) {
   return `
 <!DOCTYPE html>
 <html>
@@ -6846,7 +7756,8 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mihomo\u6C47\u805A\u5DE5\u5177</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20id='Partition-Auto--Streamline-Carbon'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20height='16'%20width='16'%3E%3Cdesc%3EPartition%20Auto%20Streamline%20Icon%3A%20https%3A//streamlinehq.com%3C/desc%3E%3Cdefs%3E%3C/defs%3E%3Cpath%20d='M13%209.5c-1.1028%200%20-2%200.8972%20-2%202%200%200.3418%200.0941%200.6587%200.24585%200.94045C10.30775%2013.12675%209.17285%2013.5%208%2013.5%204.9673%2013.5%202.5%2011.0327%202.5%208H1.5c0%203.584%202.9159%206.5%206.5%206.5%201.42275%200%202.79615%20-0.468%203.92165%20-1.3208C12.2334%2013.38015%2012.6023%2013.5%2013%2013.5c1.1028%200%202%20-0.8972%202%20-2s-0.8972%20-2%20-2%20-2Zm0%203c-0.5514%200%20-1%20-0.44875%20-1%20-1s0.4486%20-1%201%20-1%201%200.44875%201%201%20-0.4486%201%20-1%201Z'%20fill='%23000000'%20stroke-width='0.5'/%3E%3Cpath%20d='M8%201.5c-1.42275%200%20-2.79615%200.468%20-3.92165%201.3208C3.7666%202.61985%203.3977%202.5%203%202.5%201.8972%202.5%201%203.3972%201%204.5s0.8972%202%202%202%202%20-0.8972%202%20-2c0%20-0.3418%20-0.0941%20-0.6587%20-0.24585%20-0.94045C5.69225%202.87325%206.82715%202.5%208%202.5c3.0327%200%205.5%202.4673%205.5%205.5h1c0%20-3.584%20-2.9159%20-6.5%20-6.5%20-6.5ZM3%205.5c-0.5514%200%20-1%20-0.44875%20-1%20-1s0.4486%20-1%201%20-1%201%200.44875%201%201%20-0.4486%201%20-1%201Z'%20fill='%23000000'%20stroke-width='0.5'/%3E%3Cpath%20id='_Transparent_Rectangle_'%20d='M0%200h16v16H0Z'%20fill='none'%20stroke-width='0.5'/%3E%3C/svg%3E">
+    <title>mihomo/singbox\u6C47\u805A\uFF08\u8BA2\u9605\u8F6C\u6362\uFF09\u5DE5\u5177</title>
     <style>
         :root {
             --primary-color: #4361ee;
@@ -6916,9 +7827,15 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
         }
 
         .link-input {
-            display: block;
-            margin-top: 8px;
-            width: 100%;
+            flex: 1; /* \u5360\u636E\u5269\u4F59\u7A7A\u95F4 */
+            min-width: 0; /* \u9632\u6B62\u5185\u5BB9\u6EA2\u51FA */
+            margin-top: 0;
+            padding: 12px;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
         }
 
         .link-row {
@@ -6926,22 +7843,21 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             align-items: center;
             position: relative;
             margin-bottom: 8px;
+            gap: 10px;
         }
 
         /* \u5706\u5F62\u6DFB\u52A0\u6309\u94AE\u6837\u5F0F */
         .add-btn {
-            position: relative;
+            flex-shrink: 0; /* \u9632\u6B62\u6309\u94AE\u88AB\u538B\u7F29 */
+            width: 40px;
+            height: 40px;
             background-color: #f8f9fa;
-            width: 50px;
-            height: 50px;
-            top: 3px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background-color 0.2s ease;
-            margin-left: 10px;
         }
 
         .add-btn:hover {
@@ -7127,6 +8043,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
         
         /* \u65B0\u589E\u6A21\u677F\u9009\u62E9\u5668\u6837\u5F0F - \u5355\u5C55\u5F00\u9762\u677F\u7248\u672C */
         .template-selector {
+            position: relative;
             margin-bottom: 1.5rem;
         }
         
@@ -7158,12 +8075,16 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
         }
         
         .template-options {
+            position: absolute;
+            top: 100%; /* \u7D27\u8D34 toggle \u4E0B\u9762 */
+            left: 0;
+            width: 100%;
+            z-index: 10;
             background-color: white;
             border-radius: 0 0 10px 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             display: none;
-            margin-top: 5px;
-            max-height: 200px; /* \u53EF\u6839\u636E\u9700\u8981\u8C03\u6574\u9AD8\u5EA6 */
+            max-height: 200px;
             overflow-y: auto;
         }
         
@@ -7261,7 +8182,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
     </a>
     <div class="container">
         <div class="logo-title">
-            <h1>mihomo/singbox\u6C47\u805A\u5DE5\u5177</h1>
+            <h1>mihomo/singbox\u6C47\u805A\uFF08\u8BA2\u9605\u8F6C\u6362\uFF09\u5DE5\u5177</h1>
         </div>
         <div class="config-toggle">
             <div class="toggle-option active" data-mode="mihomo">Clash (mihomo)</div>
@@ -7279,8 +8200,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                 <label for="link">\u8BA2\u9605\u94FE\u63A5</label>
                 <div id="link-container">
                     <div class="link-row">
-                        <input type="text" class="link-input"
-                            placeholder="https://www.example.com/answer/land?token=xxx" />
+                        <input type="text" class="link-input"/>
                         <div class="add-btn" onclick="addLinkInput(this)">\u2795</div>
                     </div>
                 </div>
@@ -7300,8 +8220,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                 <label for="link">\u8BA2\u9605\u94FE\u63A5</label>
                 <div id="link-container-singbox">
                     <div class="link-row">
-                        <input type="text" class="link-input"
-                            placeholder="https://www.example.com/answer/land?token=xxx" />
+                        <input type="text" class="link-input"/>
                         <div class="add-btn" onclick="addLinkInput(this, 'singbox')">\u2795</div>
                     </div>
                 </div>
@@ -7313,28 +8232,17 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
 
         <div class="input-group">
             <div style="display: flex; align-items: center;">
-                <label for="result">\u8BA2\u9605\u94FE\u63A5</label>
+                <label for="result">\u8BA2\u9605\u5730\u5740</label>
             </div>
             <input type="text" id="result" readonly onclick="copyToClipboard()">
             <label id="qrcode" style="margin: 15px 10px -15px 10px;"></label>
         </div>
         <div class="beian-info" style="text-align: center; font-size: 13px;">
-            <a href='https://t.me/Marisa_kristi'>\u840CICP\u590720250001\u53F7</a>
+            <a href='${button_url}'>${button_text}</a>
         </div>
     </div>
 
     <script>
-
-        // \u70B9\u51FB\u9875\u9762\u5176\u4ED6\u533A\u57DF\u5173\u95ED\u63D0\u793A\u6846
-        document.addEventListener('click', function (event) {
-            const tooltip = document.getElementById('infoTooltip');
-            const infoIcon = document.querySelector('.info-icon');
-
-            if (!tooltip.contains(event.target) && !infoIcon.contains(event.target)) {
-                tooltip.style.display = 'none';
-            }
-        });
-
         function copyToClipboard() {
             const resultInput = document.getElementById('result');
             if (!resultInput.value) {
@@ -7365,6 +8273,23 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             });
         }
 
+        // \u52A8\u6001\u8BBE\u7F6E\u8F93\u5165\u6846\u7684placeholder\uFF0C\u6839\u636E\u5F53\u524D\u6A21\u5F0F
+        function setPlaceholderForMode(input, mode = 'mihomo') {
+            input.placeholder = mode === 'singbox' 
+                ? '\u8BF7\u8F93\u5165singbox\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5355\u8282\u70B9' 
+                : '\u8BF7\u8F93\u5165clash\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5355\u8282\u70B9';
+        }
+
+        // \u521D\u59CB\u5316\u6240\u6709\u8F93\u5165\u6846\u7684placeholder
+        function initializePlaceholders(mode) {
+            const selector = mode === 'singbox' 
+                ? '.singbox-options .link-input' 
+                : '.mihomo-options .link-input';
+    
+            document.querySelectorAll(selector).forEach(input => {
+                setPlaceholderForMode(input, mode);
+            });
+        }
         // \u4FEE\u6539addLinkInput\u4EE5\u652F\u6301singbox\u5BB9\u5668
         function addLinkInput(button, mode = 'mihomo') {
             const containerId = mode === 'singbox' ? 'link-container-singbox' : 'link-container';
@@ -7375,7 +8300,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             const input = document.createElement('input');
             input.type = 'text';
             input.className = 'link-input';
-            input.placeholder = 'https://www.example.com/answer/land?token=xxx';
+            setPlaceholderForMode(input, mode);
 
             button.style.display = 'none';
             row.appendChild(input);
@@ -7391,44 +8316,15 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             row.appendChild(btn);
         }
 
-        function generateLink() {
-            const inputs = document.querySelectorAll('.link-input');
-            const links = Array.from(inputs).map(input => input.value.trim()).filter(val => val !== '');
-
-            if (links.length === 0) {
-                alert('\u8BF7\u8F93\u5165\u81F3\u5C11\u4E00\u4E2A\u94FE\u63A5');
-                return;
-            }
-
-            const allValid = links.every(link => link.startsWith('http://') || link.startsWith('https://'));
-            if (!allValid) {
-                alert('\u8BF7\u8F93\u5165\u6709\u6548\u7684url\u5730\u5740');
-                return;
-            }
-	        const encodedLinks = links.map(link => encodeURIComponent(link));
-            const domain = window.location.hostname;
-            const urlLink = \`https://\${domain}/?url=\${encodedLinks.join(',')}\`;
-            document.getElementById('result').value = urlLink;
-
-            // \u751F\u6210\u4E8C\u7EF4\u7801
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            new QRCode(qrcodeDiv, {
-                text: urlLink,
-                width: 220,
-                height: 220,
-                colorDark: "#4a60ea",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.L,
-                scale: 1
-            });
-        }
-
         // \u5728mihomo\u548Csingbox\u6A21\u5F0F\u4E4B\u95F4\u5207\u6362
         document.addEventListener('DOMContentLoaded', function () {
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const container = document.querySelector('.container');
 
+            // \u8BBE\u7F6E\u9ED8\u8BA4\u6A21\u5F0F\u4E3Amihomo
+            const defaultMode = 'mihomo';
+            document.querySelector(\`.toggle-option[data-mode="\${defaultMode}"]\`).classList.add('active');
+            initializePlaceholders(defaultMode);
             toggleOptions.forEach(option => {
                 option.addEventListener('click', function () {
                     // \u8BBE\u7F6E\u6D3B\u52A8\u72B6\u6001
@@ -7436,11 +8332,14 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                     this.classList.add('active');
 
                     // \u5207\u6362\u6A21\u5F0F
+                    const newMode = this.dataset.mode;
                     if (this.dataset.mode === 'singbox') {
                         container.classList.add('singbox-mode');
                     } else {
                         container.classList.remove('singbox-mode');
                     }
+                   // \u521D\u59CB\u5316\u65B0\u6A21\u5F0F\u7684placeholder
+                   initializePlaceholders(newMode);
                 });
             });
 
@@ -7453,123 +8352,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             const selectorClass = mode === 'singbox' ? '.singbox-options .template-selector' : '.mihomo-options .template-selector';
             const templateToggle = document.querySelector(\`\${selectorClass} .template-toggle\`);
             const optionsContainer = document.querySelector(\`\${selectorClass} .template-options\`);
-
-            // \u914D\u7F6E\u6570\u636E
-            const configs = {
-                mihomo: [
-                    {
-                        label: "\u901A\u7528",
-                        options: [
-                            {
-                                label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09\uFF08\u4EC5\u56FD\u5185\u5916\u5206\u6D41\uFF09",
-                                value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default.yaml"
-                            },
-                            {
-                                label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09\uFF08\u65E0\u53BB\u5E7F\u544A\uFF09",
-                                value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_NoAds.yaml"
-                            },
-                            {
-                                label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09",
-                                value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_full.yaml"
-                            }
-                        ]
-                    },
-                    {
-                        label: "Mihomo-Party-ACL4SSR",
-                        options: [
-                            {
-                                label: "ACL4SSR_Online_Full \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Full_AdblockPlus \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\u66F4\u591A\u53BB\u5E7F\u544A\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_AdblockPlus.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Full_Tiktok \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\u6296\u97F3\u5168\u91CF\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_Tiktok.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Full_WithIcon \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\uFF08\u4E0EGithub\u540C\u6B65\uFF09\uFF08\u65E0\u56FE\u6807\uFF09",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_WithIcon.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Mini_MultiMode \u4E13\u4E1A\u7248\u81EA\u52A8\u6D4B\u901F\u3001\u6545\u969C\u8F6C\u79FB\u3001\u8D1F\u8F7D\u5747\u8861\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Mini_MultiMode.yaml"
-                            },
-                            {
-                                label: "\u6781\u7B80\u5206\u6D41\u89C4\u5219",
-                                value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/\u6781\u7B80\u5206\u6D41\u89C4\u5219.yaml"
-                            }
-                        ]
-                    },
-                    {
-                        label: "\u7F51\u7EDC\u6536\u96C6",
-                        options: [
-                            {
-                                label: "\u5E03\u4E01\u72D7\u7684\u8BA2\u9605\u8F6C\u6362 (\u4E0EGithub\u540C\u6B65)",
-                                value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/%E5%B8%83%E4%B8%81%E7%8B%97%E7%9A%84%E8%AE%A2%E9%98%85%E8%BD%AC%E6%8D%A2.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Full \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65)",
-                                value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/ACL4SSR_Online_Full.yaml"
-                            },
-                            {
-                                label: "ACL4SSR_Online_Full_WithIcon \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u56FE\u6807)",
-                                value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/ACL4SSR_Online_Full_WithIcon.yaml"
-                            },
-                        ]
-                    },
-                    {
-                        label: "Lanlan13-14",
-                        options: [
-                            {
-                                label: "configfull \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull.yaml"
-                            },
-                            {
-                                label: "configfull_NoAd \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd.yaml"
-                            },
-                            {
-                                label: "configfull_NoAd_Stash \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (Stash)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_Stash.yaml"
-                            },
-                            {
-                                label: "configfull_NoAd_Stash_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (\u7CBE\u7B80\u7248) (Stash)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_Stash_lite.yaml"
-                            },
-                            {
-                                label: "configfull_NoAd_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (\u7CBE\u7B80\u7248)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_lite.yaml"
-                            },
-                            {
-                                label: "configfull_Stash \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (Stash)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_Stash.yaml"
-                            },
-                            {
-                                label: "configfull_Stash_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u7CBE\u7B80\u7248) (Stash)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_Stash_lite.yaml"
-                            },
-                            {
-                                label: "configfull_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u7CBE\u7B80\u7248)",
-                                value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_lite.yaml"
-                            },
-                        ]
-                    },
-                ],
-                singbox: [
-                    {
-                        label: "\u901A\u7528",
-                        options: [
-                            {
-                                label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09",
-                                value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox-1.12.0-beta.17.json"
-                            }
-                        ]
-                    }
-                ]
-            };
+            const configs = ${configdata}
             // \u751F\u6210\u6240\u6709\u6A21\u677F\u9009\u9879
             configs[mode].forEach(group => {
                 // \u6DFB\u52A0\u5206\u7EC4\u6807\u7B7E
@@ -7587,6 +8370,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                     optionElement.className = 'template-option';
                     optionElement.textContent = option.label;
                     optionElement.dataset.value = option.value;
+                    optionElement.dataset.group = group.label;
 
                     optionElement.addEventListener('click', function () {
                         // \u79FB\u9664\u4E4B\u524D\u9009\u4E2D\u7684\u6837\u5F0F
@@ -7595,7 +8379,7 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                         });
 
                         // \u66F4\u65B0\u663E\u793A\u6587\u672C
-                        templateToggle.textContent = \`\u9009\u62E9\u914D\u7F6E\u6A21\u677F\uFF08\${option.label}\uFF09\`;
+                        templateToggle.textContent = \`\${group.label}-\${option.label}\`;
 
                         // \u6DFB\u52A0\u9009\u4E2D\u6837\u5F0F
                         this.classList.add('selected');
@@ -7613,7 +8397,10 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
             const firstOption = document.querySelector(\`\${selectorClass} .template-option\`);
             if (firstOption) {
                 firstOption.classList.add('selected');
-                templateToggle.textContent = \`\u9009\u62E9\u914D\u7F6E\u6A21\u677F\uFF08\${firstOption.textContent}\uFF09\`;
+                const groupLabel = firstOption.dataset.group;
+                const optionLabel = firstOption.textContent;
+                templateToggle.textContent = \`\u8BF7\u9009\u62E9\u914D\u7F6E\u6A21\u677F\uFF08\u9ED8\u8BA4-\${groupLabel}\uFF09\`;
+                // templateToggle.textContent = \`\u8BF7\u9009\u62E9\u914D\u7F6E\u6A21\u677F\uFF08\${groupLabel}-\${firstOption.textContent}\uFF09\`;
             }
 
             // \u70B9\u51FB\u5207\u6362\u6309\u94AE\u5C55\u5F00/\u6298\u53E0\u9009\u9879
@@ -7642,16 +8429,8 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
 
             const templateLink = selectedOption ? selectedOption.dataset.value : '';
 
-            if (subscriptionLinks.length === 0 && !templateLink) {
-                alert('\u8BF7\u8F93\u5165\u81F3\u5C11\u4E00\u4E2A\u8BA2\u9605\u94FE\u63A5\u6216\u9009\u62E9\u914D\u7F6E\u6A21\u677F');
-                return;
-            }
-
-            const allValid = subscriptionLinks.every(link =>
-                link.startsWith('http://') || link.startsWith('https://'));
-
-            if (subscriptionLinks.length > 0 && !allValid) {
-                alert('\u8BF7\u8F93\u5165\u6709\u6548\u7684\u8BA2\u9605URL\u5730\u5740');
+            if (subscriptionLinks.length === 0 && templateLink) {
+                alert('\u8BF7\u8F93\u5165\u81F3\u5C11\u4E00\u4E2A\u8BA2\u9605\u94FE\u63A5');
                 return;
             }
 
@@ -7664,8 +8443,8 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                 allLinks.push(\`url=\${encodeURIComponent(link)}\`);
             });
 
-            const domain = window.location.hostname;
-            const urlLink = \`https://\${domain}/?\${allLinks.join('&')}\`;
+            const origin = window.location.origin;
+            const urlLink = \`\${origin}/?\${allLinks.join('&')}\`;
             updateResult(urlLink);
         }
         // \u751F\u6210singbox\u94FE\u63A5
@@ -7678,16 +8457,8 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
 
             const templateLink = selectedOption ? selectedOption.dataset.value : '';
 
-            if (subscriptionLinks.length === 0 && !templateLink) {
-                alert('\u8BF7\u8F93\u5165\u81F3\u5C11\u4E00\u4E2A\u8BA2\u9605\u94FE\u63A5\u6216\u9009\u62E9\u914D\u7F6E\u6A21\u677F');
-                return;
-            }
-
-             const allValid = subscriptionLinks.every(link =>
-                link.startsWith('http://') || link.startsWith('https://'));
-
-            if (subscriptionLinks.length > 0 && !allValid) {
-                alert('\u8BF7\u8F93\u5165\u6709\u6548\u7684\u8BA2\u9605URL\u5730\u5740');
+            if (subscriptionLinks.length === 0 && templateLink) {
+                alert('\u8BF7\u8F93\u5165\u81F3\u5C11\u4E00\u4E2A\u8BA2\u9605\u94FE\u63A5');
                 return;
             }
 
@@ -7700,8 +8471,8 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
                 allLinks.push(\`url=\${encodeURIComponent(link)}\`);
             });
 
-            const domain = window.location.hostname;
-            const urlLink = \`https://\${domain}/?\${allLinks.join('&')}&singbox=true\`;
+            const origin = window.location.origin;
+            const urlLink = \`\${origin}/?\${allLinks.join('&')}&singbox=true\`;
             updateResult(urlLink);
         }
         // \u66F4\u65B0\u7ED3\u679C\u548C\u4E8C\u7EF4\u7801
@@ -7727,183 +8498,479 @@ async function getFakePage(image = "https://t.alcy.cc/ycy") {
 </html>    `;
 }
 __name(getFakePage, "getFakePage");
-function isValidURL(url) {
-  try {
-    const parsedUrl = new URL(url);
-    return ["http:", "https:"].includes(parsedUrl.protocol);
-  } catch (e) {
-    return false;
-  }
+function configs() {
+  const data = {
+    mihomo: [
+      {
+        label: "\u901A\u7528",
+        options: [
+          {
+            label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09\uFF08\u4EC5\u56FD\u5185\u5916\u5206\u6D41\uFF09[\u79CB\u98CE_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09\uFF08\u4EC5\u56FD\u5185\u5916\u5206\u6D41\uFF09[Dustinwin_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_Ads_Dustinwin.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09\uFF08\u65E0\u53BB\u5E7F\u544A\uFF09",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_NoAds.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09[\u79CB\u98CE_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_full.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09[Dustinwin_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_full_Ads_Dustinwin.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09\uFF08\u65E0\u53BB\u5E7F\u544A\uFF09",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_default_full_NoAds.yaml"
+          }
+        ]
+      },
+      {
+        label: "Mihomo-Party-ACL4SSR",
+        options: [
+          {
+            label: "ACL4SSR_Online_Full \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Full_AdblockPlus \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\u66F4\u591A\u53BB\u5E7F\u544A\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_AdblockPlus.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Full_Tiktok \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\u6296\u97F3\u5168\u91CF\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_Tiktok.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Full_WithIcon \u5168\u5305\u91CD\u5EA6\u7528\u6237\u4F7F\u7528\uFF08\u4E0EGithub\u540C\u6B65\uFF09\uFF08\u65E0\u56FE\u6807\uFF09",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Full_WithIcon.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Mini_MultiMode \u4E13\u4E1A\u7248\u81EA\u52A8\u6D4B\u901F\u3001\u6545\u969C\u8F6C\u79FB\u3001\u8D1F\u8F7D\u5747\u8861\uFF08\u4E0EGithub\u540C\u6B65\uFF09",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/ACL4SSR_Online_Mini_MultiMode.yaml"
+          },
+          {
+            label: "\u6781\u7B80\u5206\u6D41\u89C4\u5219",
+            value: "https://raw.githubusercontent.com/zhuqq2020/Mihomo-Party-ACL4SSR/main/\u6781\u7B80\u5206\u6D41\u89C4\u5219.yaml"
+          }
+        ]
+      },
+      {
+        label: "\u7F51\u7EDC\u6536\u96C6",
+        options: [
+          {
+            label: "\u5E03\u4E01\u72D7\u7684\u8BA2\u9605\u8F6C\u6362 (\u4E0EGithub\u540C\u6B65)",
+            value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/%E5%B8%83%E4%B8%81%E7%8B%97%E7%9A%84%E8%AE%A2%E9%98%85%E8%BD%AC%E6%8D%A2.yaml"
+          },
+          {
+            label: "6D \u81EA\u7528\u6A21\u677F ",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/Mihomo_6D_\u81EA\u7528\u6A21\u677F.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Full \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65)",
+            value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/ACL4SSR_Online_Full.yaml"
+          },
+          {
+            label: "ACL4SSR_Online_Full_WithIcon \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u56FE\u6807)",
+            value: "https://raw.githubusercontent.com/mihomo-party-org/override-hub/main/yaml/ACL4SSR_Online_Full_WithIcon.yaml"
+          }
+        ]
+      },
+      {
+        label: "Lanlan13-14",
+        options: [
+          {
+            label: "configfull \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull.yaml"
+          },
+          {
+            label: "configfull_NoAd \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd.yaml"
+          },
+          {
+            label: "configfull_NoAd_Stash \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (Stash)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_Stash.yaml"
+          },
+          {
+            label: "configfull_NoAd_Stash_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (\u7CBE\u7B80\u7248) (Stash)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_Stash_lite.yaml"
+          },
+          {
+            label: "configfull_NoAd_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u65E0\u53BB\u5E7F\u544A) (\u7CBE\u7B80\u7248)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_NoAd_lite.yaml"
+          },
+          {
+            label: "configfull_Stash \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (Stash)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_Stash.yaml"
+          },
+          {
+            label: "configfull_Stash_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u7CBE\u7B80\u7248) (Stash)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_Stash_lite.yaml"
+          },
+          {
+            label: "configfull_lite \u5168\u5206\u7EC4\u7248 (\u4E0EGithub\u540C\u6B65) (\u7CBE\u7B80\u7248)",
+            value: "https://raw.githubusercontent.com/Lanlan13-14/Rules/main/configfull_lite.yaml"
+          }
+        ]
+      }
+    ],
+    singbox: [
+      {
+        label: "\u901A\u7528",
+        options: [
+          {
+            label: "\u9ED8\u8BA4\uFF08\u7CBE\u7B80\u7248\uFF09[\u79CB\u98CE_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08mini\u7248\uFF09[geo_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08mini\u7248\uFF09[DustinWin_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini_Ads_DustinWin.yaml"
+          },
+          {
+            label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09[\u79CB\u98CE_ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_full.yaml"
+          },
+          {
+            label: "DustinWin \u5168\u5206\u7EC4\u7248[ads]",
+            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_DustinWin_full.yaml"
+          }
+        ]
+      }
+    ]
+  };
+  return JSON.stringify(data);
 }
-__name(isValidURL, "isValidURL");
-async function mihomoconfig(urls, templateUrl) {
-  urls = urls.map((u) => decodeURIComponent(u));
-  templateUrl = decodeURIComponent(templateUrl);
-  let config = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml", templatedata;
-  if (!templateUrl) {
-    config = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo.yaml";
+__name(configs, "configs");
+
+// src/mihomo.js
+async function getmihomo_config(urls, rule, top, userAgent, subapi2) {
+  if (!/meta|clash.meta|clash|clashverge|mihomo/i.test(userAgent)) {
+    throw new Error("\u4E0D\u652F\u6301\u7684\u5BA2\u6237\u7AEF");
+  }
+  urls = splitUrlsAndProxies(urls);
+  const [Mihomo_Top_Data, Mihomo_Rule_Data, Mihomo_Proxies_Data] = await Promise.all([
+    Top_Data(top),
+    Rule_Data(rule),
+    getMihomo_Proxies_Data(urls, userAgent, subapi2)
+  ]);
+  if (Mihomo_Proxies_Data.data?.proxies?.length === 0 && Object.keys(Mihomo_Proxies_Data.data?.providers)?.length === 0) {
+    throw new Error("\u8282\u70B9\u4E3A\u7A7A");
+  }
+  if (Mihomo_Proxies_Data.data?.proxies?.length > 0) {
+    Mihomo_Rule_Data.data.proxies = [...Mihomo_Rule_Data?.data?.proxies || [], ...Mihomo_Proxies_Data.data?.proxies];
+  }
+  Mihomo_Top_Data.data["proxy-providers"] = Mihomo_Proxies_Data.data.providers;
+  applyTemplate(Mihomo_Top_Data.data, Mihomo_Rule_Data.data);
+  return {
+    status: Mihomo_Proxies_Data.status,
+    headers: Mihomo_Proxies_Data.headers,
+    data: JSON.stringify(Mihomo_Top_Data.data, null, 4)
+  };
+}
+__name(getmihomo_config, "getmihomo_config");
+async function getMihomo_Proxies_Data(urls, userAgent, subapi2) {
+  let res;
+  if (urls.length === 1) {
+    res = await fetchResponse(urls[0], userAgent);
+    if (res?.data?.proxies && Array.isArray(res?.data?.proxies) && res?.data?.proxies?.length > 0) {
+      res.data.proxies.forEach((p) => {
+        p.udp = true;
+      });
+      return {
+        status: res.status,
+        headers: res.headers,
+        data: res.data
+      };
+    } else {
+      const apiurl = buildApiUrl(urls[0], subapi2, "clash");
+      res = await fetchResponse(apiurl, userAgent);
+      if (res?.data?.proxies && Array.isArray(res?.data?.proxies) && res?.data?.proxies?.length > 0) {
+        res.data.proxies.forEach((p) => {
+          p.udp = true;
+        });
+        return {
+          status: res.status,
+          headers: res.headers,
+          data: res.data
+        };
+      }
+    }
   } else {
-    const templateyaml = await loadConfig(template);
-    templatedata = browser_default.parse(templateyaml, { maxAliasCount: -1, merge: true });
-  }
-  const mihomodata = await loadConfig(config);
-  let data = browser_default.parse(mihomodata, { maxAliasCount: -1, merge: true });
-  const base = data.p || {};
-  const override = data.override || {};
-  const proxyProviders = {};
-  const ResponseHeaders = await handleRequest(urls, templateUrl);
-  urls.forEach((url, i) => {
-    proxyProviders[`provider${i + 1}`] = {
-      ...base,
-      url,
-      path: `./proxies/provider${i + 1}.yaml`,
-      override: {
-        ...override,
-        "additional-suffix": ` ${i + 1}`
-      }
-    };
-  });
-  data["proxy-providers"] = proxyProviders;
-  if (templatedata) {
-    data.proxies = templatedata.proxies || [];
-    data["proxy-groups"] = templatedata["proxy-groups"] || [];
-    data.rules = templatedata.rules || [];
-    data["sub-rules"] = templatedata["sub-rules"] || {};
-    data["rule-providers"] = templatedata["rule-providers"] || {};
-  }
-  return {
-    data: JSON.stringify(data, null, 4),
-    ResponseHeaders
-  };
-}
-__name(mihomoconfig, "mihomoconfig");
-async function loadConfig(configUrl) {
-  const cacheKey = new Request(configUrl);
-  const cache = caches.default;
-  let cachedResponse = await cache.match(cacheKey);
-  if (cachedResponse) {
-    return cachedResponse.text();
-  }
-  const response = await fetch(configUrl);
-  const data = await response.text();
-  const cacheResponse = new Response(data, {
-    headers: { "Cache-Control": "public, max-age=1800" }
-  });
-  await cache.put(cacheKey, cacheResponse.clone());
-  return data;
-}
-__name(loadConfig, "loadConfig");
-async function fetchResponseHeaders(url) {
-  const response = await fetch(url);
-  const headersObj = {};
-  for (const [key, value] of response.headers.entries()) {
-    headersObj[key] = value;
-  }
-  return {
-    status: response.status,
-    headers: headersObj
-  };
-}
-__name(fetchResponseHeaders, "fetchResponseHeaders");
-function getFileNameFromUrl(url) {
-  try {
-    const pathname = new URL(url).pathname;
-    const parts = pathname.split("/").filter(Boolean);
-    const lastPart = parts.length > 0 ? parts[parts.length - 1] : "";
-    return lastPart || null;
-  } catch {
-    return null;
-  }
-}
-__name(getFileNameFromUrl, "getFileNameFromUrl");
-async function singboxconfig(urls, templateUrl) {
-  try {
-    templateUrl = decodeURIComponent(templateUrl);
-    const ResponseHeaders = await handleRequest(urls, templateUrl);
-    const templateJson = await loadConfig(templateUrl);
-    const templateData = JSON.parse(templateJson);
-    if (!Array.isArray(templateData.outbounds)) throw new Error("template JSON \u4E2D\u6CA1\u6709 outbounds \u6570\u7EC4");
-    const urlList = Array.isArray(urls) ? urls : [urls];
-    const allTargetOutbounds = [];
-    const skipTags = ["\u{1F680} \u8282\u70B9\u9009\u62E9", "\u{1F7E2} \u624B\u52A8\u9009\u62E9", "\u{1F388} \u81EA\u52A8\u9009\u62E9"];
-    for (let rawUrl of urlList) {
-      const apiUrl = `https://url.v1.mk/sub?target=singbox&url=${encodeURIComponent(rawUrl)}&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_NoAuto.ini&emoji=true&list=true&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false`;
-      const resp = await fetch(apiUrl);
-      if (!resp.ok) throw new Error(`\u83B7\u53D6 ${apiUrl} \u5931\u8D25\uFF0C\u72B6\u6001\u7801\uFF1A${resp.status}`);
-      const data2 = await resp.json();
-      if (!Array.isArray(data2.outbounds)) throw new Error(`URL ${rawUrl} \u4E2D\u6CA1\u6709 outbounds \u6570\u7EC4`);
-      const filteredOutbounds = data2.outbounds.filter((o) => !skipTags.includes(o.tag));
-      allTargetOutbounds.push(...filteredOutbounds);
-    }
-    const uniqueTargetMap = /* @__PURE__ */ new Map();
-    for (const ob of allTargetOutbounds) {
-      if (ob.tag && !uniqueTargetMap.has(ob.tag)) {
-        uniqueTargetMap.set(ob.tag, ob);
+    const proxies_list = [];
+    const hesList = [];
+    for (let i = 0; i < urls.length; i++) {
+      let res2 = await fetchResponse(urls[i], userAgent);
+      if (res2?.data && Array.isArray(res2?.data?.proxies)) {
+        res2.data.proxies.forEach((p) => {
+          p.name = `${p.name} [${i + 1}]`;
+          p.udp = true;
+        });
+        hesList.push({
+          status: res2.status,
+          headers: res2.headers
+        });
+        proxies_list.push(...res2.data.proxies);
+      } else {
+        const apiurl = buildApiUrl(urls[i], subapi2, "clash");
+        res2 = await fetchResponse(apiurl, userAgent);
+        if (res2?.data?.proxies && Array.isArray(res2?.data?.proxies)) {
+          res2.data.proxies.forEach((p) => {
+            p.name = `${p.name} [${i + 1}]`;
+            p.udp = true;
+          });
+          hesList.push({
+            status: res2.status,
+            headers: res2.headers
+          });
+          proxies_list.push(...res2.data.proxies);
+        }
       }
     }
-    const uniqueOutbounds = Array.from(uniqueTargetMap.values());
-    const templateNonSelectors = templateData.outbounds.filter(
-      (o) => !skipTags.includes(o.tag)
-    );
-    const mergedOutbounds = [...uniqueOutbounds];
-    const existingTags = new Set(mergedOutbounds.map((o) => o.tag));
-    for (const obj of templateNonSelectors) {
-      if (obj.tag && !existingTags.has(obj.tag)) {
-        mergedOutbounds.push(obj);
-        existingTags.add(obj.tag);
-      }
-    }
-    const subscriberNodeTags = uniqueOutbounds.map((o) => o.tag).filter((tag) => typeof tag === "string" && !skipTags.includes(tag));
-    for (const tag of skipTags) {
-      const selector = templateData.outbounds.find((o) => o.tag === tag);
-      if (!selector) {
-        continue;
-      }
-      if (!Array.isArray(selector.outbounds)) selector.outbounds = [];
-      const mergedTags = /* @__PURE__ */ new Set([...selector.outbounds, ...subscriberNodeTags]);
-      selector.outbounds = Array.from(mergedTags);
-    }
-    const finalOutbounds = [
-      ...templateData.outbounds.filter((o) => skipTags.includes(o.tag)),
-      ...mergedOutbounds
-    ];
-    const finalConfig = { ...templateData, outbounds: finalOutbounds };
-    const data = JSON.stringify(finalConfig, null, 4);
+    const randomIndex = Math.floor(Math.random() * hesList.length);
+    const hes = hesList[randomIndex];
+    const data = { providers: {}, proxies: proxies_list };
     return {
-      ResponseHeaders,
+      status: hes.status,
+      headers: hes.headers,
       data
     };
-  } catch (error) {
-    return error.message;
   }
 }
-__name(singboxconfig, "singboxconfig");
-async function handleRequest(urls, templateUrl) {
-  let ResponseHeaders = {};
-  let headers = {};
-  if (urls.length === 1) {
-    const ResponseHeadersRaw = await fetchResponseHeaders(urls[0]);
-    if (ResponseHeadersRaw?.headers) {
-      headers = { ...ResponseHeadersRaw.headers };
-      const hasContentDisposition = Object.keys(headers).some(
-        (key) => key.toLowerCase() === "content-disposition"
-      );
-      if (!hasContentDisposition) {
-        const domain = new URL(urls[0]).hostname;
-        headers["Content-Disposition"] = `attachment; filename="${domain}"; filename*=utf-8''${encodeURIComponent(domain)}`;
-      }
-      ResponseHeaders = { headers };
+__name(getMihomo_Proxies_Data, "getMihomo_Proxies_Data");
+function applyTemplate(top, rule) {
+  top.proxies = rule.proxies || [];
+  top["proxy-groups"] = rule["proxy-groups"] || [];
+  top.rules = rule.rules || [];
+  top["sub-rules"] = rule["sub-rules"] || {};
+  top["rule-providers"] = { ...top["rule-providers"] || {}, ...rule["rule-providers"] || {} };
+}
+__name(applyTemplate, "applyTemplate");
+
+// src/singbox.js
+async function getsingbox_config(urls, rule, userAgent, subapi2) {
+  let top;
+  if (/singbox|sing-box|sfa/i.test(userAgent)) {
+    if (/1.11./i.test(userAgent)) {
+      top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox_1.11.X.json";
+    } else if (/1.12./i.test(userAgent)) {
+      top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.json";
+    } else {
+      throw new Error(`\u4E0D\u652F\u6301\u7684 Singbox \u7248\u672C`);
     }
-    return ResponseHeaders;
   } else {
-    const fileName = getFileNameFromUrl(templateUrl);
-    const fallbackName = fileName ? `mihomo\u6C47\u805A\u8BA2\u9605(${fileName})` : "mihomo\u6C47\u805A\u8BA2\u9605";
-    headers["Content-Disposition"] = `attachment; filename="${fallbackName}"; filename*=utf-8''${encodeURIComponent(fallbackName)}`;
-    ResponseHeaders = { headers };
-    return ResponseHeaders;
+    throw new Error("\u4E0D\u652F\u6301\u7684\u5BA2\u6237\u7AEF");
+  }
+  urls = splitUrlsAndProxies(urls);
+  const [Singbox_Top_Data, Singbox_Rule_Data, Singbox_Outbounds_Data] = await Promise.all([
+    Top_Data(top),
+    Rule_Data(rule),
+    getSingbox_Outbounds_Data(urls, subapi2, userAgent)
+  ]);
+  if (!Array.isArray(Singbox_Outbounds_Data.data?.outbounds) || Singbox_Outbounds_Data.data?.outbounds?.length === 0) throw new Error(`\u8282\u70B9\u4E3A\u7A7A\uFF0C\u8BF7\u4F7F\u7528\u6709\u6548\u8BA2\u9605`);
+  Singbox_Outbounds_Data.data.outbounds = outboundArrs(Singbox_Outbounds_Data.data);
+  const ApiUrlname = [];
+  Singbox_Outbounds_Data.data.outbounds.forEach((res) => {
+    ApiUrlname.push(res.tag);
+  });
+  Singbox_Rule_Data.data.outbounds = loadAndSetOutbounds(Singbox_Rule_Data.data.outbounds, ApiUrlname);
+  Singbox_Rule_Data.data.outbounds.push(...Singbox_Outbounds_Data.data.outbounds);
+  applyTemplate2(Singbox_Top_Data.data, Singbox_Rule_Data.data);
+  return {
+    status: Singbox_Outbounds_Data.status,
+    headers: Singbox_Outbounds_Data.headers,
+    data: JSON.stringify(Singbox_Top_Data.data, null, 4)
+  };
+}
+__name(getsingbox_config, "getsingbox_config");
+async function getSingbox_Outbounds_Data(urls, subapi2, userAgent) {
+  let res;
+  if (urls.length === 1) {
+    res = await fetchResponse(urls[0], userAgent);
+    if (res?.data?.outbounds && Array.isArray(res?.data?.outbounds) && res?.data?.outbounds?.length > 0) {
+      return {
+        status: res.status,
+        headers: res.headers,
+        data: res.data
+      };
+    } else {
+      const apiurl = buildApiUrl(urls[0], subapi2, "singbox");
+      res = await fetchResponse(apiurl, userAgent);
+      return {
+        status: res.status,
+        headers: res.headers,
+        data: res.data
+      };
+    }
+  } else {
+    const outbounds_list = [];
+    const hesList = [];
+    let res2;
+    for (let i = 0; i < urls.length; i++) {
+      res2 = await fetchResponse(urls[i], userAgent);
+      if (res2?.data && Array.isArray(res2?.data?.outbounds)) {
+        res2.data.outbounds.forEach((p) => {
+          p.tag = `${p.tag} [${i + 1}]`;
+        });
+        hesList.push({
+          status: res2.status,
+          headers: res2.headers
+        });
+        outbounds_list.push(res2.data.outbounds);
+      } else {
+        const apiurl = buildApiUrl(urls[i], subapi2, "singbox");
+        res2 = await fetchResponse(apiurl, userAgent);
+        if (res2?.data?.outbounds && Array.isArray(res2?.data?.outbounds)) {
+          res2.data.outbounds.forEach((p) => {
+            p.tag = `${p.tag} [${i + 1}]`;
+          });
+          hesList.push({
+            status: res2.status,
+            headers: res2.headers
+          });
+          outbounds_list.push(res2.data.outbounds);
+        }
+      }
+    }
+    const randomIndex = Math.floor(Math.random() * hesList.length);
+    const hes = hesList[randomIndex];
+    const data = { outbounds: outbounds_list.flat() };
+    return {
+      status: hes.status,
+      headers: hes.headers,
+      data
+    };
   }
 }
-__name(handleRequest, "handleRequest");
+__name(getSingbox_Outbounds_Data, "getSingbox_Outbounds_Data");
+function outboundArrs(data) {
+  const excludedTypes = ["direct", "block", "dns", "selector", "urltest"];
+  if (data && Array.isArray(data.outbounds)) {
+    const filteredOutbounds = data.outbounds.filter((outbound) => {
+      if (excludedTypes.includes(outbound.type)) return false;
+      if (outbound?.server === "") return false;
+      if (outbound?.server_port < 1) return false;
+      if (outbound?.password === "") return false;
+      return true;
+    });
+    return filteredOutbounds;
+  }
+}
+__name(outboundArrs, "outboundArrs");
+function loadAndSetOutbounds(Outbounds, ApiUrlname) {
+  Outbounds.forEach((res) => {
+    let matchedOutbounds;
+    let hasValidAction = false;
+    res.filter?.forEach((ac) => {
+      const keywordReg = new RegExp(ac.keywords) || "";
+      if (ac.action === "include") {
+        matchedOutbounds = ApiUrlname.filter((name) => keywordReg.test(name));
+        hasValidAction = true;
+      } else if (ac.action === "exclude") {
+        matchedOutbounds = ApiUrlname.filter((name) => !keywordReg.test(name));
+        hasValidAction = true;
+      } else if (ac.action === "all") {
+        matchedOutbounds = ApiUrlname;
+        hasValidAction = true;
+      }
+    });
+    if (hasValidAction) {
+      res.outbounds = [...res.outbounds, ...new Set(matchedOutbounds)];
+    } else if (res.outbounds !== null) {
+      matchedOutbounds = res.outbounds;
+    } else {
+      delete res.outbounds;
+    }
+    delete res.filter;
+    return res;
+  });
+  const removedTags = Outbounds.filter((item) => Array.isArray(item.outbounds) && item.outbounds.length === 0).map((item) => item.tag);
+  const cleanedOutbounds = Outbounds.map((item) => {
+    if (Array.isArray(item.outbounds)) {
+      item.outbounds = item.outbounds.filter((tag) => !removedTags.includes(tag));
+    }
+    return item;
+  });
+  const filteredOutbounds = cleanedOutbounds.filter((item) => {
+    return !(Array.isArray(item.outbounds) && item.outbounds.length === 0);
+  });
+  return filteredOutbounds;
+}
+__name(loadAndSetOutbounds, "loadAndSetOutbounds");
+function applyTemplate2(top, rule) {
+  const existingSet = Array.isArray(top.route.rule_set) ? top.route.rule_set : [];
+  const newSet = Array.isArray(rule.route.rule_set) ? rule.route.rule_set : [];
+  const mergedMap = /* @__PURE__ */ new Map();
+  for (const item of existingSet) {
+    if (item?.tag) mergedMap.set(item.tag, item);
+  }
+  for (const item of newSet) {
+    if (item?.tag) mergedMap.set(item.tag, item);
+  }
+  top.inbounds = rule?.inbounds || top.inbounds;
+  top.outbounds = rule?.outbounds || [];
+  top.route.final = rule?.route?.final || top.route.final;
+  top.route.rules = [...Array.isArray(top.route.rules) ? top.route.rules : [], ...Array.isArray(rule?.route?.rules) ? rule.route.rules : []];
+  top.route.rule_set = Array.from(mergedMap.values());
+}
+__name(applyTemplate2, "applyTemplate");
+
+// src/index.js
+var index_default = {
+  async fetch(request, env2) {
+    const url = new URL(request.url);
+    const userAgent = request.headers.get("User-Agent");
+    const rule = url.searchParams.get("template");
+    const singbox = url.searchParams.get("singbox");
+    const IMG = env2.IMG || backimg;
+    const sub = env2.SUB || subapi;
+    const Mihomo_default = env2.MIHOMO || mihomo_top;
+    const beian = env2.BEIAN || beiantext;
+    const beianurl = env2.BEIANURL || beiandizi;
+    let urls = url.searchParams.getAll("url");
+    if (urls.length === 1 && urls[0].includes(",")) {
+      urls = urls[0].split(",").map((u) => u.trim());
+    }
+    if (urls.length === 0 || urls[0] === "") {
+      return new Response(await getFakePage(IMG, beianurl, beian, configs()), {
+        status: 200,
+        headers: {
+          "Content-Type": "text/html; charset=utf-8"
+        }
+      });
+    }
+    try {
+      let res, headers, status;
+      if (singbox) {
+        res = await getsingbox_config(urls, rule, userAgent, sub);
+      } else {
+        res = await getmihomo_config(urls, rule, Mihomo_default, userAgent, sub);
+      }
+      const responseHeaders = res.headers || {};
+      headers = new Headers(responseHeaders);
+      status = res.status;
+      headers.set("Content-Type", "application/json; charset=utf-8");
+      return new Response(res.data, {
+        status,
+        headers
+      });
+    } catch (err) {
+      return new Response(err.message, {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      });
+    }
+  }
+};
 export {
   index_default as default
 };

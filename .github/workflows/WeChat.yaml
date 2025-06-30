@@ -40,7 +40,7 @@ jobs:
       run: |
         # 使用 mihomo 转换为 MRS 格式
         mihomo convert-ruleset domain yaml rules/mihomo/WeChat/WeChat_Domain.yaml rules/mihomo/WeChat/WeChat_Domain.mrs
-        mihomo convert-ruleset domain yaml rules/mihomo/WeChat/WeChat_IP.yaml rules/mihomo/WeChat/WeChat_IP.mrs
+        mihomo convert-ruleset ipcidr yaml rules/mihomo/WeChat/WeChat_IP.yaml rules/mihomo/WeChat/WeChat_IP.mrs
 
     - name: Commit and Push Changes
       run: |

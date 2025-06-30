@@ -183,9 +183,18 @@ export function loadAndSetOutbounds(Outbounds, ApiUrlname) {
     return filteredOutbounds
 }
 export function applyTemplate(top, rule) {
+    const existingSet = Array.isArray(top.route.rule_set) ? top.route.rule_set : [];
+    const newSet = Array.isArray(rule.route.rule_set) ? rule.route.rule_set : [];
+    const mergedMap = new Map();
+    for (const item of existingSet) {
+        if (item?.tag) mergedMap.set(item.tag, item);
+    }
+    for (const item of newSet) {
+        if (item?.tag) mergedMap.set(item.tag, item);
+    }
     top.inbounds = rule?.inbounds || top.inbounds;
     top.outbounds = rule?.outbounds || [];
     top.route.final = rule?.route?.final || top.route.final;
     top.route.rules = [...(Array.isArray(top.route.rules) ? top.route.rules : []), ...(Array.isArray(rule?.route?.rules) ? rule.route.rules : [])];
-    top.route.rule_set = [...(Array.isArray(top.route.rule_set) ? top.route.rule_set : []), ...(Array.isArray(rule?.route?.rule_set) ? rule.route.rule_set : [])];
+    top.route.rule_set = Array.from(mergedMap.values());
 }

@@ -18,7 +18,7 @@ proxy-groups:
 
   - { name: ⚪绕过连接, type: select, hidden: true, proxies: [PASS] }
 
-  - { name: 🎯全球直连, type: select, proxies: [🎯全局直连, 🚀全球代理] }
+  - { name: 🎯全球直连, type: select, proxies: [🎯全局直连, 🚀全球代理, 🟢手动选择, ♻️自动选择] }
 
   - { name: ♻️自动选择, <<: *u, tolerance: 1, type: url-test }
 
