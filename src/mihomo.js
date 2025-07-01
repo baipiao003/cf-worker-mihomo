@@ -9,13 +9,9 @@ export async function getmihomo_config(urls, rule, top, userAgent, subapi) {
         Rule_Data(rule),
         getMihomo_Proxies_Data(urls, userAgent, subapi)
     ]);
-    if (Mihomo_Proxies_Data.data?.proxies?.length === 0 && Object.keys(Mihomo_Proxies_Data.data?.providers)?.length === 0) {
-        throw new Error('节点为空');
-    }
-    if (Mihomo_Proxies_Data.data?.proxies?.length > 0) {
-        Mihomo_Rule_Data.data.proxies = [...(Mihomo_Rule_Data?.data?.proxies || []), ...Mihomo_Proxies_Data.data?.proxies];
-    }
-    Mihomo_Top_Data.data['proxy-providers'] = Mihomo_Proxies_Data.data.providers;
+    if (!Mihomo_Proxies_Data?.data?.proxies || Mihomo_Proxies_Data?.data?.proxies?.length === 0) throw new Error('节点为空');
+    Mihomo_Rule_Data.data.proxies = [...(Mihomo_Rule_Data?.data?.proxies || []), ...Mihomo_Proxies_Data?.data?.proxies];
+    Mihomo_Top_Data.data['proxy-providers'] = Mihomo_Proxies_Data?.data?.providers;
     applyTemplate(Mihomo_Top_Data.data, Mihomo_Rule_Data.data);
     return {
         status: Mihomo_Proxies_Data.status,
@@ -108,5 +104,5 @@ export function applyTemplate(top, rule) {
     top['proxy-groups'] = rule['proxy-groups'] || [];
     top.rules = rule.rules || [];
     top['sub-rules'] = rule['sub-rules'] || {};
-    top['rule-providers'] = {...(top['rule-providers'] || {}), ...(rule['rule-providers'] || {})};
+    top['rule-providers'] = { ...(top['rule-providers'] || {}), ...(rule['rule-providers'] || {}) };
 }

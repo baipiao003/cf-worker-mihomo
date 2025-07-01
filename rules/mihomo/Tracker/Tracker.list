@@ -62,6 +62,8 @@ http://141.144.224.250:2710/announce
 
 http://141.144.224.250:6969/announce
 
+http://142.171.85.76:6969/announce
+
 http://144.202.33.210:6961/announce
 
 http://144.76.118.107:6969/announce
@@ -186,7 +188,7 @@ http://211.22.29.93/announce
 
 http://211.75.205.187/announce
 
-http://211.75.205.188:6969/announce
+http://211.75.205.187:6969/announce
 
 http://211.75.205.189/announce
 
@@ -210,13 +212,11 @@ http://34.89.30.59:2710/announce
 
 http://34.89.91.10/announce
 
-http://34.89.91.10:11450/announce
-
 http://34.89.91.10:1337/announce
 
 http://34.89.91.10:2710/announce
 
-http://34.89.91.10:443/announce
+http://34.89.91.10:6960/announce
 
 http://34.89.91.10:6969/announce
 
@@ -230,8 +230,6 @@ http://34.94.76.146/announce
 
 http://34.94.76.146/announce.php
 
-http://34.94.76.146:2701/announce
-
 http://34.94.76.146:2710/announce
 
 http://34.94.76.146:6969/announce
@@ -242,11 +240,11 @@ http://35.227.12.84:2710/announce
 
 http://35.227.59.57/announce
 
-http://35.227.59.57/announce.php
+http://35.227.59.57:11450/announce
 
-http://35.227.59.57:6960/announce
+http://35.227.59.57:2710/announce
 
-http://35.227.59.57:6969/announce
+http://35.227.59.57:443/announce
 
 http://37.235.174.46:2710/announce
 
@@ -319,6 +317,8 @@ http://54.39.98.124/announce
 http://60-fps.org/bt/announce.php
 
 http://60-fps.org/bt:80/announce.php
+
+http://60.249.37.20:6969/announce
 
 http://61.216.109.95:6969/announce
 
@@ -1230,6 +1230,8 @@ http://tracker.xfapi.top:9999/announce
 
 http://tracker.xiaoduola.xyz:6969/announce
 
+http://tracker.xn--djrq4gl4hvoi.top/announce
+
 http://tracker.ygsub.com:6969/announce
 
 http://tracker.ykat.xyz:6969/announce
@@ -1802,8 +1804,6 @@ udp://119.28.71.45:8080/announce
 
 udp://135.125.106.92:6969/announce
 
-udp://135.125.202.143:6969/announce
-
 udp://138.124.183.78:6969/announce
 
 udp://144.126.245.19:6969/announce
@@ -1833,6 +1833,8 @@ udp://176.123.1.180:6969/announce
 udp://176.31.250.174:6969/announce
 
 udp://176.99.7.59:6969/announce
+
+udp://177.27.223.184:6969/announce
 
 udp://178.170.48.154:1337/announce
 
@@ -1876,8 +1878,6 @@ udp://211.23.142.127:6969/announce
 
 udp://211.75.205.187:80/announce
 
-udp://211.75.205.188:6969/announce
-
 udp://211.75.29.254:6969/announce
 
 udp://217.30.10.77:6969/announce
@@ -1886,13 +1886,17 @@ udp://220.200.35.40:2710/announce
 
 udp://220.200.35.40:6969/announce
 
-udp://23.134.88.9:1337/announce
-
 udp://23.137.251.45:6969/announce
 
 udp://23.157.120.14:6969/announce
 
 udp://23.163.56.66:6969/announce
+
+udp://34.89.91.10:6969/announce
+
+udp://34.94.76.146:6969/announce
+
+udp://37.1.205.12:6969/announce
 
 udp://37.187.111.136:6969/announce
 
@@ -1934,13 +1938,13 @@ udp://51.158.144.42:6969/announce
 
 udp://51.159.54.68:6666/announce
 
+udp://51.222.82.36:6969/announce
+
 udp://51.68.174.87:6969/announce
 
 udp://51.81.222.188:6969/announce
 
 udp://52.58.128.163:6969/announce
-
-udp://54.39.48.3:6969/announce
 
 udp://6.pocketnet.app:6969/announce
 
@@ -1971,6 +1975,8 @@ udp://89.234.156.205:451/announce
 udp://89.36.216.8:6969/announce
 
 udp://91.211.5.21:6969/announce
+
+udp://91.216.110.53:451/announce
 
 udp://93.104.214.40:6969/announce
 
@@ -2066,8 +2072,6 @@ udp://bubu.mapfactor.com:6969/announce
 
 udp://buddyfly.top:6969/announce
 
-udp://buny.uk:6969/announce
-
 udp://camera.lei001.com:6969/announce
 
 udp://canardscitrons.nohost.me:6969/announce
@@ -2106,6 +2110,8 @@ udp://devops.gay:6969/announce
 
 udp://dht.bt251.com:6969/announce
 
+udp://discord.heihachi.pw:6969/announce
+
 udp://download.nerocloud.me:6969/announce
 
 udp://dyndns.xionxiii.ovh:6969/announce
@@ -2132,6 +2138,8 @@ udp://fh2.cmp-gaming.com:6969/announce
 
 udp://files.project-cataclysm.ru:6969/announce
 
+udp://fosstorrents.com:6969/announce
+
 udp://free.publictracker.xyz:6969/announce
 
 udp://freedom.1776.ga:6969/announce
@@ -2144,13 +2152,9 @@ udp://hbsy.zhuqiy.eu.org:6666/announce
 
 udp://home.kray.pw:6969/announce
 
-udp://home.yxgz.club:6969/announce
-
 udp://http//www.peckservers.com:9000/announce
 
 udp://htz3.noho.st:6969/announce
-
-udp://hzzwly.gq:6969/announce
 
 udp://incine.ru:6969/announce
 
@@ -2180,13 +2184,17 @@ udp://jutone.com:6969/announce
 
 udp://keke.re:6969/announce
 
+udp://kiryuu-test.mywaifu.best:6969/announce
+
 udp://kokodayo.site:6969/announce
 
 udp://laze.cc:6969/announce
 
 udp://leefafa.tk:6969/announce
 
-udp://leet-tracker.moe:1337/announce
+udp://li1406-230.members.linode.com:6969/announce
+
+udp://li2021-95.members.linode.com:6969/announce
 
 udp://ln.mtahost.co:6969/announce
 
@@ -2384,6 +2392,8 @@ udp://tk4.leechshield.link:6969/announce
 
 udp://torrent.fedoraproject.org:6969/announce
 
+udp://torrent.hificode.in:6969/announce
+
 udp://torrent.i.ng:6969/announce
 
 udp://torrent.ubuntu.com:6969/announce
@@ -2468,6 +2478,8 @@ udp://tracker.draatman.uk:6969/announce
 
 udp://tracker.ducks.party:1984/announce
 
+udp://tracker.dump.cl:6969/announce
+
 udp://tracker.edkj.club:6969/announce
 
 udp://tracker.etree.org:6969/announce
@@ -2519,8 +2531,6 @@ udp://tracker.lelux.fi:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 
 udp://tracker.monitorit4.me:6969/announce
-
-udp://tracker.moxing.party:6969/announce
 
 udp://tracker.mywaifu.best:6969/announce
 

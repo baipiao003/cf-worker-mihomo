@@ -71,14 +71,14 @@ npm run deploy
 
 配置选项：
 - **构建命令**：`npm run build:workers`
-- **部署命令**：`npm run deploy:workers`
+- **部署命令**：`npx wrangler deploy --keep-vars`
 
 #### 方法二：手动部署
 1. 部署 CF Worker：
    - 在 CF Worker 控制台中创建一个新的 Worker。
-   - 将 [worker.js](./worker.js) 的内容粘贴到 Worker 编辑器中。
    - 设置 > 运行时 > 兼容性标志 设置为 `nodejs_compat`
-   - 再次部署
+   - 将 [_worker.js](./_worker.js) 的内容粘贴到 Worker 编辑器中。
+   - 保存部署
 2. 给 workers绑定 自定义域： 
    - 在 workers控制台的 `触发器`选项卡，下方点击 `添加自定义域`。
    - 填入你已转入 CF 域名解析服务的次级域名，例如:`mihomo.haxtop.ggff.net`后 点击`添加自定义域`，等待证书生效即可。
@@ -89,14 +89,12 @@ npm run deploy
 
 ### 3. Cloudflare Pages 部署
 
-~~#### 方法一：Git 仓库部署~~
-~~1. 进入 [Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages)~~
-~~2. 点击 **创建项目** → 选择你的 Git 提供商（GitHub/GitLab）~~
-~~3. 选择仓库 → 开始设置~~
-~~4. 配置选项：~~
-   ~~- **构建命令**：`npm run build:workers`~~
-   ~~- **输出目录**：`dist`~~
-~~5. 点击 **保存并部署**~~
+#### 方法一：Git 仓库部署
+1. 进入 [Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages)
+2. 点击 **创建项目** → **导入现有 Git 存储库** → 选择仓库 → 开始设置
+3. 点击 **保存并部署**（首次部署会失败是正常现象） → **继续处理项目** → 继续
+4. 设置 > 运行时 > 兼容性标志 设置为 `nodejs_compat`
+5. 重试部署
 
 #### 方法二：手动上传
 

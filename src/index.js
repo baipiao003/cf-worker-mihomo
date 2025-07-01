@@ -20,7 +20,7 @@ export default {
         }
 
         if (urls.length === 0 || urls[0] === "") {
-            return new Response(await getFakePage(IMG, beianurl, beian, configs()), {
+            return new Response(await getFakePage(IMG, beianurl, beian, configs(), sub), {
                 status: 200,
                 headers: {
                     "Content-Type": "text/html; charset=utf-8"

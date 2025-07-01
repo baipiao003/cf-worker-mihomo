@@ -25,7 +25,7 @@ router.get('/', async (ctx) => {
   }
 
   if (urls.length === 0 || urls[0] === "") {
-    ctx.body = await getFakePage(IMG, beianurl, beian, configs());
+    ctx.body = await getFakePage(IMG, beianurl, beian, configs(), sub);
     ctx.type = 'html';
     return;
   }

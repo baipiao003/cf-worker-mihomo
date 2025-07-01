@@ -39,6 +39,11 @@ export async function fetchResponse(url, userAgent) {
     }
     // 直接使用 Object.fromEntries 转换 headers
     const headersObj = Object.fromEntries(response.headers.entries());
+    // 替换非法 Content-Disposition 字段Add commentMore actions
+    const sanitizedCD = sanitizeContentDisposition(response.headers);
+    if (sanitizedCD) {
+        headersObj["content-disposition"] = sanitizedCD;
+    }
     // 获取响应体的文本内容
     const textData = await response.text();
 
@@ -101,7 +106,7 @@ export async function Rule_Data(rule) {
 }
 
 // 获取伪装页面
-export async function getFakePage(image, button_url, button_text, configdata) {
+export async function getFakePage(image, button_url, button_text, configdata, subapi) {
     return `
 <!DOCTYPE html>
 <html>
@@ -584,8 +589,9 @@ export async function getFakePage(image, button_url, button_text, configdata) {
 
 
         <div class="input-group">
-            <div style="display: flex; align-items: center;">
-                <label for="result">订阅地址</label>
+            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                <span>转换后端：${subapi}</span>
+                <label for="result">订阅地址：</label>
             </div>
             <input type="text" id="result" readonly onclick="copyToClipboard()">
             <label id="qrcode" style="margin: 15px 10px -15px 10px;"></label>
@@ -1000,4 +1006,26 @@ export function configs() {
         ]
     }
     return JSON.stringify(data)
+}
+
+export function sanitizeContentDisposition(headers) {
+    const contentDisposition = headers.get("Content-Disposition") || headers.get("content-disposition");
+
+    if (!contentDisposition) return null;
+
+    const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
+
+    if (!filenameMatch) return null;
+
+    const originalFilename = filenameMatch[1];
+
+    // 检查是否含中文（或非 ASCII）
+    const isNonAscii = /[^\x00-\x7F]/.test(originalFilename);
+    if (!isNonAscii) return contentDisposition; // 不含中文，保持原样
+
+    // 使用 fallback ASCII 名 + filename*=UTF-8''xxx 形式替换
+    const fallback = "download.json";
+    const encoded = encodeURIComponent(originalFilename);
+
+    return `attachment; filename="${fallback}"; filename*=UTF-8''${encoded}`;
 }

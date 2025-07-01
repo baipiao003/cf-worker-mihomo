@@ -23,11 +23,14 @@ jobs:
       - name: build
         run: |
           npm run build:workers
-          cp ./dist/index.js worker.js
+      - name: cp worker.js
+        run: |
           cp ./dist/index.js _worker.js
+      - name: Apply Patch
+        run: git apply .github/patch/replace-helpers.patch
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add worker.js _worker.js
+          git add _worker.js
           git commit -m "Automated update" || echo "No changes to commit"
           git push

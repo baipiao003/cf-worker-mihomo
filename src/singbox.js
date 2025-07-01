@@ -19,7 +19,7 @@ export async function getsingbox_config(urls, rule, userAgent, subapi) {
         getSingbox_Outbounds_Data(urls, subapi, userAgent)
     ]);
 
-    if (!Array.isArray(Singbox_Outbounds_Data.data?.outbounds) || Singbox_Outbounds_Data.data?.outbounds?.length === 0) throw new Error(`节点为空，请使用有效订阅`);
+    if (!Singbox_Outbounds_Data?.data?.outbounds || Singbox_Outbounds_Data?.data?.outbounds?.length === 0 || typeof Singbox_Outbounds_Data?.data?.outbounds === 'object' && !Array.isArray(Singbox_Outbounds_Data?.data?.outbounds) && Object.keys(Singbox_Outbounds_Data?.data?.outbounds).length === 0) throw new Error(`节点为空，请使用有效订阅`);
     Singbox_Outbounds_Data.data.outbounds = outboundArrs(Singbox_Outbounds_Data.data);
     const ApiUrlname = [];
     Singbox_Outbounds_Data.data.outbounds.forEach((res) => {
