@@ -7673,6 +7673,8 @@ var browser_default = dist_exports;
 var backimg = "https://t.alcy.cc/ycy";
 var subapi = "https://url.v1.mk";
 var mihomo_top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml";
+var singbox_1_11 = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox_1.11.X.json";
+var singbox_1_12 = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.json";
 var beiantext = base64DecodeUtf8("6JCMSUNQ5aSHMjAyNTAwMDHlj7c=");
 var beiandizi = atob("aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=");
 function base64DecodeUtf8(base64) {
@@ -7708,6 +7710,10 @@ async function fetchResponse(url, userAgent) {
     return true;
   }
   const headersObj = Object.fromEntries(response.headers.entries());
+  const sanitizedCD = sanitizeContentDisposition(response.headers);
+  if (sanitizedCD) {
+    headersObj["content-disposition"] = sanitizedCD;
+  }
   const textData = await response.text();
   let jsonData;
   try {
@@ -8658,6 +8664,19 @@ function configs() {
   return JSON.stringify(data);
 }
 __name(configs, "configs");
+function sanitizeContentDisposition(headers) {
+  const contentDisposition = headers.get("Content-Disposition") || headers.get("content-disposition");
+  if (!contentDisposition) return null;
+  const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
+  if (!filenameMatch) return null;
+  const originalFilename = filenameMatch[1];
+  const isNonAscii = /[^\x00-\x7F]/.test(originalFilename);
+  if (!isNonAscii) return contentDisposition;
+  const fallback = "download.json";
+  const encoded = encodeURIComponent(originalFilename);
+  return `attachment; filename="${fallback}"; filename*=UTF-8''${encoded}`;
+}
+__name(sanitizeContentDisposition, "sanitizeContentDisposition");
 
 // src/mihomo.js
 async function getmihomo_config(urls, rule, top, userAgent, subapi2) {
@@ -8670,13 +8689,9 @@ async function getmihomo_config(urls, rule, top, userAgent, subapi2) {
     Rule_Data(rule),
     getMihomo_Proxies_Data(urls, userAgent, subapi2)
   ]);
-  if (Mihomo_Proxies_Data.data?.proxies?.length === 0 && Object.keys(Mihomo_Proxies_Data.data?.providers)?.length === 0) {
-    throw new Error("\u8282\u70B9\u4E3A\u7A7A");
-  }
-  if (Mihomo_Proxies_Data.data?.proxies?.length > 0) {
-    Mihomo_Rule_Data.data.proxies = [...Mihomo_Rule_Data?.data?.proxies || [], ...Mihomo_Proxies_Data.data?.proxies];
-  }
-  Mihomo_Top_Data.data["proxy-providers"] = Mihomo_Proxies_Data.data.providers;
+  if (!Mihomo_Proxies_Data?.data?.proxies || Mihomo_Proxies_Data?.data?.proxies?.length === 0) throw new Error("\u8282\u70B9\u4E3A\u7A7A");
+  Mihomo_Rule_Data.data.proxies = [...Mihomo_Rule_Data?.data?.proxies || [], ...Mihomo_Proxies_Data?.data?.proxies];
+  Mihomo_Top_Data.data["proxy-providers"] = Mihomo_Proxies_Data?.data?.providers;
   applyTemplate(Mihomo_Top_Data.data, Mihomo_Rule_Data.data);
   return {
     status: Mihomo_Proxies_Data.status,
@@ -8764,15 +8779,37 @@ function applyTemplate(top, rule) {
 __name(applyTemplate, "applyTemplate");
 
 // src/singbox.js
-async function getsingbox_config(urls, rule, userAgent, subapi2) {
-  let top;
+async function getsingbox_config(urls, rule, top_default, userAgent, subapi2) {
+  let top, matched = false;
   if (/singbox|sing-box|sfa/i.test(userAgent)) {
-    if (/1.11./i.test(userAgent)) {
-      top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox_1.11.X.json";
-    } else if (/1.12./i.test(userAgent)) {
-      top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.json";
-    } else {
-      throw new Error(`\u4E0D\u652F\u6301\u7684 Singbox \u7248\u672C`);
+    const alphaMatch = userAgent.match(/1\.12\.0\-alpha\.(\d{1,2})\b/);
+    const betaMatch = userAgent.match(/1\.12\.0\-beta\.(\d{1,2})\b/);
+    const v111Match = userAgent.match(/1\.11\.\d+/);
+    const v112Match = userAgent.match(/1\.12\.(\d+)/);
+    if (alphaMatch && !matched) {
+      const num = parseInt(alphaMatch[1], 10);
+      if (num >= 0 && num <= 23) {
+        top = top_default.singbox_1_11;
+        matched = true;
+      }
+    }
+    if (betaMatch && !matched) {
+      const num = parseInt(betaMatch[1], 10);
+      if (num >= 0 && num <= 9) {
+        top = top_default.singbox_1_11;
+        matched = true;
+      }
+    }
+    if (v111Match && !matched) {
+      top = top_default.singbox_1_11;
+      matched = true;
+    }
+    if (v112Match && !matched) {
+      top = top_default.singbox_1_12;
+      matched = true;
+    }
+    if (!matched) {
+      throw new Error(`\u4E0D\u652F\u6301\u7684 Singbox \u7248\u672C\uFF1A${userAgent}`);
     }
   } else {
     throw new Error("\u4E0D\u652F\u6301\u7684\u5BA2\u6237\u7AEF");
@@ -8783,7 +8820,7 @@ async function getsingbox_config(urls, rule, userAgent, subapi2) {
     Rule_Data(rule),
     getSingbox_Outbounds_Data(urls, subapi2, userAgent)
   ]);
-  if (!Array.isArray(Singbox_Outbounds_Data.data?.outbounds) || Singbox_Outbounds_Data.data?.outbounds?.length === 0) throw new Error(`\u8282\u70B9\u4E3A\u7A7A\uFF0C\u8BF7\u4F7F\u7528\u6709\u6548\u8BA2\u9605`);
+  if (!Singbox_Outbounds_Data?.data?.outbounds || Singbox_Outbounds_Data?.data?.outbounds?.length === 0 || typeof Singbox_Outbounds_Data?.data?.outbounds === "object" && !Array.isArray(Singbox_Outbounds_Data?.data?.outbounds) && Object.keys(Singbox_Outbounds_Data?.data?.outbounds).length === 0) throw new Error(`\u8282\u70B9\u4E3A\u7A7A\uFF0C\u8BF7\u4F7F\u7528\u6709\u6548\u8BA2\u9605`);
   Singbox_Outbounds_Data.data.outbounds = outboundArrs(Singbox_Outbounds_Data.data);
   const ApiUrlname = [];
   Singbox_Outbounds_Data.data.outbounds.forEach((res) => {
@@ -8924,7 +8961,7 @@ function applyTemplate2(top, rule) {
     if (item?.tag) mergedMap.set(item.tag, item);
   }
   top.inbounds = rule?.inbounds || top.inbounds;
-  top.outbounds = rule?.outbounds || [];
+  top.outbounds = [...Array.isArray(top.outbounds) ? top.outbounds : [], ...Array.isArray(rule?.outbounds) ? rule.outbounds : []];
   top.route.final = rule?.route?.final || top.route.final;
   top.route.rules = [...Array.isArray(top.route.rules) ? top.route.rules : [], ...Array.isArray(rule?.route?.rules) ? rule.route.rules : []];
   top.route.rule_set = Array.from(mergedMap.values());
@@ -8941,6 +8978,10 @@ var index_default = {
     const IMG = env2.IMG || backimg;
     const sub = env2.SUB || subapi;
     const Mihomo_default = env2.MIHOMO || mihomo_top;
+    const Singbox_default = {
+      singbox_1_11: env2.SINGBOX_1_11 || singbox_1_11,
+      singbox_1_12: env2.SINGBOX_1_12 || singbox_1_12
+    };
     const beian = env2.BEIAN || beiantext;
     const beianurl = env2.BEIANURL || beiandizi;
     let urls = url.searchParams.getAll("url");
@@ -8958,7 +8999,7 @@ var index_default = {
     try {
       let res, headers, status;
       if (singbox) {
-        res = await getsingbox_config(urls, rule, userAgent, sub);
+        res = await getsingbox_config(urls, rule, Singbox_default, userAgent, sub);
       } else {
         res = await getmihomo_config(urls, rule, Mihomo_default, userAgent, sub);
       }

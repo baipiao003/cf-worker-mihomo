@@ -1,4 +1,4 @@
-import { getFakePage, configs, backimg, subapi, mihomo_top, beiantext, beiandizi } from './utils.js';
+import { getFakePage, configs, backimg, subapi, mihomo_top, singbox_1_11, singbox_1_12, beiantext, beiandizi } from './utils.js';
 import { getmihomo_config } from './mihomo.js';
 import { getsingbox_config } from './singbox.js';
 import Koa from 'koa';
@@ -14,6 +14,10 @@ router.get('/', async (ctx) => {
   const IMG = process.env.IMG || backimg;
   const sub = process.env.SUB || subapi;
   const Mihomo_default = process.env.MIHOMO || mihomo_top;
+  const Singbox_default = {
+    singbox_1_11: process.env.SINGBOX_1_11 || singbox_1_11,
+    singbox_1_12: process.env.SINGBOX_1_12 || singbox_1_12
+  };
   const beian = process.env.BEIAN || beiantext;
   const beianurl = process.env.BEIANURL || beiandizi;
 
@@ -33,7 +37,7 @@ router.get('/', async (ctx) => {
   try {
     let res;
     if (singbox) {
-      res = await getsingbox_config(urls, templateUrl, userAgent, sub);
+      res = await getsingbox_config(urls, templateUrl, Singbox_default, userAgent, sub);
     } else {
       res = await getmihomo_config(urls, templateUrl, Mihomo_default, userAgent, sub);
     }

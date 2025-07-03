@@ -1,6 +1,6 @@
 import { getmihomo_config } from './mihomo.js';
 import { getsingbox_config } from './singbox.js';
-import { getFakePage, backimg, subapi, mihomo_top, beiantext, beiandizi, configs } from './utils.js';
+import { getFakePage, backimg, subapi, mihomo_top, singbox_1_11, singbox_1_12, beiantext, beiandizi, configs } from './utils.js';
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -10,6 +10,10 @@ export default {
         const IMG = env.IMG || backimg
         const sub = env.SUB || subapi
         const Mihomo_default = env.MIHOMO || mihomo_top
+        const Singbox_default = {
+            singbox_1_11: env.SINGBOX_1_11 || singbox_1_11,
+            singbox_1_12: env.SINGBOX_1_12 || singbox_1_12
+        };
         const beian = env.BEIAN || beiantext
         const beianurl = env.BEIANURL || beiandizi
         // 处理 URL 参数
@@ -30,7 +34,7 @@ export default {
         try {
             let res, headers, status;
             if (singbox) {
-                res = await getsingbox_config(urls, rule, userAgent, sub);
+                res = await getsingbox_config(urls, rule, Singbox_default, userAgent, sub);
             } else {
                 res = await getmihomo_config(urls, rule, Mihomo_default, userAgent, sub);
             }

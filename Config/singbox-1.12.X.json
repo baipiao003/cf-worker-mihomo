@@ -120,7 +120,16 @@
             "listen_port": 20120
         }
     ],
-    "outbounds": [],
+    "outbounds": [
+        {
+            "tag": "🎯 全局直连",
+            "type": "direct"
+        },
+        {
+            "tag": "🚫 拒绝连接",
+            "type": "block"
+        }
+    ],
     "route": {
         "auto_detect_interface": true,
         "final": "🚀 节点选择",
@@ -130,25 +139,34 @@
         },
         "rules": [
             {
-                "action": "sniff"
+                "action": "route-options",
+                "udp_disable_domain_unmapping": true,
+                "udp_connect": true,
+                "udp_timeout": "5m",
+                "tls_fragment": true,
+                "tls_fragment_fallback_delay": "500m",
+                "tls_record_fragment": true
             },
-            { 
+            {
                 "action": "resolve"
             },
-            { 
-                "type": "logical", 
-                "mode": "or", 
-                "rules": [
-                  { "port": [53] },
-                  { "protocol": "dns" }
-                ], 
-                "action": "hijack-dns"
+            {
+                "action": "sniff"
             },
-            { 
-                "action": "route-options", 
-                "udp_disable_domain_unmapping": true, 
-                "udp_connect": true, 
-                "udp_timeout": "5m"
+            {
+                "type": "logical",
+                "mode": "or",
+                "rules": [
+                    {
+                        "port": [
+                            53
+                        ]
+                    },
+                    {
+                        "protocol": "dns"
+                    }
+                ],
+                "action": "hijack-dns"
             },
             {
                 "ip_is_private": true,

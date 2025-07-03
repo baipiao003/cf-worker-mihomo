@@ -27,118 +27,118 @@ proxy-groups:
   - { name: 🔯故障转移, <<: *u, type: fallback }
 
   # 应用分组
-  - { name: "115", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/115.webp }
-  - { name: "12306", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/12306.webp }
-  - { name: "4399", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/4399.webp }
-  - { name: 4GTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/4GTV.webp }
-  - { name: 58同城, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/58TongCheng.webp }
-  - { name: 农业银行, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/ABC.webp }
-  - { name: AbemaTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Abema.webp }
-  - { name: Adobe, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Adobe.webp }
-  - { name: 支付宝, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AliPay.webp }
-  - { name: 阿里巴巴, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Alibaba.webp }
-  - { name: 亚马逊电商, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AmazonShopping.webp }
-  - { name: 亚马逊TV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AmazonPrimeVideo.webp }
-  - { name: Apple, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Apple.webp }
-  - { name: AppleCN, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleCN.webp }
-  - { name: AppStore, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppStore.webp }
-  - { name: Apple邮箱, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleMail.webp }
-  - { name: Apple音乐, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleMusic.webp }
-  - { name: Apple新闻, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleNews.webp }
-  - { name: Apple日报, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleDaily.webp }
-  - { name: AppleTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/AppleTV.webp }
-  - { name: 巴哈姆特, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Bahamut.webp }
-  - { name: 百度贴吧, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/BaiDuTieBa.webp }
-  - { name: 百度, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Baidu.webp }
-  - { name: 哔哩哔哩, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/BiliBili.webp }
-  - { name: 哔哩东南亚, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Biliintl.webp }
-  - { name: BT追踪器, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/BitTorrent.webp }
-  - { name: 暴雪, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Blizzard.webp }
-  - { name: 字节跳动, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/ByteDance.webp }
-  - { name: Beats, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Beats.webp }
-  - { name: CCTV, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/CCTV.webp }
-  - { name: 中国媒体, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/ChinaTV.webp }
-  - { name: Cloudflare, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Cloudflare.webp }
-  - { name: 钉钉, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/DingTalk.webp }
-  - { name: Discord, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Discord.webp }
-  - { name: Disney, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Disney+.webp }
-  - { name: Docker, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Docker.webp }
-  - { name: 豆瓣, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/DouBan.webp }
-  - { name: E站, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/E-Hentai.webp }
-  - { name: EA, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/EA.webp }
-  - { name: Epic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Epic.webp }
-  - { name: Emby, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Emby.webp }
-  - { name: FCM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/FCM.webp }
-  - { name: Facebook, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Facebook.webp }
-  - { name: Fastly, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Fastly.webp }
-  - { name: FitnessPlus, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/FitnessPlus.webp }
-  - { name: 高德, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GaoDe.webp }
-  - { name: GitHub, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GitHub.webp }
-  - { name: Google, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Google.webp }
-  - { name: Google云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GoogleDrive.webp }
-  - { name: Google地图, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GoogleEarth.webp }
-  - { name: GoogleVoice, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GoogleVoice.webp }
-  - { name: Hoyoverse, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/HoYoverse.webp }
-  - { name: Hulu, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Hulu.webp }
-  - { name: 虎扑, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Hupu.webp }
-  - { name: HBO, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/HBO.webp }
-  - { name: IMDB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/IMDB.webp }
-  - { name: 爱奇艺, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/IQIYI.webp }
-  - { name: Instagram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Instagram.webp }
-  - { name: 因特尔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Intel.webp }
-  - { name: iCloud, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/iCloud.webp }
-  - { name: 京东, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/JingDong.webp }
-  - { name: 酷狗, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Kugou.webp }
-  - { name: 酷我, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Kuwo.webp }
-  - { name: LastFM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/LastFM.webp }
-  - { name: LINE, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Line.webp }
-  - { name: 美团, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/MeiTuan.webp }
-  - { name: 微软, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Microsoft.webp }
-  - { name: Mihoyo, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/mihoyo.webp }
-  - { name: NGA, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/NGA.webp }
-  - { name: 网易, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/NetEase.webp }
-  - { name: 网易云音乐, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/NetEase_Music.webp }
-  - { name: Netflix, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Netflix.webp }
-  - { name: ニコニコ, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Niconico.webp }
-  - { name: OpenAI, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/OpenAI.webp }
-  - { name: 微软云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/OneDrive.webp }
-  - { name: 潘朵拉珠宝, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Pandora.webp }
-  - { name: PayPal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/PayPal.webp }
-  - { name: PikPak, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/PikPak.webp }
-  - { name: 拼多多, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Pinduoduo.webp }
-  - { name: Pixiv, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Pixiv.webp }
-  - { name: PlayStation, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/PlayStation.webp }
-  - { name: 国际媒体, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/ProxyTV.webp }
-  - { name: Qobuz, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Qobuz.webp }
-  - { name: Reddit, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Reddit.webp }
-  - { name: Rockstar, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Rockstar.webp }
-  - { name: 什么值得买, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/SMZDM.webp }
-  - { name: Google学术, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Scholar.webp }
-  - { name: 新浪, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Sina.webp }
-  - { name: 索尼, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Sony.webp }
-  - { name: SoundCloud, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/SoundCloud.webp }
-  - { name: Speedtest, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Speedtest.webp }
-  - { name: Spotify, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Spotify.webp }
-  - { name: Steam, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Steam.webp }
-  - { name: Steam中国, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Steam.webp }
-  - { name: Supercell, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Supercell.webp }
-  - { name: Signal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Signal.webp }
-  - { name: TVB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/TVB.webp }
-  - { name: Telegram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Telegram.webp }
-  - { name: 腾讯, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Tencent.webp }
-  - { name: 抖音, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/TikTok.webp }
-  - { name: TikTok, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/TikTok.webp }
-  - { name: Twitch, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Twitch.webp }
-  - { name: Twitter, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Twitter.webp }
-  - { name: Tor, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Tor.webp }
-  - { name: Talkatone, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Talkatone.webp }
-  - { name: 微信, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/WeChat.webp }
-  - { name: 维基百科, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Wikipedia.webp }
-  - { name: Wise, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Wise.webp }
-  - { name: YouTube, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/YouTube.webp }
-  - { name: YouTubeMusic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/YouTubeMusic.webp }
-  - { name: 禁漫天堂, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/18comic.webp }
-  - { name: 哔咔哔咔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/Picacg.webp }
+  - { name: "115", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/115.webp }
+  - { name: "12306", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/12306.webp }
+  - { name: "4399", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/4399.webp }
+  - { name: 4GTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/4GTV.webp }
+  - { name: 58同城, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/58TongCheng.webp }
+  - { name: 农业银行, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ABC.webp }
+  - { name: AbemaTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Abema.webp }
+  - { name: Adobe, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Adobe.webp }
+  - { name: 支付宝, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AliPay.webp }
+  - { name: 阿里巴巴, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Alibaba.webp }
+  - { name: 亚马逊电商, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AmazonShopping.webp }
+  - { name: 亚马逊TV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AmazonPrimeVideo.webp }
+  - { name: Apple, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Apple.webp }
+  - { name: AppleCN, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleCN.webp }
+  - { name: AppStore, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppStore.webp }
+  - { name: Apple邮箱, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleMail.webp }
+  - { name: Apple音乐, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleMusic.webp }
+  - { name: Apple新闻, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleNews.webp }
+  - { name: Apple日报, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleDaily.webp }
+  - { name: AppleTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleTV.webp }
+  - { name: 巴哈姆特, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Bahamut.webp }
+  - { name: 百度贴吧, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BaiDuTieBa.webp }
+  - { name: 百度, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Baidu.webp }
+  - { name: 哔哩哔哩, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BiliBili.webp }
+  - { name: 哔哩东南亚, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Biliintl.webp }
+  - { name: BT追踪器, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BitTorrent.webp }
+  - { name: 暴雪, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Blizzard.webp }
+  - { name: 字节跳动, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ByteDance.webp }
+  - { name: Beats, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Beats.webp }
+  - { name: CCTV, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/CCTV.webp }
+  - { name: 中国媒体, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ChinaTV.webp }
+  - { name: Cloudflare, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Cloudflare.webp }
+  - { name: 钉钉, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/DingTalk.webp }
+  - { name: Discord, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Discord.webp }
+  - { name: Disney, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Disney+.webp }
+  - { name: Docker, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Docker.webp }
+  - { name: 豆瓣, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/DouBan.webp }
+  - { name: E站, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/E-Hentai.webp }
+  - { name: EA, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/EA.webp }
+  - { name: Epic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Epic.webp }
+  - { name: Emby, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Emby.webp }
+  - { name: FCM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/FCM.webp }
+  - { name: Facebook, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Facebook.webp }
+  - { name: Fastly, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Fastly.webp }
+  - { name: FitnessPlus, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/FitnessPlus.webp }
+  - { name: 高德, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GaoDe.webp }
+  - { name: GitHub, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GitHub.webp }
+  - { name: Google, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Google.webp }
+  - { name: Google云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleDrive.webp }
+  - { name: Google地图, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleEarth.webp }
+  - { name: GoogleVoice, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleVoice.webp }
+  - { name: Hoyoverse, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/HoYoverse.webp }
+  - { name: Hulu, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Hulu.webp }
+  - { name: 虎扑, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Hupu.webp }
+  - { name: HBO, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/HBO.webp }
+  - { name: IMDB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/IMDB.webp }
+  - { name: 爱奇艺, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/IQIYI.webp }
+  - { name: Instagram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Instagram.webp }
+  - { name: 因特尔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Intel.webp }
+  - { name: iCloud, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/iCloud.webp }
+  - { name: 京东, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/JingDong.webp }
+  - { name: 酷狗, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Kugou.webp }
+  - { name: 酷我, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Kuwo.webp }
+  - { name: LastFM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/LastFM.webp }
+  - { name: LINE, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Line.webp }
+  - { name: 美团, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/MeiTuan.webp }
+  - { name: 微软, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Microsoft.webp }
+  - { name: Mihoyo, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/mihoyo.webp }
+  - { name: NGA, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NGA.webp }
+  - { name: 网易, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NetEase.webp }
+  - { name: 网易云音乐, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NetEase_Music.webp }
+  - { name: Netflix, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Netflix.webp }
+  - { name: ニコニコ, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Niconico.webp }
+  - { name: OpenAI, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/OpenAI.webp }
+  - { name: 微软云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/OneDrive.webp }
+  - { name: 潘朵拉珠宝, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pandora.webp }
+  - { name: PayPal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PayPal.webp }
+  - { name: PikPak, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PikPak.webp }
+  - { name: 拼多多, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pinduoduo.webp }
+  - { name: Pixiv, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pixiv.webp }
+  - { name: PlayStation, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PlayStation.webp }
+  - { name: 国际媒体, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ProxyTV.webp }
+  - { name: Qobuz, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Qobuz.webp }
+  - { name: Reddit, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Reddit.webp }
+  - { name: Rockstar, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Rockstar.webp }
+  - { name: 什么值得买, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/SMZDM.webp }
+  - { name: Google学术, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Scholar.webp }
+  - { name: 新浪, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Sina.webp }
+  - { name: 索尼, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Sony.webp }
+  - { name: SoundCloud, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/SoundCloud.webp }
+  - { name: Speedtest, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Speedtest.webp }
+  - { name: Spotify, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Spotify.webp }
+  - { name: Steam, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
+  - { name: Steam中国, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
+  - { name: Supercell, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Supercell.webp }
+  - { name: Signal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Signal.webp }
+  - { name: TVB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TVB.webp }
+  - { name: Telegram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Telegram.webp }
+  - { name: 腾讯, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Tencent.webp }
+  - { name: 抖音, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
+  - { name: TikTok, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
+  - { name: Twitch, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Twitch.webp }
+  - { name: Twitter, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Twitter.webp }
+  - { name: Tor, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Tor.webp }
+  - { name: Talkatone, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Talkatone.webp }
+  - { name: 微信, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/WeChat.webp }
+  - { name: 维基百科, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Wikipedia.webp }
+  - { name: Wise, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Wise.webp }
+  - { name: YouTube, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/YouTube.webp }
+  - { name: YouTubeMusic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/YouTubeMusic.webp }
+  - { name: 禁漫天堂, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/18comic.webp }
+  - { name: 哔咔哔咔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Picacg.webp }
 
   # 地区分组
   - { name: 🇭🇰香港自动, <<: *u, hidden: true, filter: '(?i)🇭🇰|\bHK\b|香港|Hong Kong' }
@@ -213,7 +213,7 @@ proxy-groups:
 
   - { name: 🇨🇭瑞士自动, <<: *u, hidden: true, filter: '(?i)🇨🇭|\bCH\b|瑞士|Switzerland' }
 
-  - { name: GLOBAL, type: select, include-all: true, proxies: [🚀全球代理, 🟢手动选择, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 115, 12306, 4399, 4GTV, 58同城, 农业银行, AbemaTV, Adobe, 支付宝, 阿里巴巴, 亚马逊电商, 亚马逊TV, Apple, AppleCN, AppStore, Apple邮箱, Apple音乐, Apple新闻, Apple日报, AppleTV, 巴哈姆特, 百度贴吧, 百度, 哔哩哔哩, 哔哩东南亚, BT追踪器, 暴雪, 字节跳动, Beats, CCTV, 中国媒体, Cloudflare, 钉钉, Discord, Disney, Docker, 豆瓣, E站, EA, Epic, Emby, FCM, Facebook, Fastly, FitnessPlus, 高德, GitHub, Google, Google云盘, Google地图, GoogleVoice, Hoyoverse, Hulu, 虎扑, HBO, IMDB, 爱奇艺, Instagram, 因特尔, iCloud, 京东, 酷狗, 酷我, LastFM, LINE, 美团, 微软, Mihoyo, NGA, 网易, 网易云音乐, Netflix, ニコニコ, OpenAI, 微软云盘, 潘朵拉珠宝, PayPal, PikPak, 拼多多, Pixiv, PlayStation, 国际媒体, Qobuz, Reddit, Rockstar, 什么值得买, Google学术, 新浪, 索尼, SoundCloud, Speedtest, Spotify, Steam, Steam中国, Supercell, Signal, TVB, Telegram, 腾讯, 抖音, TikTok, Twitch, Twitter, Tor, Talkatone, 微信, 维基百科, Wise, YouTube, YouTubeMusic, 禁漫天堂, 哔咔哔咔], icon: https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/icon/webp/100/GLOBAL.webp }
+  - { name: GLOBAL, type: select, include-all: true, proxies: [🚀全球代理, 🟢手动选择, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 115, 12306, 4399, 4GTV, 58同城, 农业银行, AbemaTV, Adobe, 支付宝, 阿里巴巴, 亚马逊电商, 亚马逊TV, Apple, AppleCN, AppStore, Apple邮箱, Apple音乐, Apple新闻, Apple日报, AppleTV, 巴哈姆特, 百度贴吧, 百度, 哔哩哔哩, 哔哩东南亚, BT追踪器, 暴雪, 字节跳动, Beats, CCTV, 中国媒体, Cloudflare, 钉钉, Discord, Disney, Docker, 豆瓣, E站, EA, Epic, Emby, FCM, Facebook, Fastly, FitnessPlus, 高德, GitHub, Google, Google云盘, Google地图, GoogleVoice, Hoyoverse, Hulu, 虎扑, HBO, IMDB, 爱奇艺, Instagram, 因特尔, iCloud, 京东, 酷狗, 酷我, LastFM, LINE, 美团, 微软, Mihoyo, NGA, 网易, 网易云音乐, Netflix, ニコニコ, OpenAI, 微软云盘, 潘朵拉珠宝, PayPal, PikPak, 拼多多, Pixiv, PlayStation, 国际媒体, Qobuz, Reddit, Rockstar, 什么值得买, Google学术, 新浪, 索尼, SoundCloud, Speedtest, Spotify, Steam, Steam中国, Supercell, Signal, TVB, Telegram, 腾讯, 抖音, TikTok, Twitch, Twitter, Tor, Talkatone, 微信, 维基百科, Wise, YouTube, YouTubeMusic, 禁漫天堂, 哔咔哔咔], icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
 
 rules:
   - SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-LAN
@@ -1163,12 +1163,12 @@ rule-providers:
 
   4GTV:
     <<: *domain_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/4GTV/4GTV_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/4GTV/4GTV_Domain.mrs"
     path: ./ruleset/4GTV_Domain.mrs
 
   WeChat:
     <<: *domain_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/WeChat/WeChat_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/WeChat/WeChat_Domain.mrs"
     path: ./ruleset/WeChat_Domain.mrs
 
   Talkatone:
@@ -1183,27 +1183,27 @@ rule-providers:
 
   TikTok:
     <<: *domain_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/TikTok/TikTok_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/TikTok/TikTok_Domain.mrs"
     path: ./ruleset/TikTok_Domain.mrs
 
   Tracker:
     <<: *domain_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/Tracker/Tracker_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_Domain.mrs"
     path: ./ruleset/Tracker_Domain.mrs
 
   Trackercidr:
     <<: *ipcidr_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/Tracker/Tracker_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_IP.mrs"
     path: ./ruleset/Tracker_IP.mrs
 
   EHGallery:
     <<: *domain_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/EHGallery/EHGallery_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_Domain.mrs"
     path: ./ruleset/EHGallery_Domain.mrs
 
   EHGallerycidr:
     <<: *ipcidr_mrs
-    url: "https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/rules/mihomo/EHGallery/EHGallery_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_IP.mrs"
     path: ./ruleset/EHGallery_IP.mrs
 
   Fakeip_Filter:

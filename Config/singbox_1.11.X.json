@@ -120,31 +120,54 @@
             "listen_port": 20120
         }
     ],
+    "outbounds": [
+        {
+            "tag": "🎯 全局直连",
+            "type": "direct"
+        },
+        {
+            "tag": "🚫 拒绝连接",
+            "type": "socks",
+            "server": "127.0.0.1",
+            "server_port": 1024,
+            "version": "5",
+            "username": "sekai",
+            "password": "admin",
+            "network": "udp",
+            "udp_over_tcp": false
+        }
+    ],
     "route": {
         "auto_detect_interface": true,
         "final": "🚀 节点选择",
         "rules": [
             {
-                "action": "sniff"
-            },
-            { 
-                "action": "resolve"
-            },
-            { 
-                "type": "logical", 
-                "mode": "or", 
-                "rules": [
-                  { "port": [53] },
-                  { "protocol": "dns" }
-                ], 
-                "action": "hijack-dns"
-            },
-            { 
-                "action": "route-options", 
-                "udp_disable_domain_unmapping": true, 
-                "udp_connect": true, 
+                "action": "route-options",
+                "udp_disable_domain_unmapping": true,
+                "udp_connect": true,
                 "udp_timeout": "5m",
                 "disable_cache": true
+            },
+            {
+                "action": "resolve"
+            },
+            {
+                "action": "sniff"
+            },
+            {
+                "type": "logical",
+                "mode": "or",
+                "rules": [
+                    {
+                        "port": [
+                            53
+                        ]
+                    },
+                    {
+                        "protocol": "dns"
+                    }
+                ],
+                "action": "hijack-dns"
             },
             {
                 "ip_is_private": true,
@@ -175,6 +198,5 @@
                 "download_detour": "🎯 全球直连"
             }
         ]
-    },
-    "outbounds": []
+    }
 }
