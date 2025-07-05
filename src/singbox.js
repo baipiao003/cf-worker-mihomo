@@ -6,11 +6,11 @@ export async function getsingbox_config(urls, rule, top_default, userAgent, suba
         const betaMatch = userAgent.match(/1\.12\.0\-beta\.(\d{1,2})\b/);
         const v111Match = userAgent.match(/1\.11\.\d+/);
         const v112Match = userAgent.match(/1\.12\.(\d+)/);
-        // 匹配 1.11 中的 1.12 alpha 版本
+        // 匹配 1.12 alpha 版本
         if (alphaMatch && !matched) {
             const num = parseInt(alphaMatch[1], 10);
             if (num >= 0 && num <= 23) {
-                top = top_default.singbox_1_11;
+                top = top_default.singbox_1_12_alpha;
                 matched = true;
             }
         }

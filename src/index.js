@@ -1,6 +1,6 @@
 import { getmihomo_config } from './mihomo.js';
 import { getsingbox_config } from './singbox.js';
-import { getFakePage, backimg, subapi, mihomo_top, singbox_1_11, singbox_1_12, beiantext, beiandizi, configs } from './utils.js';
+import { getFakePage, backimg, subapi, mihomo_top, singbox_1_11, singbox_1_12, singbox_1_12_alpha, beiantext, beiandizi, configs } from './utils.js';
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -12,10 +12,22 @@ export default {
         const Mihomo_default = env.MIHOMO || mihomo_top
         const Singbox_default = {
             singbox_1_11: env.SINGBOX_1_11 || singbox_1_11,
-            singbox_1_12: env.SINGBOX_1_12 || singbox_1_12
+            singbox_1_12: env.SINGBOX_1_12 || singbox_1_12,
+            singbox_1_12_alpha: env.SINGBOX_1_12_ALPHA || singbox_1_12_alpha
         };
         const beian = env.BEIAN || beiantext
         const beianurl = env.BEIANURL || beiandizi
+        const variable = {
+            userAgent,
+            rule,
+            singbox,
+            IMG,
+            sub,
+            Mihomo_default,
+            Singbox_default,
+            beian,
+            beianurl
+        };
         // 处理 URL 参数
         let urls = url.searchParams.getAll("url");
 
@@ -24,7 +36,7 @@ export default {
         }
 
         if (urls.length === 0 || urls[0] === "") {
-            return new Response(await getFakePage(IMG, beianurl, beian, configs(), sub), {
+            return new Response(await getFakePage(variable, configs()), {
                 status: 200,
                 headers: {
                     "Content-Type": "text/html; charset=utf-8"

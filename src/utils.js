@@ -5,6 +5,7 @@ export const subapi = 'https://url.v1.mk';
 export const mihomo_top = 'https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml';
 export const singbox_1_11 = 'https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox_1.11.X.json';
 export const singbox_1_12 = 'https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.json';
+export const singbox_1_12_alpha = 'https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.alpha.json';
 export const beiantext = base64DecodeUtf8('6JCMSUNQ5aSHMjAyNTAwMDHlj7c=');
 export const beiandizi = atob('aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=');
 export function base64DecodeUtf8(base64) {
@@ -108,7 +109,7 @@ export async function Rule_Data(rule) {
 }
 
 // 获取伪装页面
-export async function getFakePage(image, button_url, button_text, configdata, subapi) {
+export async function getFakePage(variable, configdata) {
     return `
 <!DOCTYPE html>
 <html>
@@ -133,7 +134,7 @@ export async function getFakePage(image, button_url, button_text, configdata, su
         }
 
         body {
-            background-image: url(${image});
+            background-image: url(${variable.IMG});
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -471,18 +472,7 @@ export async function getFakePage(image, button_url, button_text, configdata, su
             background-color: rgba(67, 97, 238, 0.2);
             font-weight: bold;
         }
-        
-        // .template-url {
-        //     width: 100%;
-        //     padding: 12px;
-        //     border: 2px solid rgba(0, 0, 0, 0.15);
-        //     border-radius: 10px;
-        //     font-size: 1rem;
-        //     background-color: #f8f9fa;
-        //     color: #666;
-        //     cursor: not-allowed;
-        //     margin-top: 10px;
-        // }
+
         /* Add new styles for the toggle switch */
         .config-toggle {
             display: flex;
@@ -523,8 +513,75 @@ export async function getFakePage(image, button_url, button_text, configdata, su
         .singbox-mode .mihomo-options {
             display: none;
         }
+
+        /* 感叹号 */
+        .tip-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #4a60ea;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tip-panel {
+            display: none;
+            position: absolute;
+            top: 24px;
+            left: 0;
+            min-width: 260px;
+            max-width: 320px;
+            max-height: 50vh; /* 限制最大高度，防止超出屏幕 */
+            background: white;
+            color: #333;
+            font-size: 14px;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            white-space: normal;
+            line-height: 1.6;
+            overflow-y: auto; /* 增加滚动条支持 */
+            overflow-x: hidden;
+            word-break: break-word;
+        }
+
+        .tip-panel ul {
+            margin: 8px 0;
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .tip-panel li {
+            margin-bottom: 6px;
+        }
+
+        .tip-panel strong, .tip-panel b {
+            font-weight: bold;
+            color: #4a60ea;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .tip-wrapper.active .tip-panel {
+            display: block;
+        }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@keeex/qrcodejs-kx@1.0.2/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
 </head>
 
 <body>
@@ -557,7 +614,13 @@ export async function getFakePage(image, button_url, button_text, configdata, su
             </div>
 
             <div class="input-group">
-                <label for="link">订阅链接</label>
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <label for="link" style="margin: 0;">订阅链接</label>
+                    <div class="tip-wrapper">
+                        <span class="tip-icon" data-mode="mihomo">!</span>
+                        <div class="tip-panel"></div>
+                    </div>
+                </div>
                 <div id="link-container">
                     <div class="link-row">
                         <input type="text" class="link-input"/>
@@ -577,7 +640,13 @@ export async function getFakePage(image, button_url, button_text, configdata, su
                 </div>
             </div>
             <div class="input-group">
-                <label for="link">订阅链接</label>
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <label for="link" style="margin: 0;">订阅链接</label>
+                    <div class="tip-wrapper">
+                        <span class="tip-icon" data-mode="singbox">!</span>
+                        <div class="tip-panel"></div>
+                    </div>
+                </div>
                 <div id="link-container-singbox">
                     <div class="link-row">
                         <input type="text" class="link-input"/>
@@ -592,14 +661,13 @@ export async function getFakePage(image, button_url, button_text, configdata, su
 
         <div class="input-group">
             <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                <span>转换后端：${subapi}</span>
                 <label for="result">订阅地址：</label>
             </div>
             <input type="text" id="result" readonly onclick="copyToClipboard()">
             <label id="qrcode" style="margin: 15px 10px -15px 10px;"></label>
         </div>
         <div class="beian-info" style="text-align: center; font-size: 13px;">
-            <a href='${button_url}'>${button_text}</a>
+            <a href='${variable.beianurl}'>${variable.beian}</a>
         </div>
     </div>
 
@@ -637,8 +705,8 @@ export async function getFakePage(image, button_url, button_text, configdata, su
         // 动态设置输入框的placeholder，根据当前模式
         function setPlaceholderForMode(input, mode = 'mihomo') {
             input.placeholder = mode === 'singbox' 
-                ? '请输入singbox订阅地址url，支持单节点' 
-                : '请输入clash订阅地址url，支持单节点';
+                ? '请输入singbox订阅地址url，支持各种订阅或单节点链接' 
+                : '请输入clash订阅地址url，支持各种订阅或单节点链接';
         }
 
         // 初始化所有输入框的placeholder
@@ -681,6 +749,78 @@ export async function getFakePage(image, button_url, button_text, configdata, su
         document.addEventListener('DOMContentLoaded', function () {
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const container = document.querySelector('.container');
+            const tipModal = document.getElementById('tipModal');
+            const tipContent = document.getElementById('tipContent');
+
+            const tipTexts = {
+                mihomo: \`
+## mihomo 使用提示：
+
+- 支持各种订阅或单节点链接，自动合并生成配置
+- 可选模板生成 Clash (mihomo) 链接
+- 可复制或扫码导入
+- 去广告过滤
+- 防止 DNS 泄漏（安全DNS/DoH）
+- 屏蔽 WebRTC 泄漏（防止真实IP暴露）
+- 关闭所有覆写功能（不是关闭功能，是关闭覆写）以确保配置正常生效
+
+## 配置信息
+
+**userAgent** ${variable.userAgent}
+
+**转换后端** ${variable.sub}
+
+**默认** ${variable.Mihomo_default}
+                \`,
+                singbox: \`
+## singbox 使用提示：
+
+- 支持各种订阅或单节点链接，自动合并生成配置
+- 适用于 sing-box 客户端
+- 支持 1.11.x
+- 支持 1.12.x
+- 支持扫码或链接复制导入
+- 防止 DNS 泄漏（安全DNS/DoH）
+
+## 配置信息
+
+**userAgent** ${variable.userAgent}
+
+**转换后端** ${variable.sub}
+
+**1.11** ${variable.Singbox_default.singbox_1_11}
+
+**1.12** ${variable.Singbox_default.singbox_1_12}
+
+**1.12_alpha** ${variable.Singbox_default.singbox_1_12_alpha}
+                \`
+            };
+            // 弹窗提示
+            document.querySelectorAll('.tip-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    e.stopPropagation(); // 防止触发全局点击关闭
+
+                    // 关闭所有已展开
+                    document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
+
+                    const wrapper = icon.closest('.tip-wrapper');
+                    wrapper.classList.toggle('active');
+
+                    const panel = wrapper.querySelector('.tip-panel');
+                    const mode = icon.dataset.mode;
+
+                    // 使用 marked 渲染 Markdown 为 HTML
+                    const rawMarkdown = tipTexts[mode] || '暂无提示内容';
+                    panel.innerHTML = DOMPurify.sanitize(marked.parse(rawMarkdown));
+
+                });
+            });
+
+
+            // 点击页面其他地方关闭提示
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
+            });
 
             // 设置默认模式为mihomo
             const defaultMode = 'mihomo';
@@ -703,7 +843,6 @@ export async function getFakePage(image, button_url, button_text, configdata, su
                    initializePlaceholders(newMode);
                 });
             });
-
             // 初始化模板选择器
             initTemplateSelector('mihomo');
             initTemplateSelector('singbox');
@@ -796,16 +935,12 @@ export async function getFakePage(image, button_url, button_text, configdata, su
             }
 
             const allLinks = [];
-            if (templateLink) {
-                allLinks.push(\`template=\${encodeURIComponent(templateLink)}\`);
-            }
-
             subscriptionLinks.forEach(link => {
-                allLinks.push(\`url=\${encodeURIComponent(link)}\`);
+                allLinks.push(encodeURIComponent(link));
             });
 
             const origin = window.location.origin;
-            const urlLink = \`\${origin}/?\${allLinks.join('&')}\`;
+            const urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&mihomo=true\`;
             updateResult(urlLink);
         }
         // 生成singbox链接
@@ -824,16 +959,12 @@ export async function getFakePage(image, button_url, button_text, configdata, su
             }
 
             const allLinks = [];
-            if (templateLink) {
-                allLinks.push(\`template=\${encodeURIComponent(templateLink)}\`);
-            }
-
             subscriptionLinks.forEach(link => {
-                allLinks.push(\`url=\${encodeURIComponent(link)}\`);
+                allLinks.push(encodeURIComponent(link));
             });
 
             const origin = window.location.origin;
-            const urlLink = \`\${origin}/?\${allLinks.join('&')}&singbox=true\`;
+            const urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&singbox=true\`;
             updateResult(urlLink);
         }
         // 更新结果和二维码
@@ -990,10 +1121,6 @@ export function configs() {
                     {
                         label: "默认（mini版）[geo_ads]",
                         value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini.yaml"
-                    },
-                    {
-                        label: "默认（mini版）[DustinWin_ads]",
-                        value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini_Ads_DustinWin.yaml"
                     },
                     {
                         label: "默认（全分组）[秋风_ads]",

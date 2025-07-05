@@ -7675,6 +7675,7 @@ var subapi = "https://url.v1.mk";
 var mihomo_top = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/Config/Mihomo_lite.yaml";
 var singbox_1_11 = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox_1.11.X.json";
 var singbox_1_12 = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.json";
+var singbox_1_12_alpha = "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/refs/heads/main/Config/singbox-1.12.X.alpha.json";
 var beiantext = base64DecodeUtf8("6JCMSUNQ5aSHMjAyNTAwMDHlj7c=");
 var beiandizi = atob("aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=");
 function base64DecodeUtf8(base64) {
@@ -7762,7 +7763,7 @@ async function Rule_Data(rule) {
   return await fetchResponse(rule);
 }
 __name(Rule_Data, "Rule_Data");
-async function getFakePage(image, button_url, button_text, configdata, subapi2) {
+async function getFakePage(variable, configdata) {
   return `
 <!DOCTYPE html>
 <html>
@@ -7787,7 +7788,7 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
         }
 
         body {
-            background-image: url(${image});
+            background-image: url(${variable.IMG});
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -8125,18 +8126,7 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
             background-color: rgba(67, 97, 238, 0.2);
             font-weight: bold;
         }
-        
-        // .template-url {
-        //     width: 100%;
-        //     padding: 12px;
-        //     border: 2px solid rgba(0, 0, 0, 0.15);
-        //     border-radius: 10px;
-        //     font-size: 1rem;
-        //     background-color: #f8f9fa;
-        //     color: #666;
-        //     cursor: not-allowed;
-        //     margin-top: 10px;
-        // }
+
         /* Add new styles for the toggle switch */
         .config-toggle {
             display: flex;
@@ -8177,8 +8167,75 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
         .singbox-mode .mihomo-options {
             display: none;
         }
+
+        /* \u611F\u53F9\u53F7 */
+        .tip-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #4a60ea;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tip-panel {
+            display: none;
+            position: absolute;
+            top: 24px;
+            left: 0;
+            min-width: 260px;
+            max-width: 320px;
+            max-height: 50vh; /* \u9650\u5236\u6700\u5927\u9AD8\u5EA6\uFF0C\u9632\u6B62\u8D85\u51FA\u5C4F\u5E55 */
+            background: white;
+            color: #333;
+            font-size: 14px;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            white-space: normal;
+            line-height: 1.6;
+            overflow-y: auto; /* \u589E\u52A0\u6EDA\u52A8\u6761\u652F\u6301 */
+            overflow-x: hidden;
+            word-break: break-word;
+        }
+
+        .tip-panel ul {
+            margin: 8px 0;
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .tip-panel li {
+            margin-bottom: 6px;
+        }
+
+        .tip-panel strong, .tip-panel b {
+            font-weight: bold;
+            color: #4a60ea;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .tip-wrapper.active .tip-panel {
+            display: block;
+        }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@keeex/qrcodejs-kx@1.0.2/qrcode.min.js"><\/script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\/script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"><\/script>
 </head>
 
 <body>
@@ -8211,7 +8268,13 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
             </div>
 
             <div class="input-group">
-                <label for="link">\u8BA2\u9605\u94FE\u63A5</label>
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <label for="link" style="margin: 0;">\u8BA2\u9605\u94FE\u63A5</label>
+                    <div class="tip-wrapper">
+                        <span class="tip-icon" data-mode="mihomo">!</span>
+                        <div class="tip-panel"></div>
+                    </div>
+                </div>
                 <div id="link-container">
                     <div class="link-row">
                         <input type="text" class="link-input"/>
@@ -8231,7 +8294,13 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
                 </div>
             </div>
             <div class="input-group">
-                <label for="link">\u8BA2\u9605\u94FE\u63A5</label>
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                    <label for="link" style="margin: 0;">\u8BA2\u9605\u94FE\u63A5</label>
+                    <div class="tip-wrapper">
+                        <span class="tip-icon" data-mode="singbox">!</span>
+                        <div class="tip-panel"></div>
+                    </div>
+                </div>
                 <div id="link-container-singbox">
                     <div class="link-row">
                         <input type="text" class="link-input"/>
@@ -8246,14 +8315,13 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
 
         <div class="input-group">
             <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                <span>\u8F6C\u6362\u540E\u7AEF\uFF1A${subapi2}</span>
                 <label for="result">\u8BA2\u9605\u5730\u5740\uFF1A</label>
             </div>
             <input type="text" id="result" readonly onclick="copyToClipboard()">
             <label id="qrcode" style="margin: 15px 10px -15px 10px;"></label>
         </div>
         <div class="beian-info" style="text-align: center; font-size: 13px;">
-            <a href='${button_url}'>${button_text}</a>
+            <a href='${variable.beianurl}'>${variable.beian}</a>
         </div>
     </div>
 
@@ -8291,8 +8359,8 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
         // \u52A8\u6001\u8BBE\u7F6E\u8F93\u5165\u6846\u7684placeholder\uFF0C\u6839\u636E\u5F53\u524D\u6A21\u5F0F
         function setPlaceholderForMode(input, mode = 'mihomo') {
             input.placeholder = mode === 'singbox' 
-                ? '\u8BF7\u8F93\u5165singbox\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5355\u8282\u70B9' 
-                : '\u8BF7\u8F93\u5165clash\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5355\u8282\u70B9';
+                ? '\u8BF7\u8F93\u5165singbox\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5404\u79CD\u8BA2\u9605\u6216\u5355\u8282\u70B9\u94FE\u63A5' 
+                : '\u8BF7\u8F93\u5165clash\u8BA2\u9605\u5730\u5740url\uFF0C\u652F\u6301\u5404\u79CD\u8BA2\u9605\u6216\u5355\u8282\u70B9\u94FE\u63A5';
         }
 
         // \u521D\u59CB\u5316\u6240\u6709\u8F93\u5165\u6846\u7684placeholder
@@ -8335,6 +8403,78 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
         document.addEventListener('DOMContentLoaded', function () {
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const container = document.querySelector('.container');
+            const tipModal = document.getElementById('tipModal');
+            const tipContent = document.getElementById('tipContent');
+
+            const tipTexts = {
+                mihomo: \`
+## mihomo \u4F7F\u7528\u63D0\u793A\uFF1A
+
+- \u652F\u6301\u5404\u79CD\u8BA2\u9605\u6216\u5355\u8282\u70B9\u94FE\u63A5\uFF0C\u81EA\u52A8\u5408\u5E76\u751F\u6210\u914D\u7F6E
+- \u53EF\u9009\u6A21\u677F\u751F\u6210 Clash (mihomo) \u94FE\u63A5
+- \u53EF\u590D\u5236\u6216\u626B\u7801\u5BFC\u5165
+- \u53BB\u5E7F\u544A\u8FC7\u6EE4
+- \u9632\u6B62 DNS \u6CC4\u6F0F\uFF08\u5B89\u5168DNS/DoH\uFF09
+- \u5C4F\u853D WebRTC \u6CC4\u6F0F\uFF08\u9632\u6B62\u771F\u5B9EIP\u66B4\u9732\uFF09
+- \u5173\u95ED\u6240\u6709\u8986\u5199\u529F\u80FD\uFF08\u4E0D\u662F\u5173\u95ED\u529F\u80FD\uFF0C\u662F\u5173\u95ED\u8986\u5199\uFF09\u4EE5\u786E\u4FDD\u914D\u7F6E\u6B63\u5E38\u751F\u6548
+
+## \u914D\u7F6E\u4FE1\u606F
+
+**userAgent** ${variable.userAgent}
+
+**\u8F6C\u6362\u540E\u7AEF** ${variable.sub}
+
+**\u9ED8\u8BA4** ${variable.Mihomo_default}
+                \`,
+                singbox: \`
+## singbox \u4F7F\u7528\u63D0\u793A\uFF1A
+
+- \u652F\u6301\u5404\u79CD\u8BA2\u9605\u6216\u5355\u8282\u70B9\u94FE\u63A5\uFF0C\u81EA\u52A8\u5408\u5E76\u751F\u6210\u914D\u7F6E
+- \u9002\u7528\u4E8E sing-box \u5BA2\u6237\u7AEF
+- \u652F\u6301 1.11.x
+- \u652F\u6301 1.12.x
+- \u652F\u6301\u626B\u7801\u6216\u94FE\u63A5\u590D\u5236\u5BFC\u5165
+- \u9632\u6B62 DNS \u6CC4\u6F0F\uFF08\u5B89\u5168DNS/DoH\uFF09
+
+## \u914D\u7F6E\u4FE1\u606F
+
+**userAgent** ${variable.userAgent}
+
+**\u8F6C\u6362\u540E\u7AEF** ${variable.sub}
+
+**1.11** ${variable.Singbox_default.singbox_1_11}
+
+**1.12** ${variable.Singbox_default.singbox_1_12}
+
+**1.12_alpha** ${variable.Singbox_default.singbox_1_12_alpha}
+                \`
+            };
+            // \u5F39\u7A97\u63D0\u793A
+            document.querySelectorAll('.tip-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    e.stopPropagation(); // \u9632\u6B62\u89E6\u53D1\u5168\u5C40\u70B9\u51FB\u5173\u95ED
+
+                    // \u5173\u95ED\u6240\u6709\u5DF2\u5C55\u5F00
+                    document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
+
+                    const wrapper = icon.closest('.tip-wrapper');
+                    wrapper.classList.toggle('active');
+
+                    const panel = wrapper.querySelector('.tip-panel');
+                    const mode = icon.dataset.mode;
+
+                    // \u4F7F\u7528 marked \u6E32\u67D3 Markdown \u4E3A HTML
+                    const rawMarkdown = tipTexts[mode] || '\u6682\u65E0\u63D0\u793A\u5185\u5BB9';
+                    panel.innerHTML = DOMPurify.sanitize(marked.parse(rawMarkdown));
+
+                });
+            });
+
+
+            // \u70B9\u51FB\u9875\u9762\u5176\u4ED6\u5730\u65B9\u5173\u95ED\u63D0\u793A
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
+            });
 
             // \u8BBE\u7F6E\u9ED8\u8BA4\u6A21\u5F0F\u4E3Amihomo
             const defaultMode = 'mihomo';
@@ -8357,7 +8497,6 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
                    initializePlaceholders(newMode);
                 });
             });
-
             // \u521D\u59CB\u5316\u6A21\u677F\u9009\u62E9\u5668
             initTemplateSelector('mihomo');
             initTemplateSelector('singbox');
@@ -8450,16 +8589,12 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
             }
 
             const allLinks = [];
-            if (templateLink) {
-                allLinks.push(\`template=\${encodeURIComponent(templateLink)}\`);
-            }
-
             subscriptionLinks.forEach(link => {
-                allLinks.push(\`url=\${encodeURIComponent(link)}\`);
+                allLinks.push(encodeURIComponent(link));
             });
 
             const origin = window.location.origin;
-            const urlLink = \`\${origin}/?\${allLinks.join('&')}\`;
+            const urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&mihomo=true\`;
             updateResult(urlLink);
         }
         // \u751F\u6210singbox\u94FE\u63A5
@@ -8478,16 +8613,12 @@ async function getFakePage(image, button_url, button_text, configdata, subapi2) 
             }
 
             const allLinks = [];
-            if (templateLink) {
-                allLinks.push(\`template=\${encodeURIComponent(templateLink)}\`);
-            }
-
             subscriptionLinks.forEach(link => {
-                allLinks.push(\`url=\${encodeURIComponent(link)}\`);
+                allLinks.push(encodeURIComponent(link));
             });
 
             const origin = window.location.origin;
-            const urlLink = \`\${origin}/?\${allLinks.join('&')}&singbox=true\`;
+            const urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&singbox=true\`;
             updateResult(urlLink);
         }
         // \u66F4\u65B0\u7ED3\u679C\u548C\u4E8C\u7EF4\u7801
@@ -8646,10 +8777,6 @@ function configs() {
             value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini.yaml"
           },
           {
-            label: "\u9ED8\u8BA4\uFF08mini\u7248\uFF09[DustinWin_ads]",
-            value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_mini_Ads_DustinWin.yaml"
-          },
-          {
             label: "\u9ED8\u8BA4\uFF08\u5168\u5206\u7EC4\uFF09[\u79CB\u98CE_ads]",
             value: "https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox_default_full.yaml"
           },
@@ -8789,7 +8916,7 @@ async function getsingbox_config(urls, rule, top_default, userAgent, subapi2) {
     if (alphaMatch && !matched) {
       const num = parseInt(alphaMatch[1], 10);
       if (num >= 0 && num <= 23) {
-        top = top_default.singbox_1_11;
+        top = top_default.singbox_1_12_alpha;
         matched = true;
       }
     }
@@ -8980,16 +9107,28 @@ var index_default = {
     const Mihomo_default = env2.MIHOMO || mihomo_top;
     const Singbox_default = {
       singbox_1_11: env2.SINGBOX_1_11 || singbox_1_11,
-      singbox_1_12: env2.SINGBOX_1_12 || singbox_1_12
+      singbox_1_12: env2.SINGBOX_1_12 || singbox_1_12,
+      singbox_1_12_alpha: env2.SINGBOX_1_12_ALPHA || singbox_1_12_alpha
     };
     const beian = env2.BEIAN || beiantext;
     const beianurl = env2.BEIANURL || beiandizi;
+    const variable = {
+      userAgent,
+      rule,
+      singbox,
+      IMG,
+      sub,
+      Mihomo_default,
+      Singbox_default,
+      beian,
+      beianurl
+    };
     let urls = url.searchParams.getAll("url");
     if (urls.length === 1 && urls[0].includes(",")) {
       urls = urls[0].split(",").map((u) => u.trim());
     }
     if (urls.length === 0 || urls[0] === "") {
-      return new Response(await getFakePage(IMG, beianurl, beian, configs(), sub), {
+      return new Response(await getFakePage(variable, configs()), {
         status: 200,
         headers: {
           "Content-Type": "text/html; charset=utf-8"

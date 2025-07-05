@@ -142,16 +142,6 @@
         "final": "🚀 节点选择",
         "rules": [
             {
-                "action": "route-options",
-                "udp_disable_domain_unmapping": true,
-                "udp_connect": true,
-                "udp_timeout": "5m",
-                "disable_cache": true
-            },
-            {
-                "action": "resolve"
-            },
-            {
                 "action": "sniff"
             },
             {
@@ -180,6 +170,16 @@
             {
                 "clash_mode": "global",
                 "outbound": "🚀 节点选择"
+            },
+            {
+                "action": "route-options",
+                "udp_disable_domain_unmapping": true,
+                "udp_connect": true,
+                "udp_timeout": "5m",
+                "disable_cache": true
+            },
+            {
+                "action": "resolve"
             }
         ],
         "rule_set": [

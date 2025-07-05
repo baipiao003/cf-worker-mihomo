@@ -21,15 +21,17 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 - **singbox**
   - 支持 1.11.x 、1.12.x 版本
   - 自适应版本，生成对应版本的配置
+  - iOS版本 无弹窗
+  - 谷歌版本 无弹窗
+  - GitHub版本 无弹窗
   - 启用ip路由
-  - 1.12.x 强制启用 `tls` 分段处理
 - **mihomo**
   - 启用ip路由
   - 强制启用 `udp` 路由
 
 ## 🖥 Web 控制台
 访问在线配置生成器：
-👉 [mihomo.haxtop.ggff.net](https://mihomo.haxtop.ggff.net)
+👉 [sub.ikar.eu.org](https://sub.ikar.eu.org)
 
 > 💡 使用建议：关闭所有覆写功能（不是关闭功能，是关闭覆写）以确保配置正常生效。
 
@@ -92,11 +94,7 @@ npm run deploy
    - 保存部署
 2. 给 workers绑定 自定义域： 
    - 在 workers控制台的 `触发器`选项卡，下方点击 `添加自定义域`。
-   - 填入你已转入 CF 域名解析服务的次级域名，例如:`mihomo.haxtop.ggff.net`后 点击`添加自定义域`，等待证书生效即可。
-3. 使用方法：
-   ```
-   https://your-domain.com?url=订阅链接1,订阅链接2
-   ```
+   - 填入你已转入 CF 域名解析服务的次级域名，例如:`sub.ikar.eu.org`后 点击`添加自定义域`，等待证书生效即可。
 
 ### 3. Cloudflare Pages 部署
 
@@ -132,6 +130,7 @@ npm run deploy
 | `BEIANURL`   | 备案跳转链接        | `https://t.me/Marisa_kristi`                                   |
 | `SINGBOX_1_11` | signbox配置模板 | `https://raw.githubusercontent.com/.../singbox_1.11.X.json`|
 | `SINGBOX_1_12` | signbox配置模板 | `https://raw.githubusercontent.com/.../singbox_1.12.X.json`|
+| `SINGBOX_1_12_ALPHA` | signbox配置模板 | `https://raw.githubusercontent.com/.../singbox_1.12.X.alpha.json`|
 ---
 
 ## 🤝 参与贡献
