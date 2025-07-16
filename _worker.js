@@ -9146,6 +9146,7 @@ var index_default = {
       headers = new Headers(responseHeaders);
       status = res.status;
       headers.set("Content-Type", "application/json; charset=utf-8");
+      headers.set("Profile-web-page-url", url.origin);
       return new Response(res.data, {
         status,
         headers

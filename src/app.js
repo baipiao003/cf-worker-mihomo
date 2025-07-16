@@ -62,6 +62,7 @@ router.get('/', async (ctx) => {
       }
     }
     safeHeaders['Content-Type'] = 'application/json; charset=utf-8';
+    safeHeaders['Profile-web-page-url'] = url.origin;
 
     ctx.body = res.data;
     ctx.status = res.status;
