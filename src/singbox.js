@@ -24,7 +24,25 @@ export async function getsingbox_config(e) {
     Singbox_Rule_Data.data.outbounds.push(...Singbox_Outbounds_Data.data.outbounds);
     if (e.exclude_package) addExcludePackage(Singbox_Top_Data.data, Exclude_Package);
     if (e.exclude_address) addExcludeAddress(Singbox_Top_Data.data, Exclude_Address);
-    applyTemplate(Singbox_Top_Data.data, Singbox_Rule_Data.data, e);
+    if (e.tailscale) {
+        // 添加 tailscale 相关配置
+        Singbox_Top_Data.data.dns.server.push({
+            type: 'tailscale',
+            endpoint: 'ts-ep',
+            accept_default_resolvers: true,
+        });
+        if (!Singbox_Top_Data.data.endpoints) {
+            Singbox_Top_Data.data.endpoints = [];
+        }
+        Singbox_Top_Data.data.endpoints.push({
+            type: 'tailscale',
+            tag: 'ts-ep',
+            auth_key: '',
+            hostname: 'singbox-tailscale',
+            udp_timeout: '5m',
+        });
+    }
+    applyTemplate(Singbox_Top_Data.data, Singbox_Rule_Data.data);
     return {
         status: Singbox_Outbounds_Data.status,
         headers: Singbox_Outbounds_Data.headers,

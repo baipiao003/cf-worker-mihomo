@@ -1,6 +1,6 @@
 import { getmihomo_config } from './mihomo.js';
 import { getsingbox_config } from './singbox.js';
-import { getFakePage } from './html.js';
+import { getFakePage } from './page.js';
 import * as utils from './utils.js';
 export default {
     async fetch(request, env) {
@@ -15,6 +15,7 @@ export default {
             udp: url.searchParams.get('udp') === 'true',
             exclude_package: url.searchParams.get('ep') === 'true',
             exclude_address: url.searchParams.get('ea') === 'true',
+            tailscale: url.searchParams.get('tailscale') === 'true',
             IMG: env.IMG || utils.backimg,
             sub: env.SUB || utils.subapi,
             Mihomo_default: env.MIHOMOTOP || utils.mihomo_top,

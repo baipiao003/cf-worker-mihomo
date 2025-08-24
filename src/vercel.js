@@ -1,6 +1,6 @@
 import { getmihomo_config } from './mihomo.js';
 import { getsingbox_config } from './singbox.js';
-import { getFakePage } from './html.js';
+import { getFakePage } from './page.js';
 import * as utils from './utils.js';
 export default async function handler(req, res) {
     const url = new URL(req.url, `http://${req.headers.host}`);
@@ -11,9 +11,10 @@ export default async function handler(req, res) {
         rule: url.searchParams.get('template'),
         singbox: url.searchParams.get('singbox') === 'true',
         mihomo: url.searchParams.get('mihomo') === 'true',
-        udp: url.searchParams.get('udp') !== 'false',
+        udp: url.searchParams.get('udp') === 'true',
         exclude_package: url.searchParams.get('ep') === 'true',
         exclude_address: url.searchParams.get('ea') === 'true',
+        tailscale: url.searchParams.get('tailscale') === 'true',
         IMG: process.env.IMG || utils.backimg,
         sub: process.env.SUB || utils.subapi,
         Mihomo_default: process.env.MIHOMOTOP || utils.mihomo_top,

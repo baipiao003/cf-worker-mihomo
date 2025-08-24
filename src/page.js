@@ -7,7 +7,7 @@ export async function getFakePage(e) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20id='Partition-Auto--Streamline-Carbon'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20height='16'%20width='16'%3E%3Cdesc%3EPartition%20Auto%20Streamline%20Icon%3A%20https%3A//streamlinehq.com%3C/desc%3E%3Cdefs%3E%3C/defs%3E%3Cpath%20d='M13%209.5c-1.1028%200%20-2%200.8972%20-2%202%200%200.3418%200.0941%200.6587%200.24585%200.94045C10.30775%2013.12675%209.17285%2013.5%208%2013.5%204.9673%2013.5%202.5%2011.0327%202.5%208H1.5c0%203.584%202.9159%206.5%206.5%206.5%201.42275%200%202.79615%20-0.468%203.92165%20-1.3208C12.2334%2013.38015%2012.6023%2013.5%2013%2013.5c1.1028%200%202%20-0.8972%202%20-2s-0.8972%20-2%20-2%20-2Zm0%203c-0.5514%200%20-1%20-0.44875%20-1%20-1s0.4486%20-1%201%20-1%201%200.44875%201%201%20-0.4486%201%20-1%201Z'%20fill='%23000000'%20stroke-width='0.5'/%3E%3Cpath%20d='M8%201.5c-1.42275%200%20-2.79615%200.468%20-3.92165%201.3208C3.7666%202.61985%203.3977%202.5%203%202.5%201.8972%202.5%201%203.3972%201%204.5s0.8972%202%202%202%202%20-0.8972%202%20-2c0%20-0.3418%20-0.0941%20-0.6587%20-0.24585%20-0.94045C5.69225%202.87325%206.82715%202.5%208%202.5c3.0327%200%205.5%202.4673%205.5%205.5h1c0%20-3.584%20-2.9159%20-6.5%20-6.5%20-6.5ZM3%205.5c-0.5514%200%20-1%20-0.44875%20-1%20-1s0.4486%20-1%201%20-1%201%200.44875%201%201%20-0.4486%201%20-1%201Z'%20fill='%23000000'%20stroke-width='0.5'/%3E%3Cpath%20id='_Transparent_Rectangle_'%20d='M0%200h16v16H0Z'%20fill='none'%20stroke-width='0.5'/%3E%3C/svg%3E">
-    <title>mihomo/singbox汇聚(订阅转换)工具</title>
+    <title>配置转换工具</title>
     <style>
         :root {
             --primary-color: #4361ee;
@@ -40,25 +40,20 @@ export async function getFakePage(e) {
 
         .container {
             position: relative;
-            /* 使用rgba设置半透明背景 */
             background: rgba(255, 255, 255, 0.7);
-            /* 添加磨砂玻璃效果 */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            /* Safari兼容 */
             max-width: 600px;
             margin: 0;
             width: 90%;
             height: 90%;
             padding: 2rem;
             border-radius: 20px;
-            /* 调整阴影效果增加通透感 */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
         }
 
-        /* 调整hover效果 */
         .container:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1),
@@ -77,8 +72,8 @@ export async function getFakePage(e) {
         }
 
         .link-input {
-            flex: 1; /* 占据剩余空间 */
-            min-width: 0; /* 防止内容溢出 */
+            flex: 1;
+            min-width: 0;
             margin-top: 0;
             padding: 12px;
             border: 2px solid rgba(0, 0, 0, 0.15);
@@ -96,9 +91,8 @@ export async function getFakePage(e) {
             gap: 10px;
         }
 
-        /* 圆形添加按钮样式 */
         .add-btn {
-            flex-shrink: 0; /* 防止按钮被压缩 */
+            flex-shrink: 0;
             width: 40px;
             height: 40px;
             background-color: #f8f9fa;
@@ -112,9 +106,7 @@ export async function getFakePage(e) {
 
         .add-btn:hover {
             background-color: #ddd;
-            /* 鼠标悬停效果 */
         }
-
 
         label {
             display: block;
@@ -126,20 +118,16 @@ export async function getFakePage(e) {
         input {
             width: 100%;
             padding: 12px;
-            /* 修改边框颜色从 #eee 到更深的颜色 */
             border: 2px solid rgba(0, 0, 0, 0.15);
-            /* 使用rgba实现更自然的深度 */
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            /* 添加轻微的内阴影增强边框效果 */
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
         }
 
         input:focus {
             outline: none;
             border-color: var(--primary-color);
-            /* 增强focus状态下的阴影效果 */
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15),
                 inset 0 2px 4px rgba(0, 0, 0, 0.03);
         }
@@ -189,31 +177,9 @@ export async function getFakePage(e) {
         }
 
         @keyframes octocat-wave {
-
-            0%,
-            100% {
-                transform: rotate(0)
-            }
-
-            20%,
-            60% {
-                transform: rotate(-25deg)
-            }
-
-            40%,
-            80% {
-                transform: rotate(10deg)
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            0%, 100% { transform: rotate(0); }
+            20%, 60% { transform: rotate(-25deg); }
+            40%, 80% { transform: rotate(10deg); }
         }
 
         .logo-title {
@@ -222,50 +188,6 @@ export async function getFakePage(e) {
             justify-content: center;
             align-items: center;
             margin-bottom: 2rem;
-        }
-
-        .logo-title img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            position: relative;
-            z-index: 1;
-            background: var(--card-bg);
-            box-shadow: 0 0 15px rgba(67, 97, 238, 0.1);
-        }
-
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .logo-title h1 {
-            margin-bottom: 0;
-            text-align: center;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .github-corner:hover .octo-arm {
-                animation: none;
-            }
-
-            .github-corner .octo-arm {
-                animation: octocat-wave 560ms ease-in-out;
-            }
         }
 
         .beian-info {
@@ -291,7 +213,6 @@ export async function getFakePage(e) {
             margin-top: 20px;
         }
         
-        /* 新增模板选择器样式 - 单展开面板版本 */
         .template-selector {
             position: relative;
             margin-bottom: 1.5rem;
@@ -314,10 +235,10 @@ export async function getFakePage(e) {
         }
         
         .template-toggle:after {
-            content: "▶"; /* 改为向右箭头 */
+            content: "▶";
             font-size: 12px;
             transition: transform 0.3s;
-            margin-left: 8px; /* 增加间距 */
+            margin-left: 8px;
         }
         
         .template-toggle.collapsed:after {
@@ -326,7 +247,7 @@ export async function getFakePage(e) {
         
         .template-options {
             position: absolute;
-            top: 100%; /* 紧贴 toggle 下面 */
+            top: 100%;
             left: 0;
             width: 100%;
             z-index: 10;
@@ -362,7 +283,6 @@ export async function getFakePage(e) {
             font-weight: bold;
         }
 
-        /* Add new styles for the toggle switch */
         .config-toggle {
             display: flex;
             justify-content: center;
@@ -391,19 +311,14 @@ export async function getFakePage(e) {
             background-color: rgba(67, 97, 238, 0.2);
         }
 
-        .singbox-options {
+        .mode-options {
             display: none;
         }
 
-        .singbox-mode .singbox-options {
+        .mode-options.active {
             display: block;
         }
 
-        .singbox-mode .mihomo-options {
-            display: none;
-        }
-
-        /* 感叹号 */
         .tip-icon {
             display: inline-flex;
             justify-content: center;
@@ -431,7 +346,7 @@ export async function getFakePage(e) {
             left: 0;
             min-width: 260px;
             max-width: 320px;
-            max-height: 50vh; /* 限制最大高度，防止超出屏幕 */
+            max-height: 50vh;
             background: white;
             color: #333;
             font-size: 14px;
@@ -441,7 +356,7 @@ export async function getFakePage(e) {
             z-index: 999;
             white-space: normal;
             line-height: 1.6;
-            overflow-y: auto; /* 增加滚动条支持 */
+            overflow-y: auto;
             overflow-x: hidden;
             word-break: break-word;
         }
@@ -508,89 +423,15 @@ export async function getFakePage(e) {
     </a>
     <div class="container">
         <div class="logo-title">
-            <h1>mihomo/singbox汇聚(订阅转换)工具</h1>
+            <h1>配置转换工具</h1>
         </div>
-        <div class="config-toggle">
-            <div class="toggle-option active" data-mode="mihomo">Clash (mihomo)</div>
-            <div class="toggle-option" data-mode="singbox">Singbox</div>
+        <div class="config-toggle" id="mode-toggle">
+            <!-- 模式切换按钮将通过JavaScript动态生成 -->
         </div>
-        <div class="mihomo-options">
-            <div class="template-selector">
-                <div class="template-toggle collapsed">选择配置模板(未选择)</div>
-                <div class="template-options">
-                    <!-- 模板选项将通过JavaScript填充 -->
-                </div>
-            </div>
-
-            <div class="input-group">
-                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-                    <label for="link" style="margin: 0;">订阅链接</label>
-                    <div class="tip-wrapper">
-                        <span class="tip-icon" data-mode="mihomo">!</span>
-                        <div class="tip-panel"></div>
-                    </div>
-                </div>
-                <div id="link-container">
-                    <div class="link-row">
-                        <input type="text" class="link-input"/>
-                        <div class="add-btn" onclick="addLinkInput(this)">➕</div>
-                    </div>
-                </div>
-                <label>附加参数选项</label>
-                <div class="protocol-options">
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="udp" checked>启用 UDP
-                    </label>
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="ep"> 启用分应用代理
-                    </label>
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="ea"> 启用分IPCIDR代理
-                    </label>
-                </div>
-            </div>
-
-            <button onclick="generateLink()">生成mihomo配置</button>
+        
+        <div id="mode-containers">
+            <!-- 各模式容器将通过JavaScript动态生成 -->
         </div>
-
-        <div class="singbox-options">
-            <div class="template-selector">
-                <div class="template-toggle collapsed">选择配置模板(未选择)</div>
-                <div class="template-options">
-                    <!-- 模板选项将通过JavaScript填充 -->
-                </div>
-            </div>
-            <div class="input-group">
-                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-                    <label for="link" style="margin: 0;">订阅链接</label>
-                    <div class="tip-wrapper">
-                        <span class="tip-icon" data-mode="singbox">!</span>
-                        <div class="tip-panel"></div>
-                    </div>
-                </div>
-                <div id="link-container-singbox">
-                    <div class="link-row">
-                        <input type="text" class="link-input"/>
-                        <div class="add-btn" onclick="addLinkInput(this, 'singbox')">➕</div>
-                    </div>
-                </div>
-                <label>附加参数选项</label>
-                <div class="protocol-options">
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="udp">启用 UDP 分片
-                    </label>
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="ep"> 启用分应用代理
-                    </label>
-                    <label class="protocol-checkbox">
-                        <input type="checkbox" name="protocol" value="ea"> 启用分IPCIDR代理
-                    </label>
-                </div>
-            </div>
-
-            <button onclick="generateSingboxLink()">生成Singbox配置</button>
-        </div>
-
 
         <div class="input-group">
             <div style="display: flex; flex-direction: column; align-items: flex-start;">
@@ -605,88 +446,12 @@ export async function getFakePage(e) {
     </div>
 
     <script>
-        function copyToClipboard() {
-            const resultInput = document.getElementById('result');
-            if (!resultInput.value) {
-                return;
-            }
-
-            resultInput.select();
-            navigator.clipboard.writeText(resultInput.value).then(() => {
-                const tooltip = document.createElement('div');
-                tooltip.style.position = 'fixed';
-                tooltip.style.left = '50%';
-                tooltip.style.top = '20px';
-                tooltip.style.transform = 'translateX(-50%)';
-                tooltip.style.padding = '8px 16px';
-                tooltip.style.background = '#4361ee';
-                tooltip.style.color = 'white';
-                tooltip.style.borderRadius = '4px';
-                tooltip.style.zIndex = '1000';
-                tooltip.textContent = '已复制到剪贴板';
-
-                document.body.appendChild(tooltip);
-
-                setTimeout(() => {
-                    document.body.removeChild(tooltip);
-                }, 2000);
-            }).catch(err => {
-                alert('复制失败，请手动复制');
-            });
-        }
-
-        // 动态设置输入框的placeholder，根据当前模式
-        function setPlaceholderForMode(input, mode = 'mihomo') {
-            input.placeholder = mode === 'singbox' 
-                ? '请输入singbox订阅地址url，支持各种订阅或单节点链接' 
-                : '请输入clash订阅地址url，支持各种订阅或单节点链接';
-        }
-
-        // 初始化所有输入框的placeholder
-        function initializePlaceholders(mode) {
-            const selector = mode === 'singbox' 
-                ? '.singbox-options .link-input' 
-                : '.mihomo-options .link-input';
-    
-            document.querySelectorAll(selector).forEach(input => {
-                setPlaceholderForMode(input, mode);
-            });
-        }
-        // 修改addLinkInput以支持singbox容器
-        function addLinkInput(button, mode = 'mihomo') {
-            const containerId = mode === 'singbox' ? 'link-container-singbox' : 'link-container';
-            const container = document.getElementById(containerId);
-            const row = document.createElement('div');
-            row.className = 'link-row';
-
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'link-input';
-            setPlaceholderForMode(input, mode);
-
-            button.style.display = 'none';
-            row.appendChild(input);
-            container.appendChild(row);
-
-            const btn = document.createElement('div');
-            btn.className = 'add-btn';
-            btn.textContent = '➕';
-            btn.onclick = function () {
-                addLinkInput(btn, mode);
-            };
-
-            row.appendChild(btn);
-        }
-
-        // 在mihomo和singbox模式之间切换
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleOptions = document.querySelectorAll('.toggle-option');
-            const container = document.querySelector('.container');
-            const tipModal = document.getElementById('tipModal');
-            const tipContent = document.getElementById('tipContent');
-
-            const tipTexts = {
-                mihomo: \`
+        // 配置模式定义
+        const MODES = {
+            mihomo: {
+                name: 'Clash (mihomo)',
+                placeholder: '请输入clash订阅地址url，支持各种订阅或单节点链接',
+                tipText: \`
 ## mihomo 使用提示：
 
 - 支持各种订阅或单节点链接，自动合并生成配置
@@ -705,7 +470,16 @@ export async function getFakePage(e) {
 
 **转换后端** ${e.sub}
                 \`,
-                singbox: \`
+                protocolOptions: [
+                    { value: 'udp', label: '启用 UDP', checked: true },
+                    { value: 'ep', label: '启用分应用代理(仅Android)' },
+                    { value: 'ea', label: '启用分IPCIDR代理(ios/macOS/windows/linux 推荐)' }
+                ]
+            },
+            singbox: {
+                name: 'Singbox',
+                placeholder: '请输入singbox订阅地址url，支持各种订阅或单节点链接',
+                tipText: \`
 ## singbox 使用提示：
 
 - 支持各种订阅或单节点链接，自动合并生成配置
@@ -722,68 +496,187 @@ export async function getFakePage(e) {
 **userAgent** ${e.userAgent}
 
 **转换后端** ${e.sub}
-                \`
-            };
+                \`,
+                protocolOptions: [
+                    { value: 'udp', label: '启用 UDP 分片' },
+                    { value: 'ep', label: '启用分应用代理(仅Android)' },
+                    { value: 'ea', label: '启用分IPCIDR代理(ios/macOS/windows/linux 推荐)' },
+                    { value: 'tailscale', label: '启用 tailscale' }
+                ]
+            }
+        };
+
+        // 当前激活的模式
+        let activeMode = 'mihomo';
+        
+        // 初始化应用
+        document.addEventListener('DOMContentLoaded', function () {
+            initModeToggle();
+            initModeContainers();
+            setActiveMode(activeMode);
+            
+            // 初始化提示系统
+            initTipSystem();
+            
+            // 初始化模板选择器
+            initAllTemplateSelectors();
+        });
+
+        // 初始化模式切换按钮
+        function initModeToggle() {
+            const modeToggle = document.getElementById('mode-toggle');
+            
+            for (const [modeId, modeConfig] of Object.entries(MODES)) {
+                const option = document.createElement('div');
+                option.className = 'toggle-option';
+                option.dataset.mode = modeId;
+                option.textContent = modeConfig.name;
+                
+                option.addEventListener('click', function() {
+                    setActiveMode(modeId);
+                });
+                
+                modeToggle.appendChild(option);
+            }
+        }
+
+        // 初始化模式容器
+        function initModeContainers() {
+            const modeContainers = document.getElementById('mode-containers');
+            const configs = ${e.configs};
+            
+            for (const [modeId, modeConfig] of Object.entries(MODES)) {
+                const container = document.createElement('div');
+                container.id = \`\${modeId}-container\`;
+                container.className = 'mode-options';
+                
+                // 模板选择器
+                const templateSelector = document.createElement('div');
+                templateSelector.className = 'template-selector';
+                templateSelector.innerHTML = \`
+                    <div class="template-toggle collapsed">选择配置模板(未选择)</div>
+                    <div class="template-options"></div>
+                \`;
+                container.appendChild(templateSelector);
+                
+                // 输入组
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group';
+                
+                const linkLabel = document.createElement('div');
+                linkLabel.style.cssText = 'display: flex; align-items: center; gap: 6px; margin-bottom: 6px;';
+                linkLabel.innerHTML = \`
+                    <label for="link" style="margin: 0;">订阅链接</label>
+                    <div class="tip-wrapper">
+                        <span class="tip-icon" data-mode="\${modeId}">!</span>
+                        <div class="tip-panel"></div>
+                    </div>
+                \`;
+                inputGroup.appendChild(linkLabel);
+                
+                const linkContainer = document.createElement('div');
+                linkContainer.id = \`link-container-\${modeId}\`;
+                linkContainer.innerHTML = \`
+                    <div class="link-row">
+                        <input type="text" class="link-input" placeholder="\${modeConfig.placeholder}" />
+                        <div class="add-btn" onclick="addLinkInput(this, '\${modeId}')">➕</div>
+                    </div>
+                \`;
+                inputGroup.appendChild(linkContainer);
+                
+                // 协议选项
+                const protocolLabel = document.createElement('label');
+                protocolLabel.textContent = '附加参数选项';
+                inputGroup.appendChild(protocolLabel);
+                
+                const protocolOptions = document.createElement('div');
+                protocolOptions.className = 'protocol-options';
+                
+                modeConfig.protocolOptions.forEach(option => {
+                    const label = document.createElement('label');
+                    label.className = 'protocol-checkbox';
+                    label.innerHTML = \`
+                        <input type="checkbox" name="protocol" value="\${option.value}" \${option.checked ? 'checked' : ''}>
+                        \${option.label}
+                    \`;
+                    protocolOptions.appendChild(label);
+                });
+                
+                inputGroup.appendChild(protocolOptions);
+                container.appendChild(inputGroup);
+                
+                // 生成按钮
+                const generateButton = document.createElement('button');
+                generateButton.textContent = \`生成\${modeConfig.name}配置\`;
+                generateButton.onclick = function() { generateConfig(modeId); };
+                container.appendChild(generateButton);
+                
+                modeContainers.appendChild(container);
+            }
+        }
+
+        // 设置活动模式
+        function setActiveMode(modeId) {
+            // 更新切换按钮状态
+            document.querySelectorAll('.toggle-option').forEach(option => {
+                option.classList.toggle('active', option.dataset.mode === modeId);
+            });
+            
+            // 更新模式容器显示状态
+            document.querySelectorAll('.mode-options').forEach(container => {
+                container.classList.toggle('active', container.id === \`\${modeId}-container\`);
+            });
+            
+            activeMode = modeId;
+        }
+
+        // 初始化提示系统
+        function initTipSystem() {
             // 弹窗提示
             document.querySelectorAll('.tip-icon').forEach(icon => {
                 icon.addEventListener('click', (e) => {
-                    e.stopPropagation(); // 防止触发全局点击关闭
-
+                    e.stopPropagation();
+                    
                     // 关闭所有已展开
                     document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
-
+                    
                     const wrapper = icon.closest('.tip-wrapper');
                     wrapper.classList.toggle('active');
-
+                    
                     const panel = wrapper.querySelector('.tip-panel');
                     const mode = icon.dataset.mode;
-
+                    
                     // 使用 marked 渲染 Markdown 为 HTML
-                    const rawMarkdown = tipTexts[mode] || '暂无提示内容';
+                    const rawMarkdown = MODES[mode].tipText || '暂无提示内容';
                     panel.innerHTML = DOMPurify.sanitize(marked.parse(rawMarkdown));
-
                 });
             });
-
-
+            
             // 点击页面其他地方关闭提示
             document.addEventListener('click', () => {
                 document.querySelectorAll('.tip-wrapper').forEach(w => w.classList.remove('active'));
             });
+        }
 
-            // 设置默认模式为mihomo
-            const defaultMode = 'mihomo';
-            document.querySelector(\`.toggle-option[data-mode="\${defaultMode}"]\`).classList.add('active');
-            initializePlaceholders(defaultMode);
-            toggleOptions.forEach(option => {
-                option.addEventListener('click', function () {
-                    // 设置活动状态
-                    toggleOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
+        // 初始化所有模板选择器
+        function initAllTemplateSelectors() {
+            const configs = ${e.configs};
+            
+            for (const modeId of Object.keys(MODES)) {
+                if (configs[modeId]) {
+                    initTemplateSelector(modeId, configs[modeId]);
+                }
+            }
+        }
 
-                    // 切换模式
-                    const newMode = this.dataset.mode;
-                    if (this.dataset.mode === 'singbox') {
-                        container.classList.add('singbox-mode');
-                    } else {
-                        container.classList.remove('singbox-mode');
-                    }
-                   // 初始化新模式的placeholder
-                   initializePlaceholders(newMode);
-                });
-            });
-            // 初始化模板选择器
-            initTemplateSelector('mihomo');
-            initTemplateSelector('singbox');
-        });
         // 初始化模板选择器
-        function initTemplateSelector(mode = 'mihomo') {
-            const selectorClass = mode === 'singbox' ? '.singbox-options .template-selector' : '.mihomo-options .template-selector';
-            const templateToggle = document.querySelector(\`\${selectorClass} .template-toggle\`);
-            const optionsContainer = document.querySelector(\`\${selectorClass} .template-options\`);
-            const configs = ${e.configs}
+        function initTemplateSelector(modeId, configGroups) {
+            const selector = document.querySelector(\`#\${modeId}-container .template-selector\`);
+            const templateToggle = selector.querySelector('.template-toggle');
+            const optionsContainer = selector.querySelector('.template-options');
+            
             // 生成所有模板选项
-            configs[mode].forEach(group => {
+            configGroups.forEach(group => {
                 // 添加分组标签
                 const groupLabel = document.createElement('div');
                 groupLabel.style.padding = '10px 20px';
@@ -792,7 +685,7 @@ export async function getFakePage(e) {
                 groupLabel.style.backgroundColor = '#f5f5f5';
                 groupLabel.textContent = group.label;
                 optionsContainer.appendChild(groupLabel);
-
+                
                 // 添加选项
                 group.options.forEach(option => {
                     const optionElement = document.createElement('div');
@@ -800,43 +693,43 @@ export async function getFakePage(e) {
                     optionElement.textContent = option.label;
                     optionElement.dataset.value = option.value;
                     optionElement.dataset.group = group.label;
-
+                    
                     optionElement.addEventListener('click', function () {
                         // 移除之前选中的样式
-                        document.querySelectorAll(\`\${selectorClass} .template-option.selected\`).forEach(item => {
+                        selector.querySelectorAll('.template-option.selected').forEach(item => {
                             item.classList.remove('selected');
                         });
-
+                        
                         // 更新显示文本
                         templateToggle.textContent = \`\${group.label}-\${option.label}\`;
-
+                        
                         // 添加选中样式
                         this.classList.add('selected');
-
+                        
                         // 点击后自动折叠选项面板
                         templateToggle.classList.add('collapsed');
                         optionsContainer.classList.remove('show');
                     });
-
+                    
                     optionsContainer.appendChild(optionElement);
                 });
             });
-
+            
             // 默认选择第一个选项
-            const firstOption = document.querySelector(\`\${selectorClass} .template-option\`);
+            const firstOption = selector.querySelector('.template-option');
             if (firstOption) {
                 firstOption.classList.add('selected');
                 const groupLabel = firstOption.dataset.group;
                 const optionLabel = firstOption.textContent;
                 templateToggle.textContent = \`请选择配置模板(默认-\${groupLabel})\`;
             }
-
+            
             // 点击切换按钮展开/折叠选项
             templateToggle.addEventListener('click', function () {
                 this.classList.toggle('collapsed');
                 optionsContainer.classList.toggle('show');
             });
-
+            
             // 点击页面其他区域关闭选项面板
             document.addEventListener('click', function (event) {
                 if (!templateToggle.contains(event.target) && !optionsContainer.contains(event.target)) {
@@ -846,78 +739,104 @@ export async function getFakePage(e) {
             });
         }
 
-        // 生成mihomo链接
-        function generateLink() {
-            const inputs = document.querySelectorAll('.mihomo-options .link-input');
-            const selectedOption = document.querySelector('.template-option.selected');
+        // 添加链接输入框
+        function addLinkInput(button, modeId) {
+            const container = document.getElementById(\`link-container-\${modeId}\`);
+            const row = document.createElement('div');
+            row.className = 'link-row';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'link-input';
+            input.placeholder = MODES[modeId].placeholder;
+            
+            button.style.display = 'none';
+            row.appendChild(input);
+            container.appendChild(row);
+            
+            const btn = document.createElement('div');
+            btn.className = 'add-btn';
+            btn.textContent = '➕';
+            btn.onclick = function () {
+                addLinkInput(btn, modeId);
+            };
+            
+            row.appendChild(btn);
+        }
+
+        // 生成配置
+        function generateConfig(modeId) {
+            const inputs = document.querySelectorAll(\`#\${modeId}-container .link-input\`);
+            const selectedOption = document.querySelector(\`#\${modeId}-container .template-option.selected\`);
             const protocolParams = {};
-            document.querySelectorAll('.protocol-options input[type="checkbox"]').forEach(checkbox => {
+            
+            document.querySelectorAll(\`#\${modeId}-container .protocol-options input[type="checkbox"]\`).forEach(checkbox => {
                 protocolParams[checkbox.value] = checkbox.checked;
             });
-
-
+            
             const subscriptionLinks = Array.from(inputs)
                 .map(input => input.value.trim())
                 .filter(val => val !== '');
-
+            
             const templateLink = selectedOption ? selectedOption.dataset.value : '';
-
+            
             if (subscriptionLinks.length === 0 && templateLink) {
                 alert('请输入至少一个订阅链接');
                 return;
             }
-
+            
             const allLinks = [];
             subscriptionLinks.forEach(link => {
                 allLinks.push(encodeURIComponent(link));
             });
-
+            
             const origin = window.location.origin;
-            let urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&mihomo=true\`;
+            let urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&\${modeId}=true\`;
+            
             for (const [protocol, enabled] of Object.entries(protocolParams)) {
                 if (enabled) {
                     urlLink += \`&\${protocol}=true\`;
                 }
             }
+            
             updateResult(urlLink);
         }
-        // 生成singbox链接
-        function generateSingboxLink() {
-            const inputs = document.querySelectorAll('.singbox-options .link-input');
-            const selectedOption = document.querySelector('.singbox-options .template-option.selected');
-            const protocolParams = {};
-            document.querySelectorAll('.protocol-options input[type="checkbox"]').forEach(checkbox => {
-                protocolParams[checkbox.value] = checkbox.checked;
-            });
-            const subscriptionLinks = Array.from(inputs)
-                .map(input => input.value.trim())
-                .filter(val => val !== '');
 
-            const templateLink = selectedOption ? selectedOption.dataset.value : '';
-
-            if (subscriptionLinks.length === 0 && templateLink) {
-                alert('请输入至少一个订阅链接');
+        // 复制到剪贴板
+        function copyToClipboard() {
+            const resultInput = document.getElementById('result');
+            if (!resultInput.value) {
                 return;
             }
-
-            const allLinks = [];
-            subscriptionLinks.forEach(link => {
-                allLinks.push(encodeURIComponent(link));
+            
+            resultInput.select();
+            navigator.clipboard.writeText(resultInput.value).then(() => {
+                const tooltip = document.createElement('div');
+                tooltip.style.position = 'fixed';
+                tooltip.style.left = '50%';
+                tooltip.style.top = '20px';
+                tooltip.style.transform = 'translateX(-50%)';
+                tooltip.style.padding = '8px 16px';
+                tooltip.style.background = '#4361ee';
+                tooltip.style.color = 'white';
+                tooltip.style.borderRadius = '4px';
+                tooltip.style.zIndex = '1000';
+                tooltip.textContent = '已复制到剪贴板';
+                
+                document.body.appendChild(tooltip);
+                
+                setTimeout(() => {
+                    document.body.removeChild(tooltip);
+                }, 2000);
+            }).catch(err => {
+                alert('复制失败，请手动复制');
             });
-
-            const origin = window.location.origin;
-            let urlLink = \`\${origin}/?template=\${encodeURIComponent(templateLink)}&url=\${allLinks.join(',')}&singbox=true\`;
-            for (const [protocol, enabled] of Object.entries(protocolParams)) {
-                if (enabled) {
-                    urlLink += \`&\${protocol}=true\`;
-                }
-            }
-            updateResult(urlLink);
         }
+
         // 更新结果和二维码
         function updateResult(urlLink) {
             document.getElementById('result').value = urlLink;
-
+            
             // 生成二维码
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
@@ -933,6 +852,5 @@ export async function getFakePage(e) {
         }
     </script>
 </body>
-
-</html>    `;
+</html>`;
 }
