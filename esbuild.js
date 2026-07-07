@@ -4,7 +4,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 const objectHasOwnPolyfill = require.resolve('core-js/actual/object/has-own');
-const artifacts = [{ src: 'src/_worker.js', dest: 'dist/worker.js' }];
+const artifacts = [{ src: 'src/_worker.js', dest: 'dist/_worker.js' }];
 
 (async () => {
     for (const artifact of artifacts) {
