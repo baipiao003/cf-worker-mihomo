@@ -2,7 +2,7 @@
 import fs from 'fs/promises';
 import YAML from 'yaml';
 // YAML 流式具象化
-async function formatWholeYamlFile(inputFile, outputFile, singleLineScalars = true) {
+export default async function formatWholeYamlFile(inputFile, outputFile, singleLineScalars = true) {
     // 读取文件
     const text = await fs.readFile(inputFile, 'utf8');
     const ext = YAML.stringify(YAML.parse(text, { maxAliasCount: -1 }));
@@ -57,6 +57,3 @@ async function formatWholeYamlFile(inputFile, outputFile, singleLineScalars = tr
     await fs.writeFile(outputFile, yamlStr, 'utf8');
     console.log(`✅ 完整格式化写入：${outputFile}`);
 }
-
-// 调用示例
-formatWholeYamlFile('updated_country.yaml', 'updated.yaml');

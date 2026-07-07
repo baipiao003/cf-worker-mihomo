@@ -4,7 +4,7 @@ import fs from 'fs';
 import yaml from 'yaml';
 
 // 读取配置文件
-const file = fs.readFileSync('./template/singbox_ACL4SSR_Online_Full.yaml', 'utf8');
+const file = fs.readFileSync('../../template/singbox_ACL4SSR_Online_Full.yaml', 'utf8');
 const config = yaml.parse(file);
 
 function collectRuleSets(rules) {

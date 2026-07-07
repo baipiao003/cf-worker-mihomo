@@ -2,11 +2,11 @@ import fs from 'fs';
 import yaml from 'yaml';
 
 // 读取原始配置文件
-const originalRaw = fs.readFileSync('./Config/country_singbox.yaml', 'utf8');
+const originalRaw = fs.readFileSync('./country_singbox.yaml', 'utf8');
 const originalData = yaml.parse(originalRaw);
 
 // 读取正则表达式文件
-const regexRaw = fs.readFileSync('./Config/regex_only.yaml', 'utf8');
+const regexRaw = fs.readFileSync('./regex_only.yaml', 'utf8');
 const regexData = yaml.parse(regexRaw);
 
 // 创建国家标志到正则表达式的映射
