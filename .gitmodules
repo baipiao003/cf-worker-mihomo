@@ -1,0 +1,3 @@
+[submodule "src/core/Sub-Store"]
+	path = src/core/Sub-Store
+	url = https://github.com/sub-store-org/Sub-Store.git
