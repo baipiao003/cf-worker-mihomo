@@ -9,11 +9,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default async function getregex() {
-    if (!fs.existsSync('../data/iso/iso_country.yaml')) {
+    const dir = path.resolve(__dirname, '../data/iso/iso_country.yaml')
+    if (!fs.existsSync(dir)) {
         await getiso();
     }
-    // 读取 output.yaml 文件
-    const dir = path.resolve(__dirname, '../data/iso/iso_country.yaml')
     const outputRaw = fs.readFileSync(dir, 'utf8');
     const countries = yaml.parse(outputRaw);
 
@@ -49,5 +48,5 @@ export default async function getregex() {
     const outDir = path.resolve(__dirname, '../data/regex_only.yaml')
     fs.writeFileSync(outDir, yaml.stringify(regexResult, { lineWidth: Infinity, singleQuote: true }), 'utf8');
 
-    console.log('已生成 regex_only.yaml')
+    console.log(`已生成 ${outDir}`)
 }

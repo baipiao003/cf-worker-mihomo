@@ -31,7 +31,8 @@ export async function fetchResponse(url, userAgent) {
                 'User-Agent': userAgent,
             },
         });
-    } catch {
+    } catch (error) {
+        console.error(error)
         return true;
     }
     const rawHeaders = Object.fromEntries(response.headers.entries());

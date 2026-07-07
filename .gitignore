@@ -173,5 +173,5 @@ dist
 .vercel
 
 
-script/*.log
+*.log
 .env*.local

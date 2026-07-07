@@ -108,8 +108,29 @@ npm run deploy:workers
 | `SUB`        | 转换后端地址        | [Sub-Store-node](https://github.com/Kwisma/Sub-Store-node)    |
 | `BEIAN`      | 备案信息           | `萌ICP备20250001号`                                            |
 | `BEIANURL`   | 备案跳转链接       | `https://t.me/Marisa_kristi`                                  |
+| `CHECKUA`    | 请求校验           |  `true`                                                       |
 ---
 
+
+## 开发
+
+安装依赖
+
+```
+pnpm i
+```
+
+运行
+
+```
+pnpm run "/^dev:.*/"
+```
+
+## 编译
+
+```
+pnpm build
+```
 ## 🤝 参与贡献
 欢迎通过以下方式参与：
 - 提交 [Issue](https://github.com/Kwisma/cf-worker-mihomo/issues)

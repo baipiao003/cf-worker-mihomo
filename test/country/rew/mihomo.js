@@ -3,19 +3,26 @@ import fs from 'fs';
 import YAML from 'yaml';
 import formatWholeYamlFile from '../yaml-formatter.js';
 import getregex from '../regex/index.js';
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 export default async function getmihomo() {
-    if (!fs.existsSync('../data/regex_only.yaml') || !fs.existsSync('../data/iso_country.yaml')) {
+    const only = path.resolve(__dirname, '../data/regex_only.yaml')
+    const count = path.resolve(__dirname, '../data/iso/iso_country.yaml')
+    if (!fs.existsSync(only) || !fs.existsSync(count)) {
         await getregex();
     }
     // regex
     const regexData = YAML.parse(
-        fs.readFileSync('../data/regex_only.yaml', 'utf8'),
+        fs.readFileSync(only, 'utf8'),
         { maxAliasCount: -1 }
     );
 
     // emoji 国家数据
     const isoData = YAML.parse(
-        fs.readFileSync('../data/iso/iso_country.yaml', 'utf8'),
+        fs.readFileSync(count, 'utf8'),
         { maxAliasCount: -1 }
     );
 
@@ -77,9 +84,10 @@ export default async function getmihomo() {
         data,
         allname,
     });
-    fs.writeFileSync('mihomo.yaml', doc.toString(), 'utf8');
+    const dir = path.resolve(__dirname, '../data/rew/mihomo.yaml')
+    fs.writeFileSync(dir, doc.toString(), 'utf8');
     // 格式化
-    await formatWholeYamlFile('mihomo.yaml', 'mihomo.yaml');
+    await formatWholeYamlFile(dir, dir);
 
-    // console.log(`✅ 已生成 ${data.length} 个国家组`);
+    console.log(`✅ 已生成 ${data.length} 个国家组`);
 }

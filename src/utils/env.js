@@ -27,11 +27,12 @@ export function buildConfig(request, env, isNode = false) {
     if (urlParam && urlParam.trim()) {
         data.urls = splitUrlsAndProxies(urlParam.split(',').map((u) => u.trim()));
     }
-
+    data.rule = getParam('template')
     const target = getParam('target');
     if (target) data.target = target;
     const log = getParam('log');
     if (log) data.log = log;
+
     if (getParamBool('udp')) data.udp = true;
     if (getParamBool('udp_frag')) data.udp_fragment = true;
     if (getParamBool('tls_frag')) data.tls_fragment = true;
@@ -48,17 +49,16 @@ export function buildConfig(request, env, isNode = false) {
     data.sub = getEnv('SUB', subapi);
     data.beian = getEnv('BEIAN', beiantext);
     data.beianurl = getEnv('BEIANURL', beiandizi);
+    const getEnvBool = (key) => {
+        const value = getEnv(key);
 
-    const templateBaseUrl = getEnv('TEMPLATE_URL', '');
-    if (templateBaseUrl) data.templateBaseUrl = templateBaseUrl;
-    const template = getParam('template');
-    if (template) {
-        if (templateBaseUrl) {
-            data.rule = `${templateBaseUrl}/${data.target}${template}`;
-        } else {
-            data.rule = `${url.origin}${isNode ? '/template' : ''}/${data.target}${template}`;
+        if (value === undefined) {
+            return true;
         }
+
+        return value;
     }
+    data.checkUA = getEnvBool('CHECKUA')
 
     return data;
 }
