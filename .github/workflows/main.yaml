@@ -1,0 +1,84 @@
+name: SubCloud
+
+on:
+    push:
+        tags:
+            - 'v*'
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+              with:
+                  ref: 'main'
+                  #   submodules: recursive
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v6
+              with:
+                  version: 10
+                  cache: true
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: '24'
+                  cache: 'pnpm'
+
+            - name: Install dependencies
+              run: |
+                  pnpm i --no-frozen-lockfile
+
+            - name: Bundle
+              run: |
+                  pnpm build
+
+            - name: Generate release tag
+              id: tag
+              run: |
+                  if [ "${{ github.event_name }}" == "push" ]; then
+                    # 从推送的 tag 获取版本号
+                    echo "release_tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+                  else
+                    # 从 package.json 获取版本号
+                    SUBSTORE_RELEASE="v$(node --eval="process.stdout.write(require('./package.json').version)")"
+                    echo "release_tag=$SUBSTORE_RELEASE" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Prepare release
+              id: release_body
+              run: |
+                  echo "body<<EOF" >> $GITHUB_OUTPUT
+                  echo "Automated build from master." >> $GITHUB_OUTPUT
+                  echo "Commit: ${{ github.sha }}" >> $GITHUB_OUTPUT
+                  echo "Built on: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+                  echo "EOF" >> $GITHUB_OUTPUT
+
+            - name: Release
+              uses: softprops/action-gh-release@v3
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  body: ${{ steps.release_body.outputs.body }}
+                  tag_name: ${{ steps.tag.outputs.release_tag }}
+                  files: |
+                      ./dist/_worker.js
+
+            - name: Git push assets to "release" branch
+              run: |
+                  cd dist || exit 1
+                  git init
+                  git config --local user.name "github-actions[bot]"
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git checkout -b release
+                  git add .
+                  git commit -m "release: ${{ steps.tag.outputs.release_tag }}"
+                  git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+                  git push -f -u origin release
