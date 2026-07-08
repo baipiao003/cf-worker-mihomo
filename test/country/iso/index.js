@@ -1,14 +1,13 @@
-
 import YAML from 'yaml';
 import fs from 'fs';
-import { fileURLToPath } from 'url'
-import path from 'path'
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default async function getiso() {
-    const dir = path.resolve(__dirname, '../data/iso')
+    const dir = path.resolve(__dirname, '../data/iso');
     const files = fs.readdirSync(dir);
     const yamlFiles = files.filter((f) => f.endsWith('.yaml'));
     let mux = 0;
@@ -28,22 +27,14 @@ export default async function getiso() {
         // 提取英文字段
         core.push(
             ...Object.values(regexOutput || [])
-                .map(item => item?.['英文'])
+                .map((item) => item?.['英文'])
                 .filter(Boolean)
         );
     });
     console.log('Total entries: ' + mux);
-    const outYaml = path.resolve(__dirname, '../data/iso_country.yaml')
-    const outJson = path.resolve(__dirname, '../data/iso_2.json')
-    fs.writeFileSync(
-        outYaml,
-        YAML.stringify(merged),
-        'utf8'
-    )
+    const outYaml = path.resolve(__dirname, '../data/iso_country.yaml');
+    const outJson = path.resolve(__dirname, '../data/iso_2.json');
+    fs.writeFileSync(outYaml, YAML.stringify(merged), 'utf8');
 
-    fs.writeFileSync(
-        outJson,
-        JSON.stringify(core, null, 2),
-        'utf8'
-    )
+    fs.writeFileSync(outJson, JSON.stringify(core, null, 2), 'utf8');
 }

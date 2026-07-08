@@ -1,31 +1,23 @@
-
 import fs from 'fs';
 import YAML from 'yaml';
 import formatWholeYamlFile from '../yaml-formatter.js';
 import getregex from '../regex/index.js';
-import { fileURLToPath } from 'url'
-import path from 'path'
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 export default async function getsingbox() {
-    const only = path.resolve(__dirname, '../data/regex_only.yaml')
-    const count = path.resolve(__dirname, '../data/iso/iso_country.yaml')
+    const only = path.resolve(__dirname, '../data/regex_only.yaml');
+    const count = path.resolve(__dirname, '../data/iso/iso_country.yaml');
     if (!fs.existsSync(only) || !fs.existsSync(count)) {
         await getregex();
     }
     // regex
-    const regexData = YAML.parse(
-        fs.readFileSync(only, 'utf8'),
-        { maxAliasCount: -1 }
-    );
+    const regexData = YAML.parse(fs.readFileSync(only, 'utf8'), { maxAliasCount: -1 });
 
     // emoji 国家数据
-    const isoData = YAML.parse(
-        fs.readFileSync(count, 'utf8'),
-        { maxAliasCount: -1 }
-    );
-
+    const isoData = YAML.parse(fs.readFileSync(count, 'utf8'), { maxAliasCount: -1 });
 
     // 转换国家
     const countries = Object.entries(isoData).map(([flag, info]) => {
@@ -56,7 +48,7 @@ export default async function getsingbox() {
 
     // ===== countries =====
     const data = countries
-        .map(c => {
+        .map((c) => {
             const regex = regexData[c.code] || regexData[c.flag];
             if (!regex) return null;
 
@@ -73,14 +65,14 @@ export default async function getsingbox() {
             });
         })
         .filter(Boolean);
-    const allname = data.map(c => c.toJSON().tag);
+    const allname = data.map((c) => c.toJSON().tag);
     // ===== root =====
     doc.contents = doc.createNode({
         // u: uNode,
         data,
         allname,
     });
-    const dir = path.resolve(__dirname, '../data/rew/singbox.yaml')
+    const dir = path.resolve(__dirname, '../data/rew/singbox.yaml');
     fs.writeFileSync(dir, doc.toString(), 'utf8');
     // 格式化
     await formatWholeYamlFile(dir, dir);

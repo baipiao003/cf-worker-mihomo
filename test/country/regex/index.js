@@ -2,14 +2,14 @@
 import fs from 'fs';
 import yaml from 'yaml';
 import getiso from '../iso/index.js';
-import { fileURLToPath } from 'url'
-import path from 'path'
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default async function getregex() {
-    const dir = path.resolve(__dirname, '../data/iso/iso_country.yaml')
+    const dir = path.resolve(__dirname, '../data/iso/iso_country.yaml');
     if (!fs.existsSync(dir)) {
         await getiso();
     }
@@ -45,8 +45,8 @@ export default async function getregex() {
     }
 
     // 写入新的 YAML 文件
-    const outDir = path.resolve(__dirname, '../data/regex_only.yaml')
+    const outDir = path.resolve(__dirname, '../data/regex_only.yaml');
     fs.writeFileSync(outDir, yaml.stringify(regexResult, { lineWidth: Infinity, singleQuote: true }), 'utf8');
 
-    console.log(`已生成 ${outDir}`)
+    console.log(`已生成 ${outDir}`);
 }

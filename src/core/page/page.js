@@ -1,7 +1,7 @@
 import configs from './config.js';
 
 export async function getFakePage(e) {
-    let configData = JSON.parse(configs());
+    let configData = JSON.parse(configs(e.tplmh, e.tplsb));
     if (e.templateBaseUrl) {
         try {
             const res = await fetch(`${e.templateBaseUrl}/templates.json`);

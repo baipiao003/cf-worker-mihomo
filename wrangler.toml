@@ -3,3 +3,6 @@ name = "cf-worker-mihomo"
 main = "dist/_worker.js"
 compatibility_date = "2025-04-16"
 compatibility_flags = ["nodejs_compat"]
+[assets]
+directory = "./template"
+binding = "ASSETS"

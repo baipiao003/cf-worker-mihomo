@@ -32,7 +32,7 @@ export async function fetchResponse(url, userAgent) {
             },
         });
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return true;
     }
     const rawHeaders = Object.fromEntries(response.headers.entries());

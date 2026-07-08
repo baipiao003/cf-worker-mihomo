@@ -1,4 +1,4 @@
-export default function configs() {
+export default function configs(tplmh = null, tplsb = null) {
     const data = {
         mihomo: {
             name: 'Clash(mihomo)',
@@ -172,5 +172,18 @@ export default function configs() {
             noTemplate: true,
         },
     };
+
+    if (tplmh) {
+        data.mihomo.templates.通用.unshift({
+            label: `自定义(${tplmh.split('/').pop().split('?')[0]})`,
+            value: tplmh,
+        });
+    }
+    if (tplsb) {
+        data.singbox.templates.通用.unshift({
+            label: `自定义(${tplmh.split('/').pop().split('?')[0]})`,
+            value: tplsb,
+        });
+    }
     return JSON.stringify(data);
 }
