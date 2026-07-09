@@ -52,21 +52,12 @@ jobs:
                     echo "release_tag=$SUBSTORE_RELEASE" >> $GITHUB_OUTPUT
                   fi
 
-            - name: Prepare release
-              id: release_body
-              run: |
-                  echo "body<<EOF" >> $GITHUB_OUTPUT
-                  echo "Automated build from master." >> $GITHUB_OUTPUT
-                  echo "Commit: ${{ github.sha }}" >> $GITHUB_OUTPUT
-                  echo "Built on: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
-                  echo "EOF" >> $GITHUB_OUTPUT
-
             - name: Release
               uses: softprops/action-gh-release@v3
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              if: github.ref_type == 'tag'
               with:
-                  body: ${{ steps.release_body.outputs.body }}
+                  body: ${{ github.sha }}
+                  token: ${{ secrets.GITHUB_TOKEN  }}
                   tag_name: ${{ steps.tag.outputs.release_tag }}
                   files: |
                       ./dist/_worker.js
