@@ -1,60 +1,31 @@
 import { fetchWithFallback } from '../../utils/index.js';
 export default async function getProxies_Data(e) {
-    const isSingle = e.urls.length === 1;
 
-    const results = await Promise.all(e.urls.map((url, index) => fetchWithFallback(url, e).then((res) => ({ res, index }))));
+    const results = await fetchWithFallback(e.urls, e)
 
-    const responses = [];
-    const proxies = [];
-
-    for (const { res, index } of results) {
-        if (Array.isArray(res?.data?.proxies) && res.data.proxies.length > 0) {
-            processProxies(res.data.proxies, e, isSingle ? 0 : index + 1);
-            responses.push({ status: res.status, headers: res.headers });
-            proxies.push(res.data.proxies);
-        }
-    }
-
-    if (proxies.length === 0) {
+    if (results.data.data?.proxies?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }
-
-    const flatProxies = proxies.flat();
-
-    if (isSingle) {
-        const response = responses[0];
-        return {
-            status: response.status,
-            headers: response.headers,
-            data: { proxies: flatProxies },
-        };
-    }
-
-    const selected = responses[Math.floor(Math.random() * responses.length)];
-
+    processProxies(results.data.data.proxies, e, results.data.names);
     return {
-        status: selected.status,
-        headers: selected.headers,
-        data: { proxies: flatProxies },
+        status: results.status,
+        headers: results.headers,
+        data: results.data.data,
     };
 }
 
 // 处理代理数组的辅助函数
-function processProxies(proxies, options, index) {
+function processProxies(proxies, options, names) {
     proxies.forEach((proxy) => {
-        if (index > 0) {
-            proxy.name = `${proxy.name} [${index}]`;
-            if (options.relay) {
-                if (index === 1) {
-                    options.proxyname ??= [];
-                    options.proxyname.push(proxy.name);
-                } else {
-                    proxy['dialer-proxy'] = '🔗链式前置';
-                    options.dialerproxy ??= [];
-                    options.dialerproxy.push(proxy.name);
-                }
+
+        if (options.relay && names[0].includes(proxy.name)) {
+            options.proxyname = names[0];
+            options.dialerproxy = names.slice(1).flat();
+            if (options.proxyname && options.dialerproxy) {
+                proxy['dialer-proxy'] = '🔗链式前置';
             }
         }
+
         if (options.udp) {
             proxy.udp = true;
         }

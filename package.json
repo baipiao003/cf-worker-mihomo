@@ -1,6 +1,6 @@
 {
 	"name": "cf-worker-mihomo",
-	"version": "1.3.27",
+	"version": "1.3.28",
 	"description": "Cloudflare Worker for Mihomo subscription service",
 	"private": true,
 	"license": "MIT",
@@ -9,16 +9,19 @@
 		"deploy:workers": "wrangler deploy",
 		"deploy": "vercel --prod",
 		"build": "node esbuild.js",
+		"dev": "concurrently \"pnpm dev:esbuild\" \"pnpm dev:run\"",
 		"dev:esbuild": "nodemon -w src -w package.json --exec node dev-esbuild.js",
-		"dev:run": "nodemon -w dist/min.js dist/min.js",
+		"dev:run": "wait-on dist/min.js && nodemon -w dist/min.js --exec node dist/min.js",
 		"lint": "prettier --write \"**/*.js\""
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "0.8.47",
+		"concurrently": "^10.0.3",
 		"esbuild": "^0.25.8",
 		"nodemon": "^3.1.14",
 		"prettier": "^3.6.2",
 		"vercel": "^50.37.3",
+		"wait-on": "^9.0.10",
 		"wrangler": "^4.22.0"
 	},
 	"dependencies": {

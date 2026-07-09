@@ -1,7 +1,7 @@
 import { fetchpackExtract, fetchipExtract, fetchResponse } from '../../utils/index.js';
 import getProxies_Data from './proxies.js';
 import clashConfig from '../../config/mihomo.js';
-
+import { getProxies_Grouping } from './grouping.js'
 export async function getmihomo_config(e) {
     const config = structuredClone(clashConfig);
     // 客户端验证
@@ -31,7 +31,6 @@ export async function getmihomo_config(e) {
     // 处理路由的排除配置
     e.Package = alldata[2];
     e.Address = alldata[3];
-
     // 合并代理数据
     Rule_Data.data.proxies = [...(Rule_Data?.data?.proxies || []), ...Proxies_Data.data.proxies];
     Rule_Data.data['proxy-groups'] = getProxies_Grouping(Proxies_Data.data, Rule_Data.data, e);
@@ -83,88 +82,4 @@ export function applyTemplate(top, rule, e) {
         top.dns['nameserver-policy']['RULE-SET:private_domain,cn_domain'] = ['https://doh.18bit.cn/dns-query#DIRECT'];
     }
     return top;
-}
-
-/**
- * 获取 Mihomo 代理分组信息
- * @param {Array} proxies - 代理列表
- * @param {Array} groups - 策略组
- * @returns {Object} 分组信息
- */
-export function getProxies_Grouping(proxies, groups, e) {
-    const deletedGroups = []; // 用于记录已删除的组名
-    const updatedGroups = groups['proxy-groups'].filter((group) => {
-        let matchFound = false;
-        // 确保 filter 存在并且是一个字符串
-        let filter = group.filter;
-        if (typeof filter !== 'string') {
-            return true; // 保留没有 filter 的组
-        }
-
-        // 移除所有 (?i)，但保留后续内容
-        const hasIgnoreCase = /\(\?i\)/i.test(filter);
-        const cleanedFilter = filter.replace(/\(\?i\)/gi, '');
-
-        let regex;
-        try {
-            regex = new RegExp(cleanedFilter, hasIgnoreCase ? 'i' : '');
-        } catch (e) {
-            console.warn(`无效的正则表达式: ${filter}`, e);
-            return true; // 遇到错误时保留该组
-        }
-
-        // 遍历每个代理，检查是否与当前组的正则匹配
-        for (let proxy of proxies.proxies) {
-            if (regex.test(proxy.name)) {
-                matchFound = true;
-                break;
-            }
-        }
-
-        // 如果没有匹配，记录删除的组并返回 false (删除该组)
-        if (!matchFound && (!group.proxies || group.proxies.length === 0)) {
-            deletedGroups.push(group.name);
-            return false;
-        }
-
-        return true;
-    });
-    if (e.relay && e.proxyname && e.dialerproxy) {
-        if (updatedGroups[1].proxies) {
-            updatedGroups[1].proxies.splice(0, 0, '🔗链式落地');
-        } else {
-            updatedGroups[1].proxies = ['🔗链式落地'];
-        }
-        if (updatedGroups[0].proxies) {
-            updatedGroups[0].proxies.splice(0, 0, updatedGroups[1].name);
-        } else {
-            updatedGroups[0].proxies = updatedGroups[1].name;
-        }
-        updatedGroups[0].proxies = [...new Set(updatedGroups[0].proxies)];
-        updatedGroups.splice(2, 0, {
-            name: '🔗链式前置',
-            type: 'select',
-            lazy: true,
-            proxies: e.proxyname,
-        });
-        updatedGroups.splice(3, 0, {
-            name: '🔗链式落地',
-            type: 'select',
-            lazy: true,
-            proxies: e.dialerproxy,
-        });
-    }
-    // 遍历所有策略组，删除 deletedGroups 中的代理
-    updatedGroups.forEach((group) => {
-        if (group.proxies) {
-            group.proxies = group.proxies.filter((proxyName) => {
-                // 只删除那些在 deletedGroups 中的代理
-                return !deletedGroups.some((deletedGroup) => {
-                    return deletedGroup.includes(proxyName); // 检查 deletedGroups 中是否包含该代理名称
-                });
-            });
-        }
-    });
-
-    return updatedGroups;
 }

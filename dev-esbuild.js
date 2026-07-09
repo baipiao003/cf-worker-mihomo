@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { build } from 'esbuild';
+import { cp } from 'fs/promises';
 !(async () => {
     const artifacts = [{ src: 'src/vercel.js', dest: 'dist/min.js' }];
 
@@ -7,7 +8,7 @@ import { build } from 'esbuild';
         await build({
             entryPoints: [artifact.src],
             bundle: true,
-            minify: false,
+            minify: true,
             sourcemap: false,
             platform: 'node',
             format: 'esm',
@@ -20,6 +21,9 @@ const require = createRequire(import.meta.url);
             },
         });
     }
+    await cp('./template', './dist/template', {
+        recursive: true,
+    });
 })()
     .catch((e) => {
         console.log(e);

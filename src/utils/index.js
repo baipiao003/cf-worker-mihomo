@@ -15,6 +15,7 @@ export function buildApiUrl(rawUrl, BASE_API, ua) {
     const params = new URLSearchParams({
         target: ua,
         url: rawUrl,
+        api: true,
     });
     return `${BASE_API}/sub?${params}`;
 }
@@ -45,6 +46,7 @@ export async function fetchResponse(url, userAgent) {
     }
     const textData = await response.text();
     let data;
+
     try {
         data = YAML.parse(textData, { maxAliasCount: -1, merge: true });
     } catch {
