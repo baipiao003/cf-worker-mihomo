@@ -8,8 +8,7 @@ export default async function getProxies_Data(e) {
             const process = await getNodeConversion();
             results = await process(e.urls, e.target, true);
         }
-    }
-    {
+    } else {
         results = await fetchWithFallback(e.urls, e);
     }
     if (results.data.data?.proxies?.length === 0) {

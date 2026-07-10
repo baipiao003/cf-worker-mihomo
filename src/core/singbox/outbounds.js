@@ -9,8 +9,7 @@ export default async function getOutbounds_Data(e) {
             const process = await getNodeConversion();
             results = await process(e.urls, e.target, true);
         }
-    }
-    {
+    } else {
         results = await fetchWithFallback(e.urls, e);
     }
     if (results.data.data?.outbounds?.length === 0) {
