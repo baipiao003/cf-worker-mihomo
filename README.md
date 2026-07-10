@@ -55,7 +55,8 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 
 1. 关闭所有覆写功能（非关闭功能本身）
 2. 推荐使用 [clashmi](https://github.com/KaringX/clashmi/releases)（轻量高效的客户端）
-3. 推荐使用 vercel (内置 sub-store 转换)部署，不推荐使用 cf worker (通过 sub api 转换)部署
+3. 推荐使用 `vercel` (内置 sub-store 转换)部署，
+   不推荐使用 `cf worker` (通过 sub api 转换)部署,目前已知cf内置环境的不支持 `trojan` 转换，可设置 `SUB` 变量解决
 
 ---
 
