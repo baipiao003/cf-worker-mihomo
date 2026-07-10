@@ -60,6 +60,36 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 
 ## 🛠 部署指南
 
+### 1. 安装依赖
+
+```bash
+pnpm install
+```
+
+### 2. 初始化子模块
+
+```bash
+git submodule update --init --recursive
+```
+
+### 3. 更新子模块
+
+```bash
+git submodule update --remote --recursive
+```
+
+### 4. 构建项目
+
+```bash
+pnpm build
+```
+
+### 5. 开发模式运行
+
+```bash
+pnpm run dev
+```
+
 ### 1️⃣ Vercel 部署
 
 #### 准备工作
@@ -81,10 +111,6 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 #### 方法二：CLI部署
 
 ```bash
-git clone https://github.com/Kwisma/cf-worker-mihomo.git
-cd cf-worker-mihomo
-npm install
-npm run build
 npm run deploy
 ```
 
@@ -106,10 +132,6 @@ npm run deploy
 #### 方法二：CLI部署
 
 ```bash
-git clone https://github.com/Kwisma/cf-worker-mihomo.git
-cd cf-worker-mihomo
-npm install
-npm run build
 npm run deploy:workers
 ```
 
@@ -128,26 +150,6 @@ npm run deploy:workers
 | `TPLSB`    | singbox 规则模板 | [singbox模板参考](https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/template/singbox/ACL4SSR_Online_Full.yaml) |
 
 ---
-
-## 开发
-
-安装依赖
-
-```
-pnpm i
-```
-
-运行
-
-```
-pnpm run "/^dev:.*/"
-```
-
-## 编译
-
-```
-pnpm build
-```
 
 ## 🤝 参与贡献
 

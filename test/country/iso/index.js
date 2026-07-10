@@ -28,7 +28,7 @@ export default async function getiso() {
         core.push(
             ...Object.values(regexOutput || [])
                 .map((item) => item?.['英文'])
-                .filter(Boolean)
+                .filter(Boolean),
         );
     });
     console.log('Total entries: ' + mux);

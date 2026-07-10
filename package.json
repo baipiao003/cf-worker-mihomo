@@ -1,10 +1,9 @@
 {
 	"name": "cf-SubCloud",
-	"version": "1.3.28",
+	"version": "1.3.29",
 	"description": "Cloudflare Worker for Mihomo subscription service",
 	"private": true,
 	"license": "MIT",
-	"type": "module",
 	"scripts": {
 		"deploy:workers": "wrangler deploy",
 		"deploy": "vercel --prod",
@@ -15,14 +14,13 @@
 		"lint": "prettier --write \"**/*.js\""
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "0.8.47",
 		"concurrently": "^10.0.3",
 		"esbuild": "^0.25.8",
 		"nodemon": "^3.1.14",
 		"prettier": "^3.6.2",
 		"vercel": "^50.37.3",
 		"wait-on": "^9.0.10",
-		"wrangler": "^4.22.0"
+		"wrangler": "^4.107.1"
 	},
 	"dependencies": {
 		"core-js": "^3.49.0",

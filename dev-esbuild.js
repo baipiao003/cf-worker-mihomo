@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { build } from 'esbuild';
-import { cp } from 'fs/promises';
+
+const { build } = require('esbuild');
+const { cp } = require('fs/promises');
 !(async () => {
     const artifacts = [{ src: 'src/vercel.js', dest: 'dist/min.js' }];
 
@@ -8,22 +9,20 @@ import { cp } from 'fs/promises';
         await build({
             entryPoints: [artifact.src],
             bundle: true,
-            minify: true,
+            minify: false,
             sourcemap: false,
             platform: 'node',
-            format: 'esm',
+            format: 'cjs',
             outfile: artifact.dest,
-            banner: {
-                js: `
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
-`,
-            },
         });
     }
-    await cp('./template', './dist/template', {
-        recursive: true,
-    });
+    const copyTasks = [
+        ['./template', './dist/template'],
+        ['./favicon.png', './dist/favicon.png'],
+        ['./icon', './dist/icon'],
+    ];
+
+    await Promise.all(copyTasks.map(([src, dest]) => cp(src, dest, { recursive: true })));
 })()
     .catch((e) => {
         console.log(e);

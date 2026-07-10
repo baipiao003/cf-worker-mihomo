@@ -1,7 +1,7 @@
 keep_vars = true
-name = "cf-worker-mihomo"
+name = "cf-SubCloud"
 main = "dist/_worker.js"
-compatibility_date = "2025-04-16"
+compatibility_date = "2026-07-09"
 compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = "./template"

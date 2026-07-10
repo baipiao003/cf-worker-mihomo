@@ -12,7 +12,7 @@ export default {
                 headers: result.headers,
             });
         } catch (err) {
-            return new Response(JSON.stringify({ error: err.message }), {
+            return new Response(JSON.stringify(err.message), {
                 status: 400,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',

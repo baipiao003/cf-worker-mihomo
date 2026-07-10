@@ -1,6 +1,13 @@
 import { fetchWithFallback } from '../../utils/index.js';
+// import processNodeConversion from '../sub/index.js'
 export default async function getOutbounds_Data(e) {
-    const results = await fetchWithFallback(e.urls, e)
+    // let results = {}
+    // if (e.sub) {
+    //     results = await fetchWithFallback(e.urls, e)
+    // } else {
+    //     results = await processNodeConversion(e.urls, e.target, true)
+    // }
+    const results = await fetchWithFallback(e.urls, e);
     if (results.data.data?.outbounds?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }

@@ -1,7 +1,7 @@
 import { fetchpackExtract, fetchipExtract, fetchResponse } from '../../utils/index.js';
 import getProxies_Data from './proxies.js';
 import clashConfig from '../../config/mihomo.js';
-import { getProxies_Grouping } from './grouping.js'
+import { getProxies_Grouping } from './grouping.js';
 export async function getmihomo_config(e) {
     const config = structuredClone(clashConfig);
     // 客户端验证

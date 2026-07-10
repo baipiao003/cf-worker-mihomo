@@ -54,11 +54,11 @@ jobs:
 
             - name: Release
               uses: softprops/action-gh-release@v3
-              if: github.ref_type == 'tag'
               with:
-                  body: ${{ github.sha }}
                   token: ${{ secrets.GITHUB_TOKEN  }}
                   tag_name: ${{ steps.tag.outputs.release_tag }}
+                  target_commitish: ${{ github.sha }}
+                  generate_release_notes: true
                   files: |
                       ./dist/_worker.js
 

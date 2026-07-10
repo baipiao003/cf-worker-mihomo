@@ -3,12 +3,12 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
     const apiUrlSet = new Set(ApiUrlname);
 
     // 2. 预编译所有过滤器的正则表达式
-    const compiledOutbounds = Outbounds.map(outbound => {
+    const compiledOutbounds = Outbounds.map((outbound) => {
         if (!outbound.filter || !Array.isArray(outbound.filter)) {
             return {
                 ...outbound,
                 _compiledFilters: [],
-                _hasValidAction: false
+                _hasValidAction: false,
             };
         }
 
@@ -20,7 +20,7 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
                 compiledFilters.push({
                     action: 'all',
                     regex: null,
-                    hasValidAction: true
+                    hasValidAction: true,
                 });
                 hasValidAction = true;
                 continue;
@@ -40,7 +40,7 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
                 compiledFilters.push({
                     action: filter.action,
                     regex: regex,
-                    hasValidAction: true
+                    hasValidAction: true,
                 });
                 hasValidAction = true;
             } catch (e) {
@@ -51,7 +51,7 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
         return {
             ...outbound,
             _compiledFilters: compiledFilters,
-            _hasValidAction: hasValidAction
+            _hasValidAction: hasValidAction,
         };
     });
 
@@ -148,7 +148,9 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
 
         // 批量插入
         const insertIndex = 2;
-        processedOutbounds.splice(insertIndex, 0,
+        processedOutbounds.splice(
+            insertIndex,
+            0,
             {
                 tag: '🔗链式前置',
                 type: 'selector',
@@ -160,7 +162,7 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
                 type: 'selector',
                 interrupt_exist_connections: true,
                 outbounds: e.dialerproxy,
-            }
+            },
         );
     }
 
@@ -190,7 +192,7 @@ function cleanRemovedTags(outbounds) {
     for (const item of outbounds) {
         if (item.outbounds && Array.isArray(item.outbounds)) {
             // 过滤掉已删除的 tags
-            const filtered = item.outbounds.filter(tag => !removedTags.has(tag));
+            const filtered = item.outbounds.filter((tag) => !removedTags.has(tag));
 
             // 如果过滤后仍有内容，保留该项
             if (filtered.length > 0) {

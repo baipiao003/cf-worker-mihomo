@@ -2,7 +2,7 @@ import assert from 'assert';
 // 修改后的正则表达式（移除(?i)，使用RegExp构造函数添加i标志）
 const netherlandsRegex = new RegExp(
     '(?:🇳🇱|(?:^|[\\s_-])(NL)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*NL(?=$|[\\s_-])|荷兰|Netherlands|(?:(?:^|[\\s_-])AN(?=$|[\\s_-]))|安的列斯|Netherlands Antilles)',
-    'i' // 忽略大小写标志
+    'i', // 忽略大小写标志
 );
 
 /**

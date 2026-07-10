@@ -1,15 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "template/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "src/vercel.js",
-      "use": "@vercel/node"
-    }
-  ],
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
   "routes": [
     {
       "src": "/template/(.*)",
@@ -20,7 +12,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "src/vercel.js"
+      "dest": "/vercel.js"
     }
   ]
 }

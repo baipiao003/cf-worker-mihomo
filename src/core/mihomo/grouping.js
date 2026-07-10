@@ -6,10 +6,10 @@
  */
 export function getProxies_Grouping(proxies, groups, e) {
     // 1. 预处理：提前构建代理名称集合，用于快速查找
-    const proxyNames = new Set(proxies.proxies.map(p => p.name));
+    const proxyNames = new Set(proxies.proxies.map((p) => p.name));
 
     // 2. 预处理：编译所有正则表达式
-    const compiledGroups = groups['proxy-groups'].map(group => {
+    const compiledGroups = groups['proxy-groups'].map((group) => {
         let regex = null;
         let hasIgnoreCase = false;
         let cleanedFilter = '';
@@ -29,7 +29,7 @@ export function getProxies_Grouping(proxies, groups, e) {
         return {
             ...group,
             _regex: regex,
-            _hasFilter: regex !== null
+            _hasFilter: regex !== null,
         };
     });
 
@@ -81,7 +81,9 @@ export function getProxies_Grouping(proxies, groups, e) {
 
         // 插入新组
         const insertIndex = 2;
-        updatedGroups.splice(insertIndex, 0,
+        updatedGroups.splice(
+            insertIndex,
+            0,
             {
                 name: '🔗链式前置',
                 type: 'select',
@@ -93,7 +95,7 @@ export function getProxies_Grouping(proxies, groups, e) {
                 type: 'select',
                 lazy: true,
                 proxies: e.dialerproxy,
-            }
+            },
         );
     }
 
@@ -111,7 +113,7 @@ export function getProxies_Grouping(proxies, groups, e) {
     }
 
     // 清理临时属性
-    updatedGroups.forEach(group => {
+    updatedGroups.forEach((group) => {
         delete group._regex;
         delete group._hasFilter;
     });
