@@ -1,17 +1,30 @@
 // import fetch from 'node-fetch';
 import YAML from 'yaml';
-export const backimg = base64DecodeUtf8('aHR0cHM6Ly90LmFsY3kuY2MveWN5');
-export const subapi = base64DecodeUtf8('aHR0cHM6Ly9zdWItc3RvcnQtbm9kZWpzLnBhZ2VzLmRldg==');
-export const beiantext = base64DecodeUtf8('6JCMSUNQ5aSHMjAyNTAwMDHlj7c=');
-export const beiandizi = base64DecodeUtf8('aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=');
-// 实现base64解码UTF-8字符串的函数
-export function base64DecodeUtf8(str) {
+const isNode = eval(`typeof process !== "undefined"`);
+const backimg = base64DecodeUtf8('aHR0cHM6Ly90LmFsY3kuY2MveWN5');
+const subapi = isNode ? base64DecodeUtf8('aHR0cHM6Ly9zdWItc3RvcnQtbm9kZWpzLnBhZ2VzLmRldg==') : null;
+const beiantext = base64DecodeUtf8('6JCMSUNQ5aSHMjAyNTAwMDHlj7c=');
+const beiandizi = base64DecodeUtf8('aHR0cHM6Ly90Lm1lL01hcmlzYV9rcmlzdGk=');
+
+/**
+ * base64解码UTF-8字符串的函数
+ * @param {*} str base64
+ * @returns
+ */
+function base64DecodeUtf8(str) {
     const binary = atob(str);
     const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
     return new TextDecoder('utf-8').decode(bytes);
 }
-// 订阅链接
-export function buildApiUrl(rawUrl, BASE_API, ua) {
+
+/**
+ * api 拼接
+ * @param {*} rawUrl uel 订阅
+ * @param {*} BASE_API api 地址
+ * @param {*} ua 请求头
+ * @returns
+ */
+function buildApiUrl(rawUrl, BASE_API, ua) {
     const params = new URLSearchParams({
         target: ua,
         url: rawUrl,
@@ -19,8 +32,14 @@ export function buildApiUrl(rawUrl, BASE_API, ua) {
     });
     return `${BASE_API}/sub?${params}`;
 }
-// 处理请求
-export async function fetchResponse(url, userAgent) {
+
+/**
+ * 处理请求
+ * @param {*} url
+ * @param {*} userAgent
+ * @returns
+ */
+async function fetchResponse(url, userAgent) {
     if (!userAgent) {
         userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3';
     }
@@ -63,8 +82,13 @@ export async function fetchResponse(url, userAgent) {
         data,
     };
 }
-// 将订阅链接和代理地址分离
-export function splitUrlsAndProxies(urls) {
+
+/**
+ * 将订阅链接和代理地址分离
+ * @param {*} urls
+ * @returns
+ */
+function splitUrlsAndProxies(urls) {
     const result = [];
     let proxyText = '';
 
@@ -88,7 +112,7 @@ export function splitUrlsAndProxies(urls) {
  * 获取应用包名列表
  * @returns {Promise<Object>} - 返回配置数据对象
  */
-export async function fetchpackExtract() {
+async function fetchpackExtract() {
     const processNames = new Set();
     const excludeList = [
         { pkg: 'com.android.chrome', comment: 'Chrome浏览器' },
@@ -131,11 +155,12 @@ export async function fetchpackExtract() {
     }
     return [...processNames];
 }
+
 /**
  * 获取IPCIDR列表
  * @returns {Promise<Object>} - 返回配置数据对象
  */
-export async function fetchipExtract() {
+async function fetchipExtract() {
     const url = 'https://cdn.jsdelivr.net/gh/Kwisma/clash-rules@release/cncidr.yaml';
 
     let res;
@@ -162,7 +187,7 @@ export async function fetchipExtract() {
  * @param {Object} options - 请求选项，包括userAgent、sub、target等
  * @returns {Promise<Object>} - 返回请求结果对象
  */
-export async function fetchWithFallback(url, options) {
+async function fetchWithFallback(url, options) {
     if (options.fallback) {
         let res = await fetchResponse(url, options.userAgent);
         if (options.target === 'mihomo') {
@@ -180,3 +205,26 @@ export async function fetchWithFallback(url, options) {
     const apiUrl = buildApiUrl(url, options.sub, options.target);
     return await fetchResponse(apiUrl, options.userAgent);
 }
+
+/**
+ * 导入 sub-store
+ * @returns
+ */
+async function getNodeConversion() {
+    return (await import('../core/sub/index.js')).default;
+}
+
+export {
+    isNode,
+    backimg,
+    subapi,
+    beiantext,
+    beiandizi,
+    buildApiUrl,
+    fetchResponse,
+    splitUrlsAndProxies,
+    fetchpackExtract,
+    fetchipExtract,
+    fetchWithFallback,
+    getNodeConversion,
+};

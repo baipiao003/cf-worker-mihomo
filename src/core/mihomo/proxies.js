@@ -1,14 +1,17 @@
-import { fetchWithFallback } from '../../utils/index.js';
-// import processNodeConversion from '../sub/index.js'
+import { fetchWithFallback, isNode, getNodeConversion } from '../../utils/index.js';
 export default async function getProxies_Data(e) {
-    // let results = {}
-
-    // if (e.sub) {
-    //     results = await fetchWithFallback(e.urls, e)
-    // } else {
-    //     results = await processNodeConversion(e.urls, e.target, true)
-    // }
-    const results = await fetchWithFallback(e.urls, e);
+    let results = {};
+    if (isNode) {
+        if (e.sub) {
+            results = await fetchWithFallback(e.urls, e);
+        } else {
+            const process = await getNodeConversion();
+            results = await process(e.urls, e.target, true);
+        }
+    }
+    {
+        results = await fetchWithFallback(e.urls, e);
+    }
     if (results.data.data?.proxies?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }

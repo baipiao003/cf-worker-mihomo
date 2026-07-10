@@ -38,7 +38,7 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 
 ### ⚡ Singbox专属优化
 
-- 完美支持1.11.x/1.12.x版本
+- 完美支持 1.11.x 及以上版本
 - 自动适配版本生成配置
 - 全平台无弹窗体验：
     - iOS版本
@@ -55,6 +55,7 @@ Mihomo（Clash Meta）是一款高效的订阅汇聚工具，支持快速生成 
 
 1. 关闭所有覆写功能（非关闭功能本身）
 2. 推荐使用 [clashmi](https://github.com/KaringX/clashmi/releases)（轻量高效的客户端）
+3. 推荐使用 vercel (内置 sub-store 转换)部署，不推荐使用 cf worker (通过 sub api 转换)部署
 
 ---
 
