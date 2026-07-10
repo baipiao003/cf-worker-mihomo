@@ -1,5 +1,5 @@
 keep_vars = true
-name = "cf-SubCloud"
+name = "cf-subcloud"
 main = "dist/_worker.js"
 compatibility_date = "2026-07-09"
 compatibility_flags = ["nodejs_compat"]
