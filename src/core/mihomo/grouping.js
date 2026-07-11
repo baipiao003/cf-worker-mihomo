@@ -120,4 +120,3 @@ export function getProxies_Grouping(proxies, groups, e) {
 
     return updatedGroups;
 }
-

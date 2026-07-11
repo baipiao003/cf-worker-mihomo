@@ -15,7 +15,7 @@ function buildApiUrl(rawUrl, BASE_API, ua) {
         url: rawUrl,
         api: true,
     });
-    return `${BASE_API.replace(/\/$/, '')}/sub?${params}`;;
+    return `${BASE_API.replace(/\/$/, '')}/sub?${params}`;
 }
 
 /**

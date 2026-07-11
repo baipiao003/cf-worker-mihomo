@@ -1,4 +1,4 @@
-import { fetchResponse } from './fetchResponse.js'
+import { fetchResponse } from './fetchResponse.js';
 
 /**
  * 获取应用包名列表。

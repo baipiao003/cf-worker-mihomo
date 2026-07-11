@@ -70,34 +70,20 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
                 continue;
             }
             // 检查 keywords
-            if (
-                !filter.keywords ||
-                (!Array.isArray(filter.keywords) &&
-                    typeof filter.keywords !== 'string')
-            ) {
+            if (!filter.keywords || (!Array.isArray(filter.keywords) && typeof filter.keywords !== 'string')) {
                 continue;
             }
 
-
             // 兼容 string 和 array
-            const keywords = Array.isArray(filter.keywords)
-                ? filter.keywords
-                : [filter.keywords];
+            const keywords = Array.isArray(filter.keywords) ? filter.keywords : [filter.keywords];
 
             for (const keyword of keywords) {
-
                 const ignoreCase = /\(\?i\)/i.test(keyword);
 
                 const pattern = keyword.replace(/\(\?i\)/gi, '');
 
-
                 try {
-
-                    const regex = new RegExp(
-                        pattern,
-                        ignoreCase ? 'i' : ''
-                    );
-
+                    const regex = new RegExp(pattern, ignoreCase ? 'i' : '');
 
                     compiledFilters.push({
                         action: filter.action,
@@ -105,17 +91,9 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
                         hasValidAction: true,
                     });
 
-
                     hasValidAction = true;
-
-
                 } catch (e) {
-
-                    console.warn(
-                        `无效的正则表达式: ${keyword}`,
-                        e
-                    );
-
+                    console.warn(`无效的正则表达式: ${keyword}`, e);
                 }
             }
         }
@@ -238,8 +216,13 @@ export function loadAndSetOutbound(Outbounds, ApiUrlname, e) {
         );
     }
 
-    // 5. 清理被删除的 tags（使用 Set 优化）
-    return cleanRemovedTags(processedOutbounds);
+    // 5. 清理被删除的 tags
+    const result = cleanRemovedTags(processedOutbounds);
+
+    for (const outbound of result) {
+        delete outbound.filter;
+    }
+    return result;
 }
 
 // 优化后的 cleanRemovedTags 函数

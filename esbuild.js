@@ -58,10 +58,7 @@ const replaceOpenApiIsNode = {
     }
 
     code = await fs.readFile(verfacts[0].dest, 'utf8');
-    code = code.replace(
-        /eval\(('|")(require\(('|").*?('|")\))('|")\)/g,
-        '$2',
-    );
+    code = code.replace(/eval\(('|")(require\(('|").*?('|")\))('|")\)/g, '$2');
     code = code.replace(/eval\((`[^`]*`|"[^"]*"S|'[^']*')\)/g, '$1');
 
     await fs.writeFile(verfacts[0].dest, code);

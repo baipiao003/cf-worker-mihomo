@@ -1,4 +1,4 @@
-import { fetchResponse } from './fetchResponse.js'
+import { fetchResponse } from './fetchResponse.js';
 /**
  * 获取 IP CIDR 列表。
  *

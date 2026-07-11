@@ -1,4 +1,3 @@
-
 import { ProxyUtils } from '../Sub-Store/backend/src/core/proxy-utils/index.js';
 import PROXY_PRODUCERS from '../Sub-Store/backend/src/core/proxy-utils/producers/index.js';
 import { fetchResponse } from '../../utils/index.js';
@@ -42,9 +41,9 @@ export default async function processNodeConversion(urlArray, platform, api) {
         const { names, data, headers } = await produceArtifact(urlArray, platform);
         api
             ? (results.data = {
-                names,
-                data,
-            })
+                  names,
+                  data,
+              })
             : (results.data = data);
         if (headers.length) {
             results.headers = headers[Math.floor(Math.random() * headers.length)];

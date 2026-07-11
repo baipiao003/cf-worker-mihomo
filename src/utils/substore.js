@@ -7,8 +7,7 @@ let nodeConversion = null;
  */
 async function getNodeConversion() {
     if (!nodeConversion) {
-        nodeConversion = import('../core/sub/index.js')
-            .then((module) => module.default);
+        nodeConversion = import('../core/sub/index.js').then((module) => module.default);
     }
 
     return nodeConversion;
