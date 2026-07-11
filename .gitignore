@@ -178,3 +178,4 @@ dist
 
 root.json
 sub-store.json
+.env*

@@ -1,10 +1,11 @@
 {
   "version": 2,
+  "devCommand": "pnpm dev",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
   "builds": [
     {
-      "src": "src/vercel.js",
+      "src": "src/server.js",
       "use": "@vercel/node"
     },
     {
@@ -18,11 +19,8 @@
       "dest": "/template/$1"
     },
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/src/vercel.js"
+      "dest": "/src/server.js"
     }
   ]
 }

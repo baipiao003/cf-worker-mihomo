@@ -1,6 +1,26 @@
 import { fetchWithFallback, getNodeConversion } from '../../utils/index.js';
-// import processNodeConversion from '../sub/index.js'
 
+/**
+ * 获取并处理 outbound 节点数据
+ *
+ * 根据配置选择不同的数据获取方式：
+ * - e.sub 为 true 时，通过订阅地址获取节点
+ * - e.sub 为 false 时，通过节点转换模块解析节点
+ *
+ * 获取完成后会执行 outbound 处理逻辑，并返回标准化响应数据。
+ *
+ * @param {Object} e - 请求配置参数
+ * @param {boolean} e.sub - 是否使用订阅模式
+ * @param {string|string[]} e.urls - 节点订阅地址或节点数据地址
+ * @param {string} [e.target] - 节点转换目标格式
+ *
+ * @returns {Promise<Object>} outbound 数据结果
+ * @returns {number} returns.status - 请求状态码
+ * @returns {Object} returns.headers - 响应头信息
+ * @returns {Object} returns.data - 处理后的配置数据
+ *
+ * @throws {Error} 当未找到有效节点时抛出异常
+ */
 export default async function getOutbounds_Data(e) {
     let results = {};
     if (e.sub) {

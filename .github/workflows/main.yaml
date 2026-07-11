@@ -64,7 +64,7 @@ jobs:
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
                   git add .
-                  git commit -m "chore: 同步 Sub-store 至 V$(node -p "require('./src/sub/backend/package.json').version")"
+                  git commit -m "chore: 同步 Sub-store 至 V$(node -p "require('./src/core/Sub-Store/backend/package.json').version")"
 
                   git push origin main
 
