@@ -2,7 +2,7 @@
 # 版本：v1.19.4
 # 作者：Kwisma
 # 频道：https://t.me/Marisa_kristi
-# 配置：https://jsd.onmicrosoft.cn/gh/Kwisma/cf-worker-mihomo@main/main/Config/Mihomo.yaml
+# 配置：https://cdn.jsdmirror.com/gh/Kwisma/cf-worker-mihomo@main/main/Config/Mihomo.yaml
 # Github：https://github.com/Kwisma/cf-worker-mihomo
 # 修改自官方示例规则 https://wiki.metacubex.one/example/#meta
 # 不理解的地方建议对照 虚空终端 (Clash Meta) Docs 进行理解
@@ -100,10 +100,10 @@ geodata-mode: false # 更改 geoip 使用文件，mmdb 或者 dat，可选 true/
 # memconservative：专为内存受限 (小内存) 设备优化的加载器 (默认值)
 geodata-loader: memconservative
 geox-url: # Geo 数据库配置，用于地理位置和 ASN 匹配
-  geoip: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geoip.dat" # GeoIP 数据库
-  geosite: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geosite.dat" # GeoSite 数据库
-  mmdb: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb" # GeoIP mmdb 数据库
-  asn: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb" # ASN 数据库
+  geoip: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geoip.dat" # GeoIP 数据库
+  geosite: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geosite.dat" # GeoSite 数据库
+  mmdb: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb" # GeoIP mmdb 数据库
+  asn: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb" # ASN 数据库
 geo-auto-update: false # 开启自动更新 Geo 数据库
 geo-update-interval: 24 # Geo 数据库更新间隔 (单位: 小时)
 # GeoSite 使用的匹配器实现，可用的实现：
@@ -289,118 +289,118 @@ proxy-groups:
   - { name: 🔯故障转移, <<: *u, type: fallback }
 
   # 应用分组
-  - { name: "115", <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/115.webp }
-  - { name: "12306", <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/12306.webp }
-  - { name: "4399", <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/4399.webp }
-  - { name: 4GTV, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/4GTV.webp }
-  - { name: 58同城, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/58TongCheng.webp }
-  - { name: 农业银行, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/ABC.webp }
-  - { name: AbemaTV, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Abema.webp }
-  - { name: Adobe, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Adobe.webp }
-  - { name: 支付宝, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AliPay.webp }
-  - { name: 阿里巴巴, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Alibaba.webp }
-  - { name: 亚马逊电商, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AmazonShopping.webp }
-  - { name: 亚马逊TV, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AmazonPrimeVideo.webp }
-  - { name: Apple, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Apple.webp }
-  - { name: AppleCN, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleCN.webp }
-  - { name: AppStore, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppStore.webp }
-  - { name: Apple邮箱, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleMail.webp }
-  - { name: Apple音乐, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleMusic.webp }
-  - { name: Apple新闻, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleNews.webp }
-  - { name: Apple日报, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleDaily.webp }
-  - { name: AppleTV, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/AppleTV.webp }
-  - { name: 巴哈姆特, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Bahamut.webp }
-  - { name: 百度贴吧, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/BaiDuTieBa.webp }
-  - { name: 百度, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Baidu.webp }
-  - { name: 哔哩哔哩, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/BiliBili.webp }
-  - { name: 哔哩东南亚, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Biliintl.webp }
-  - { name: BT追踪器, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/BitTorrent.webp }
-  - { name: 暴雪, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Blizzard.webp }
-  - { name: 字节跳动, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/ByteDance.webp }
-  - { name: Beats, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Beats.webp }
-  - { name: CCTV, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/CCTV.webp }
-  - { name: 中国媒体, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/ChinaTV.webp }
-  - { name: Cloudflare, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Cloudflare.webp }
-  - { name: 钉钉, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/DingTalk.webp }
-  - { name: Discord, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Discord.webp }
-  - { name: Disney, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Disney+.webp }
-  - { name: Docker, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Docker.webp }
-  - { name: 豆瓣, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/DouBan.webp }
-  - { name: E站, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/E-Hentai.webp }
-  - { name: EA, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/EA.webp }
-  - { name: Epic, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Epic.webp }
-  - { name: Emby, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Emby.webp }
-  - { name: FCM, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/FCM.webp }
-  - { name: Facebook, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Facebook.webp }
-  - { name: Fastly, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Fastly.webp }
-  - { name: FitnessPlus, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/FitnessPlus.webp }
-  - { name: 高德, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GaoDe.webp }
-  - { name: GitHub, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GitHub.webp }
-  - { name: Google, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Google.webp }
-  - { name: Google云盘, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GoogleDrive.webp }
-  - { name: Google地图, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GoogleEarth.webp }
-  - { name: GoogleVoice, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GoogleVoice.webp }
-  - { name: Hoyoverse, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/HoYoverse.webp }
-  - { name: Hulu, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Hulu.webp }
-  - { name: 虎扑, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Hupu.webp }
-  - { name: HBO, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/HBO.webp }
-  - { name: IMDB, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/IMDB.webp }
-  - { name: 爱奇艺, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/IQIYI.webp }
-  - { name: Instagram, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Instagram.webp }
-  - { name: 因特尔, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Intel.webp }
-  - { name: iCloud, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/iCloud.webp }
-  - { name: 京东, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/JingDong.webp }
-  - { name: 酷狗, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Kugou.webp }
-  - { name: 酷我, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Kuwo.webp }
-  - { name: LastFM, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/LastFM.webp }
-  - { name: LINE, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Line.webp }
-  - { name: 美团, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/MeiTuan.webp }
-  - { name: 微软, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Microsoft.webp }
-  - { name: Mihoyo, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/mihoyo.webp }
-  - { name: NGA, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/NGA.webp }
-  - { name: 网易, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/NetEase.webp }
-  - { name: 网易云音乐, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/NetEase_Music.webp }
-  - { name: Netflix, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Netflix.webp }
-  - { name: ニコニコ, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Niconico.webp }
-  - { name: OpenAI, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/OpenAI.webp }
-  - { name: 微软云盘, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/OneDrive.webp }
-  - { name: 潘朵拉珠宝, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Pandora.webp }
-  - { name: PayPal, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/PayPal.webp }
-  - { name: PikPak, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/PikPak.webp }
-  - { name: 拼多多, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Pinduoduo.webp }
-  - { name: Pixiv, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Pixiv.webp }
-  - { name: PlayStation, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/PlayStation.webp }
-  - { name: 国际媒体, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/ProxyTV.webp }
-  - { name: Qobuz, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Qobuz.webp }
-  - { name: Reddit, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Reddit.webp }
-  - { name: Rockstar, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Rockstar.webp }
-  - { name: 什么值得买, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/SMZDM.webp }
-  - { name: Google学术, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Scholar.webp }
-  - { name: 新浪, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Sina.webp }
-  - { name: 索尼, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Sony.webp }
-  - { name: SoundCloud, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/SoundCloud.webp }
-  - { name: Speedtest, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Speedtest.webp }
-  - { name: Spotify, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Spotify.webp }
-  - { name: Steam, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
-  - { name: Steam中国, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
-  - { name: Supercell, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Supercell.webp }
-  - { name: Signal, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Signal.webp }
-  - { name: TVB, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/TVB.webp }
-  - { name: Telegram, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Telegram.webp }
-  - { name: 腾讯, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Tencent.webp }
-  - { name: 抖音, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
-  - { name: TikTok, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
-  - { name: Twitch, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Twitch.webp }
-  - { name: Twitter, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Twitter.webp }
-  - { name: Tor, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Tor.webp }
-  - { name: Talkatone, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Talkatone.webp }
-  - { name: 微信, <<: *direct, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/WeChat.webp }
-  - { name: 维基百科, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Wikipedia.webp }
-  - { name: Wise, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Wise.webp }
-  - { name: YouTube, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/YouTube.webp }
-  - { name: YouTubeMusic, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/YouTubeMusic.webp }
-  - { name: 禁漫天堂, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/18comic.webp }
-  - { name: 哔咔哔咔, <<: *proxy, icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/Picacg.webp }
+  - { name: "115", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/115.webp }
+  - { name: "12306", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/12306.webp }
+  - { name: "4399", <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/4399.webp }
+  - { name: 4GTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/4GTV.webp }
+  - { name: 58同城, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/58TongCheng.webp }
+  - { name: 农业银行, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ABC.webp }
+  - { name: AbemaTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Abema.webp }
+  - { name: Adobe, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Adobe.webp }
+  - { name: 支付宝, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AliPay.webp }
+  - { name: 阿里巴巴, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Alibaba.webp }
+  - { name: 亚马逊电商, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AmazonShopping.webp }
+  - { name: 亚马逊TV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AmazonPrimeVideo.webp }
+  - { name: Apple, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Apple.webp }
+  - { name: AppleCN, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleCN.webp }
+  - { name: AppStore, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppStore.webp }
+  - { name: Apple邮箱, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleMail.webp }
+  - { name: Apple音乐, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleMusic.webp }
+  - { name: Apple新闻, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleNews.webp }
+  - { name: Apple日报, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleDaily.webp }
+  - { name: AppleTV, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/AppleTV.webp }
+  - { name: 巴哈姆特, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Bahamut.webp }
+  - { name: 百度贴吧, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BaiDuTieBa.webp }
+  - { name: 百度, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Baidu.webp }
+  - { name: 哔哩哔哩, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BiliBili.webp }
+  - { name: 哔哩东南亚, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Biliintl.webp }
+  - { name: BT追踪器, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/BitTorrent.webp }
+  - { name: 暴雪, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Blizzard.webp }
+  - { name: 字节跳动, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ByteDance.webp }
+  - { name: Beats, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Beats.webp }
+  - { name: CCTV, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/CCTV.webp }
+  - { name: 中国媒体, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ChinaTV.webp }
+  - { name: Cloudflare, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Cloudflare.webp }
+  - { name: 钉钉, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/DingTalk.webp }
+  - { name: Discord, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Discord.webp }
+  - { name: Disney, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Disney+.webp }
+  - { name: Docker, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Docker.webp }
+  - { name: 豆瓣, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/DouBan.webp }
+  - { name: E站, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/E-Hentai.webp }
+  - { name: EA, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/EA.webp }
+  - { name: Epic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Epic.webp }
+  - { name: Emby, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Emby.webp }
+  - { name: FCM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/FCM.webp }
+  - { name: Facebook, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Facebook.webp }
+  - { name: Fastly, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Fastly.webp }
+  - { name: FitnessPlus, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/FitnessPlus.webp }
+  - { name: 高德, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GaoDe.webp }
+  - { name: GitHub, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GitHub.webp }
+  - { name: Google, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Google.webp }
+  - { name: Google云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleDrive.webp }
+  - { name: Google地图, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleEarth.webp }
+  - { name: GoogleVoice, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GoogleVoice.webp }
+  - { name: Hoyoverse, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/HoYoverse.webp }
+  - { name: Hulu, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Hulu.webp }
+  - { name: 虎扑, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Hupu.webp }
+  - { name: HBO, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/HBO.webp }
+  - { name: IMDB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/IMDB.webp }
+  - { name: 爱奇艺, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/IQIYI.webp }
+  - { name: Instagram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Instagram.webp }
+  - { name: 因特尔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Intel.webp }
+  - { name: iCloud, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/iCloud.webp }
+  - { name: 京东, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/JingDong.webp }
+  - { name: 酷狗, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Kugou.webp }
+  - { name: 酷我, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Kuwo.webp }
+  - { name: LastFM, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/LastFM.webp }
+  - { name: LINE, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Line.webp }
+  - { name: 美团, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/MeiTuan.webp }
+  - { name: 微软, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Microsoft.webp }
+  - { name: Mihoyo, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/mihoyo.webp }
+  - { name: NGA, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NGA.webp }
+  - { name: 网易, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NetEase.webp }
+  - { name: 网易云音乐, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/NetEase_Music.webp }
+  - { name: Netflix, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Netflix.webp }
+  - { name: ニコニコ, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Niconico.webp }
+  - { name: OpenAI, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/OpenAI.webp }
+  - { name: 微软云盘, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/OneDrive.webp }
+  - { name: 潘朵拉珠宝, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pandora.webp }
+  - { name: PayPal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PayPal.webp }
+  - { name: PikPak, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PikPak.webp }
+  - { name: 拼多多, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pinduoduo.webp }
+  - { name: Pixiv, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Pixiv.webp }
+  - { name: PlayStation, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/PlayStation.webp }
+  - { name: 国际媒体, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/ProxyTV.webp }
+  - { name: Qobuz, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Qobuz.webp }
+  - { name: Reddit, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Reddit.webp }
+  - { name: Rockstar, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Rockstar.webp }
+  - { name: 什么值得买, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/SMZDM.webp }
+  - { name: Google学术, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Scholar.webp }
+  - { name: 新浪, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Sina.webp }
+  - { name: 索尼, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Sony.webp }
+  - { name: SoundCloud, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/SoundCloud.webp }
+  - { name: Speedtest, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Speedtest.webp }
+  - { name: Spotify, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Spotify.webp }
+  - { name: Steam, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
+  - { name: Steam中国, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Steam.webp }
+  - { name: Supercell, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Supercell.webp }
+  - { name: Signal, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Signal.webp }
+  - { name: TVB, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TVB.webp }
+  - { name: Telegram, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Telegram.webp }
+  - { name: 腾讯, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Tencent.webp }
+  - { name: 抖音, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
+  - { name: TikTok, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/TikTok.webp }
+  - { name: Twitch, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Twitch.webp }
+  - { name: Twitter, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Twitter.webp }
+  - { name: Tor, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Tor.webp }
+  - { name: Talkatone, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Talkatone.webp }
+  - { name: 微信, <<: *direct, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/WeChat.webp }
+  - { name: 维基百科, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Wikipedia.webp }
+  - { name: Wise, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Wise.webp }
+  - { name: YouTube, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/YouTube.webp }
+  - { name: YouTubeMusic, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/YouTubeMusic.webp }
+  - { name: 禁漫天堂, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/18comic.webp }
+  - { name: 哔咔哔咔, <<: *proxy, icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/Picacg.webp }
 
   # 地区分组
   - { name: 🇭🇰香港自动, <<: *u, hidden: true, filter: "(?i)(?:🇭🇰|(?:^|[\\s_-])(HK)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*HK(?=$|[\\s_-])|香港|Hong Kong|HongKong)" }
@@ -408,7 +408,7 @@ proxy-groups:
   - { name: 🇺🇸美国自动, <<: *u, hidden: true, filter: "(?i)(?:🇺🇸|(?:^|[\\s_-])(US)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*US(?=$|[\\s_-])|美国|United States|(?:(?:^|[\\s_-])CT(?=$|[\\s_-]))|UnitedStates)" }
   - { name: 🇸🇬新加坡自动, <<: *u, hidden: true, filter: "(?i)(?:🇸🇬|(?:^|[\\s_-])(SG)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*SG(?=$|[\\s_-])|新加坡|Singapore)" }
 
-  - { name: GLOBAL, type: select, include-all: true, proxies: [🚀全球代理, 🟢手动选择, 🪧广告拦截, 🔎HttpDNS, 💧泄漏拦截, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 115, 12306, 4399, 4GTV, 58同城, 农业银行, AbemaTV, Adobe, 支付宝, 阿里巴巴, 亚马逊电商, 亚马逊TV, Apple, AppleCN, AppStore, Apple邮箱, Apple音乐, Apple新闻, Apple日报, AppleTV, 巴哈姆特, 百度贴吧, 百度, 哔哩哔哩, 哔哩东南亚, BT追踪器, 暴雪, 字节跳动, Beats, CCTV, 中国媒体, Cloudflare, 钉钉, Discord, Disney, Docker, 豆瓣, E站, EA, Epic, Emby, FCM, Facebook, Fastly, FitnessPlus, 高德, GitHub, Google, Google云盘, Google地图, GoogleVoice, Hoyoverse, Hulu, 虎扑, HBO, IMDB, 爱奇艺, Instagram, 因特尔, iCloud, 京东, 酷狗, 酷我, LastFM, LINE, 美团, 微软, Mihoyo, NGA, 网易, 网易云音乐, Netflix, ニコニコ, OpenAI, 微软云盘, 潘朵拉珠宝, PayPal, PikPak, 拼多多, Pixiv, PlayStation, 国际媒体, Qobuz, Reddit, Rockstar, 什么值得买, Google学术, 新浪, 索尼, SoundCloud, Speedtest, Spotify, Steam, Steam中国, Supercell, Signal, TVB, Telegram, 腾讯, 抖音, TikTok, Twitch, Twitter, Tor, Talkatone, 微信, 维基百科, Wise, YouTube, YouTubeMusic, 禁漫天堂, 哔咔哔咔], icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
+  - { name: GLOBAL, type: select, include-all: true, proxies: [🚀全球代理, 🟢手动选择, 🪧广告拦截, 🔎HttpDNS, 💧泄漏拦截, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 115, 12306, 4399, 4GTV, 58同城, 农业银行, AbemaTV, Adobe, 支付宝, 阿里巴巴, 亚马逊电商, 亚马逊TV, Apple, AppleCN, AppStore, Apple邮箱, Apple音乐, Apple新闻, Apple日报, AppleTV, 巴哈姆特, 百度贴吧, 百度, 哔哩哔哩, 哔哩东南亚, BT追踪器, 暴雪, 字节跳动, Beats, CCTV, 中国媒体, Cloudflare, 钉钉, Discord, Disney, Docker, 豆瓣, E站, EA, Epic, Emby, FCM, Facebook, Fastly, FitnessPlus, 高德, GitHub, Google, Google云盘, Google地图, GoogleVoice, Hoyoverse, Hulu, 虎扑, HBO, IMDB, 爱奇艺, Instagram, 因特尔, iCloud, 京东, 酷狗, 酷我, LastFM, LINE, 美团, 微软, Mihoyo, NGA, 网易, 网易云音乐, Netflix, ニコニコ, OpenAI, 微软云盘, 潘朵拉珠宝, PayPal, PikPak, 拼多多, Pixiv, PlayStation, 国际媒体, Qobuz, Reddit, Rockstar, 什么值得买, Google学术, 新浪, 索尼, SoundCloud, Speedtest, Spotify, Steam, Steam中国, Supercell, Signal, TVB, Telegram, 腾讯, 抖音, TikTok, Twitch, Twitter, Tor, Talkatone, 微信, 维基百科, Wise, YouTube, YouTubeMusic, 禁漫天堂, 哔咔哔咔], icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
 
 rules:
   - SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-RULES
@@ -576,839 +576,839 @@ rule-providers:
   # ios_rule_script 规则
   apple_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
     path: ./ruleset/Apple_Domain.mrs
 
   apple_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
     path: ./ruleset/Apple_IP.mrs
 
   chinamedia_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ChinaMedia/ChinaMedia_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ChinaMedia/ChinaMedia_OCD_Domain.mrs"
     path: ./ruleset/ChinaMedia_Domain.mrs
 
   chinamedia_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ChinaMedia/ChinaMedia_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ChinaMedia/ChinaMedia_OCD_IP.mrs"
     path: ./ruleset/ChinaMedia_IP.mrs
 
   netease_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEase/NetEase_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEase/NetEase_OCD_Domain.mrs"
     path: ./ruleset/NetEase_Domain.mrs
 
   netease_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEase/NetEase_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEase/NetEase_OCD_IP.mrs"
     path: ./ruleset/NetEase_IP.mrs
 
   jingdong_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/JingDong/JingDong_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/JingDong/JingDong_OCD_Domain.mrs"
     path: ./ruleset/JingDong_Domain.mrs
 
   58tongcheng_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/58TongCheng/58TongCheng_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/58TongCheng/58TongCheng_OCD_Domain.mrs"
     path: ./ruleset/58TongCheng_Domain.mrs
 
   alipay_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AliPay/AliPay_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AliPay/AliPay_OCD_Domain.mrs"
     path: ./ruleset/AliPay_Domain.mrs
 
   pinduoduo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pinduoduo/Pinduoduo_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pinduoduo/Pinduoduo_OCD_Domain.mrs"
     path: ./ruleset/Pinduoduo_Domain.mrs
 
   alibaba_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Alibaba/Alibaba_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Alibaba/Alibaba_OCD_Domain.mrs"
     path: ./ruleset/Alibaba_Domain.mrs
 
   alibaba_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Alibaba/Alibaba_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Alibaba/Alibaba_OCD_IP.mrs"
     path: ./ruleset/Alibaba_IP.mrs
 
   115_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/115/115_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/115/115_OCD_Domain.mrs"
     path: ./ruleset/115_Domain.mrs
 
   4399_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/4399/4399_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/4399/4399_OCD_Domain.mrs"
     path: ./ruleset/4399_Domain.mrs
 
   pikpak_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PikPak/PikPak_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PikPak/PikPak_OCD_Domain.mrs"
     path: ./ruleset/PikPak_Domain.mrs
 
   youtubemusic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTubeMusic/YouTubeMusic_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTubeMusic/YouTubeMusic_OCD_Domain.mrs"
     path: ./ruleset/YouTubeMusic_Domain.mrs
 
   discord_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
     path: ./ruleset/Discord_Domain.mrs
 
   openai_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
     path: ./ruleset/OpenAI_Domain.mrs
 
   openai_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
     path: ./ruleset/OpenAI_IP.mrs
 
   github_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
     path: ./ruleset/GitHub_Domain.mrs
 
   bahamut_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs"
     path: ./ruleset/Bahamut_Domain.mrs
 
   hulu_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Hulu/Hulu_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Hulu/Hulu_OCD_Domain.mrs"
     path: ./ruleset/Hulu_Domain.mrs
 
   tvb_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/TVB/TVB_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/TVB/TVB_OCD_Domain.mrs"
     path: ./ruleset/TVB_Domain.mrs
 
   niconico_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Niconico/Niconico_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Niconico/Niconico_OCD_Domain.mrs"
     path: ./ruleset/Niconico_Domain.mrs
 
   abematv_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AbemaTV/AbemaTV_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AbemaTV/AbemaTV_OCD_Domain.mrs"
     path: ./ruleset/AbemaTV_Domain.mrs
 
   12306_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/12306/12306_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/12306/12306_OCD_Domain.mrs"
     path: ./ruleset/12306_Domain.mrs
 
   abc_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ABC/ABC_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ABC/ABC_OCD_Domain.mrs"
     path: ./ruleset/ABC_Domain.mrs
 
   adobe_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Adobe/Adobe_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Adobe/Adobe_OCD_Domain.mrs"
     path: ./ruleset/Adobe_Domain.mrs
 
   amazon_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Amazon/Amazon_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Amazon/Amazon_OCD_Domain.mrs"
     path: ./ruleset/Amazon_Domain.mrs
 
   amazon_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Amazon/Amazon_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Amazon/Amazon_OCD_IP.mrs"
     path: ./ruleset/Amazon_IP.mrs
 
   amazonprimevideo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo_OCD_Domain.mrs"
     path: ./ruleset/AmazonPrimeVideo_Domain.mrs
 
   appledaily_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleDaily/AppleDaily_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleDaily/AppleDaily_OCD_Domain.mrs"
     path: ./ruleset/AppleDaily_Domain.mrs
 
   appledev_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleDev/AppleDev_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleDev/AppleDev_OCD_Domain.mrs"
     path: ./ruleset/AppleDev_Domain.mrs
 
   applefirmware_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleFirmware/AppleFirmware_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleFirmware/AppleFirmware_OCD_Domain.mrs"
     path: ./ruleset/AppleFirmware_Domain.mrs
 
   applehardware_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleHardware/AppleHardware_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleHardware/AppleHardware_OCD_Domain.mrs"
     path: ./ruleset/AppleHardware_Domain.mrs
 
   appleid_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleID/AppleID_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleID/AppleID_OCD_Domain.mrs"
     path: ./ruleset/AppleID_Domain.mrs
 
   applemail_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMail/AppleMail_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMail/AppleMail_OCD_Domain.mrs"
     path: ./ruleset/AppleMail_Domain.mrs
 
   applemedia_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMedia/AppleMedia_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMedia/AppleMedia_OCD_Domain.mrs"
     path: ./ruleset/AppleMedia_Domain.mrs
 
   applemusic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMusic/AppleMusic_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleMusic/AppleMusic_OCD_Domain.mrs"
     path: ./ruleset/AppleMusic_Domain.mrs
 
   applenews_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleNews/AppleNews_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleNews/AppleNews_OCD_Domain.mrs"
     path: ./ruleset/AppleNews_Domain.mrs
 
   appleproxy_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleProxy/AppleProxy_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleProxy/AppleProxy_OCD_Domain.mrs"
     path: ./ruleset/AppleProxy_Domain.mrs
 
   appletv_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleTV/AppleTV_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppleTV/AppleTV_OCD_Domain.mrs"
     path: ./ruleset/AppleTV_Domain.mrs
 
   appstore_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppStore/AppStore_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/AppStore/AppStore_OCD_Domain.mrs"
     path: ./ruleset/AppStore_Domain.mrs
 
   baidu_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Baidu/Baidu_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Baidu/Baidu_OCD_Domain.mrs"
     path: ./ruleset/Baidu_Domain.mrs
 
   baidutieba_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BaiDuTieBa/BaiDuTieBa_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BaiDuTieBa/BaiDuTieBa_OCD_Domain.mrs"
     path: ./ruleset/BaiDuTieBa_Domain.mrs
 
   beats_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Beats/Beats_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Beats/Beats_OCD_Domain.mrs"
     path: ./ruleset/Beats_Domain.mrs
 
   bing_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bing/Bing_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bing/Bing_OCD_Domain.mrs"
     path: ./ruleset/Bing_Domain.mrs
 
   blizzard_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Blizzard/Blizzard_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Blizzard/Blizzard_OCD_Domain.mrs"
     path: ./ruleset/Blizzard_Domain.mrs
 
   blizzard_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Blizzard/Blizzard_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Blizzard/Blizzard_OCD_IP.mrs"
     path: ./ruleset/Blizzard_IP.mrs
 
   bytedance_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ByteDance/ByteDance_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ByteDance/ByteDance_OCD_Domain.mrs"
     path: ./ruleset/ByteDance_Domain.mrs
 
   bytedance_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ByteDance/ByteDance_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/ByteDance/ByteDance_OCD_IP.mrs"
     path: ./ruleset/ByteDance_IP.mrs
 
   cctv_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/CCTV/CCTV_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/CCTV/CCTV_OCD_Domain.mrs"
     path: ./ruleset/CCTV_Domain.mrs
 
   claude_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Claude/Claude_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Claude/Claude_OCD_Domain.mrs"
     path: ./ruleset/Claude_Domain.mrs
 
   copilot_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Copilot/Copilot_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Copilot/Copilot_OCD_Domain.mrs"
     path: ./ruleset/Copilot_Domain.mrs
 
   copilot_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Copilot/Copilot_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Copilot/Copilot_OCD_IP.mrs"
     path: ./ruleset/Copilot_IP.mrs
 
   dingtalk_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DingTalk/DingTalk_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DingTalk/DingTalk_OCD_Domain.mrs"
     path: ./ruleset/DingTalk_Domain.mrs
 
   docker_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Docker/Docker_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Docker/Docker_OCD_Domain.mrs"
     path: ./ruleset/Docker_Domain.mrs
 
   douban_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DouBan/DouBan_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DouBan/DouBan_OCD_Domain.mrs"
     path: ./ruleset/DouBan_Domain.mrs
 
   douyin_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs"
     path: ./ruleset/DouYin_Domain.mrs
 
   ea_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/EA/EA_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/EA/EA_OCD_Domain.mrs"
     path: ./ruleset/EA_Domain.mrs
 
   epic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Epic/Epic_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Epic/Epic_OCD_Domain.mrs"
     path: ./ruleset/Epic_Domain.mrs
 
   fitnessplus_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/FitnessPlus/FitnessPlus_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/FitnessPlus/FitnessPlus_OCD_Domain.mrs"
     path: ./ruleset/FitnessPlus_Domain.mrs
 
   gaode_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GaoDe/GaoDe_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GaoDe/GaoDe_OCD_Domain.mrs"
     path: ./ruleset/GaoDe_Domain.mrs
 
   gemini_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Gemini/Gemini_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Gemini/Gemini_OCD_Domain.mrs"
     path: ./ruleset/Gemini_Domain.mrs
 
   googledrive_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleDrive/GoogleDrive_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleDrive/GoogleDrive_OCD_Domain.mrs"
     path: ./ruleset/GoogleDrive_Domain.mrs
 
   googleearth_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleEarth/GoogleEarth_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleEarth/GoogleEarth_OCD_Domain.mrs"
     path: ./ruleset/GoogleEarth_Domain.mrs
 
   googlefcm_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
     path: ./ruleset/GoogleFCM_Domain.mrs
 
   googlefcm_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
     path: ./ruleset/GoogleFCM_IP.mrs
 
   googlevoice_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleVoice/GoogleVoice_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GoogleVoice/GoogleVoice_OCD_Domain.mrs"
     path: ./ruleset/GoogleVoice_Domain.mrs
 
   hulujp_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HuluJP/HuluJP_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HuluJP/HuluJP_OCD_Domain.mrs"
     path: ./ruleset/HuluJP_Domain.mrs
 
   huluusa_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HuluUSA/HuluUSA_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HuluUSA/HuluUSA_OCD_Domain.mrs"
     path: ./ruleset/HuluUSA_Domain.mrs
 
   hupu_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Hupu/Hupu_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Hupu/Hupu_OCD_Domain.mrs"
     path: ./ruleset/Hupu_Domain.mrs
 
   icloud_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iCloud/iCloud_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iCloud/iCloud_OCD_Domain.mrs"
     path: ./ruleset/iCloud_Domain.mrs
 
   imdb_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/IMDB/IMDB_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/IMDB/IMDB_OCD_Domain.mrs"
     path: ./ruleset/IMDB_Domain.mrs
 
   instagram_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Instagram/Instagram_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Instagram/Instagram_OCD_Domain.mrs"
     path: ./ruleset/Instagram_Domain.mrs
 
   intel_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Intel/Intel_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Intel/Intel_OCD_Domain.mrs"
     path: ./ruleset/Intel_Domain.mrs
 
   iqiyi_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iQIYI/iQIYI_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iQIYI/iQIYI_OCD_Domain.mrs"
     path: ./ruleset/iQIYI_Domain.mrs
 
   iqiyi_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iQIYI/iQIYI_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/iQIYI/iQIYI_OCD_IP.mrs"
     path: ./ruleset/iQIYI_IP.mrs
 
   lastfm_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/LastFM/LastFM_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/LastFM/LastFM_OCD_Domain.mrs"
     path: ./ruleset/LastFM_Domain.mrs
 
   meituan_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/MeiTuan/MeiTuan_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/MeiTuan/MeiTuan_OCD_Domain.mrs"
     path: ./ruleset/MeiTuan_Domain.mrs
 
   microsoft_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
     path: ./ruleset/Microsoft_Domain.mrs
 
   microsoftedge_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/MicrosoftEdge/MicrosoftEdge_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/MicrosoftEdge/MicrosoftEdge_OCD_Domain.mrs"
     path: ./ruleset/MicrosoftEdge_Domain.mrs
 
   neteasemusic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs"
     path: ./ruleset/NetEaseMusic_Domain.mrs
 
   neteasemusic_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_IP.mrs"
     path: ./ruleset/NetEaseMusic_IP.mrs
 
   nga_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NGA/NGA_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NGA/NGA_OCD_Domain.mrs"
     path: ./ruleset/NGA_Domain.mrs
 
   onedrive_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OneDrive/OneDrive_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/OneDrive/OneDrive_OCD_Domain.mrs"
     path: ./ruleset/OneDrive_Domain.mrs
 
   pandora_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pandora/Pandora_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pandora/Pandora_OCD_Domain.mrs"
     path: ./ruleset/Pandora_Domain.mrs
 
   paypal_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs"
     path: ./ruleset/PayPal_Domain.mrs
 
   playstation_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PlayStation/PlayStation_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/PlayStation/PlayStation_OCD_Domain.mrs"
     path: ./ruleset/PlayStation_Domain.mrs
 
   qobuz_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Qobuz/Qobuz_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Qobuz/Qobuz_OCD_Domain.mrs"
     path: ./ruleset/Qobuz_Domain.mrs
 
   qobuz_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Qobuz/Qobuz_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Qobuz/Qobuz_OCD_IP.mrs"
     path: ./ruleset/Qobuz_IP.mrs
 
   reddit_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Reddit/Reddit_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Reddit/Reddit_OCD_Domain.mrs"
     path: ./ruleset/Reddit_Domain.mrs
 
   rockstar_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Rockstar/Rockstar_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Rockstar/Rockstar_OCD_Domain.mrs"
     path: ./ruleset/Rockstar_Domain.mrs
 
   scholar_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Scholar/Scholar_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Scholar/Scholar_OCD_Domain.mrs"
     path: ./ruleset/Scholar_Domain.mrs
 
   sina_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Sina/Sina_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Sina/Sina_OCD_Domain.mrs"
     path: ./ruleset/Sina_Domain.mrs
 
   siri_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Siri/Siri_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Siri/Siri_OCD_Domain.mrs"
     path: ./ruleset/Siri_Domain.mrs
 
   smzdm_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SMZDM/SMZDM_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SMZDM/SMZDM_OCD_Domain.mrs"
     path: ./ruleset/SMZDM_Domain.mrs
 
   sony_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Sony/Sony_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Sony/Sony_OCD_Domain.mrs"
     path: ./ruleset/Sony_Domain.mrs
 
   soundcloud_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SoundCloud/SoundCloud_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SoundCloud/SoundCloud_OCD_Domain.mrs"
     path: ./ruleset/SoundCloud_Domain.mrs
 
   speedtest_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Speedtest/Speedtest_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Speedtest/Speedtest_OCD_Domain.mrs"
     path: ./ruleset/Speedtest_Domain.mrs
 
   steam_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
     path: ./ruleset/Steam_Domain.mrs
 
   steamcn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SteamCN/SteamCN_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SteamCN/SteamCN_OCD_Domain.mrs"
     path: ./ruleset/SteamCN_Domain.mrs
 
   supercell_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Supercell/Supercell_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Supercell/Supercell_OCD_Domain.mrs"
     path: ./ruleset/Supercell_Domain.mrs
 
   supercell_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Supercell/Supercell_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Supercell/Supercell_OCD_IP.mrs"
     path: ./ruleset/Supercell_IP.mrs
 
   systemota_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SystemOTA/SystemOTA_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/SystemOTA/SystemOTA_OCD_Domain.mrs"
     path: ./ruleset/SystemOTA_Domain.mrs
 
   teams_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Teams/Teams_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Teams/Teams_OCD_Domain.mrs"
     path: ./ruleset/Teams_Domain.mrs
 
   tencent_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Tencent/Tencent_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Tencent/Tencent_OCD_Domain.mrs"
     path: ./ruleset/Tencent_Domain.mrs
 
   tencent_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Tencent/Tencent_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Tencent/Tencent_OCD_IP.mrs"
     path: ./ruleset/Tencent_IP.mrs
 
   pixiv_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pixiv/Pixiv_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Pixiv/Pixiv_OCD_Domain.mrs"
     path: ./ruleset/Pixiv_Domain.mrs
 
   wikipedia_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Wikipedia/Wikipedia_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Wikipedia/Wikipedia_OCD_Domain.mrs"
     path: ./ruleset/Wikipedia_Domain.mrs
 
   twitch_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Twitch/Twitch_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Twitch/Twitch_OCD_Domain.mrs"
     path: ./ruleset/Twitch_Domain.mrs
 
   twitch_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Twitch/Twitch_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Twitch/Twitch_OCD_IP.mrs"
     path: ./ruleset/Twitch_IP.mrs
 
   hbo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HBO/HBO_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/HBO/HBO_OCD_Domain.mrs"
     path: ./ruleset/HBO_Domain.mrs
 
   line_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Line/Line_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Line/Line_OCD_Domain.mrs"
     path: ./ruleset/Line_Domain.mrs
 
   line_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Line/Line_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Line/Line_OCD_IP.mrs"
     path: ./ruleset/Line_IP.mrs
 
   emby_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
     path: ./ruleset/Emby_Domain.mrs
 
   bilibili_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs"
     path: ./ruleset/BiliBili_Domain.mrs
 
   bilibili_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
     path: ./ruleset/BiliBili_IP.mrs
 
   disney_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Disney/Disney_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Disney/Disney_OCD_Domain.mrs"
     path: ./ruleset/Disney_Domain.mrs
 
   spotify_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
     path: ./ruleset/Spotify_Domain.mrs
 
   spotify_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
     path: ./ruleset/Spotify_IP.mrs
 
   youtube_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
     path: ./ruleset/YouTube_Domain.mrs
 
   youtube_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
     path: ./ruleset/YouTube_IP.mrs
 
   globalmedia_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GlobalMedia/GlobalMedia_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GlobalMedia/GlobalMedia_OCD_Domain.mrs"
     path: ./ruleset/Media_Domain.mrs
 
   globalmedia_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GlobalMedia/GlobalMedia_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/GlobalMedia/GlobalMedia_OCD_IP.mrs"
     path: ./ruleset/Media_IP.mrs
 
   blockhttpdns_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_Domain.mrs"
     path: ./ruleset/Category_httpdns_Domain.mrs
 
   blockhttpdns_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_IP.mrs"
     path: ./ruleset/Category_httpdns_IP.mrs
     
   # ------------------------------------------------------------
   # MetaCubeX 规则
   biliintl_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs"
     path: ./ruleset/biliintl_Domain.mrs
 
   18comic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/18comic.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/18comic.mrs"
     path: ./ruleset/18comic_Domain.mrs
 
   tor_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tor.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tor.mrs"
     path: ./ruleset/Tor_Domain.mrs
 
   tor_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/tor.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/tor.mrs"
     path: ./ruleset/Tor_IP.mrs
 
   fastly_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/fastly.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/fastly.mrs"
     path: ./ruleset/Fastly_Domain.mrs
 
   fastly_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/fastly.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/fastly.mrs"
     path: ./ruleset/Fastly_IP.mrs
 
   wise_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/wise.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/wise.mrs"
     path: ./ruleset/Wise_Domain.mrs
 
   signal_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/signal.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/signal.mrs"
     path: ./ruleset/Signal_Domain.mrs
 
   picacg_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/picacg.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/picacg.mrs"
     path: ./ruleset/Picacg_Domain.mrs
 
   hoyoverse_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/hoyoverse.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/hoyoverse.mrs"
     path: ./ruleset/Hoyoverse_Domain.mrs
 
   mihoyo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/mihoyo.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/mihoyo.mrs"
     path: ./ruleset/Mihoyo_Domain.mrs
 
   private_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
     path: ./ruleset/Private_Domain.mrs
 
   private_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs"
     path: ./ruleset/Private_IP.mrs
 
   kugou_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/kugou.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/kugou.mrs"
     path: ./ruleset/Kugou_Domain.mrs
 
   kuwo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/kuwo.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/kuwo.mrs"
     path: ./ruleset/Kuwo_Domain.mrs
 
   cloudflare_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs"
     path: ./ruleset/Cloudflare_Domain.mrs
 
   cloudflare_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs"
     path: ./ruleset/Cloudflare_IP.mrs
 
   telegram_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
     path: ./ruleset/Telegram_Domain.mrs
 
   telegram_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs"
     path: ./ruleset/Telegram_IP.mrs
 
   facebook_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs"
     path: ./ruleset/Facebook_Domain.mrs
 
   facebook_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs"
     path: ./ruleset/Facebook_IP.mrs
 
   twitter_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
     path: ./ruleset/Twitter_Domain.mrs
 
   twitter_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs"
     path: ./ruleset/Twitter_IP.mrs
 
   netflix_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
     path: ./ruleset/Netflix_Domain.mrs
 
   netflix_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/netflix.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/netflix.mrs"
     path: ./ruleset/Netflix_IP.mrs
 
   google_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
     path: ./ruleset/Google_Domain.mrs
 
   google_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
     path: ./ruleset/Google_IP.mrs
 
   # ------------------------------------------------------------
   # 自定义 规则
   advertising-ads_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
+    url: "https://cdn.jsdmirror.com/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
     path: ./ruleset/Advertising_ads_Domain.mrs
 
   cn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/clash-rules@release/direct.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/direct.mrs"
     path: ./ruleset/CN_Domain.mrs
 
   cn_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/clash-rules@release/cncidr.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/cncidr.mrs"
     path: ./ruleset/CN_IP.mrs
 
   4gtv_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/4GTV/4GTV_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/4GTV/4GTV_Domain.mrs"
     path: ./ruleset/4GTV_Domain.mrs
 
   wechat_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/WeChat/WeChat_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/WeChat/WeChat_Domain.mrs"
     path: ./ruleset/WeChat_Domain.mrs
 
   talkatone_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/qljsyph/ruleset-icon@main/mihomo/domain/talkatone.mrs"
+    url: "https://cdn.jsdmirror.com/gh/qljsyph/ruleset-icon@main/mihomo/domain/talkatone.mrs"
     path: ./ruleset/Talkatone_Domain.mrs
 
   talkatone_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/qljsyph/ruleset-icon@main/mihomo/ipcidr/talkatone-ip.mrs"
+    url: "https://cdn.jsdmirror.com/gh/qljsyph/ruleset-icon@main/mihomo/ipcidr/talkatone-ip.mrs"
     path: ./ruleset/Talkatone_IP.mrs
 
   tiktok_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/TikTok/TikTok_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/TikTok/TikTok_Domain.mrs"
     path: ./ruleset/TikTok_Domain.mrs
 
   tracker_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_Domain.mrs"
     path: ./ruleset/Tracker_Domain.mrs
 
   tracker_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/Tracker/Tracker_IP.mrs"
     path: ./ruleset/Tracker_IP.mrs
 
   stun_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/STUN/STUN_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/STUN/STUN_Domain.mrs"
     path: ./ruleset/STUN_Domain.mrs
 
   ehgallery_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_Domain.mrs"
     path: ./ruleset/EHGallery_Domain.mrs
 
   ehgallery_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/EHGallery/EHGallery_IP.mrs"
     path: ./ruleset/EHGallery_IP.mrs

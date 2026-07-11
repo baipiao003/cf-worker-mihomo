@@ -286,7 +286,7 @@ proxy-groups:
   - { name: 🇸🇷苏里南自动, type: url-test, tolerance: 1, url: https://www.gstatic.com/generate_204, interval: 300, lazy: true, timeout: 5000, max-failed-times: 5, include-all: true, hidden: true, filter: "(?i)(?:🇸🇷|(?:^|[\\s_-])(SR)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*SR(?=$|[\\s_-])|苏里南|Suriname|(?:(?:^|[\\s_-])SUR(?=$|[\\s_-])))" }
   - { name: 🇺🇾乌拉圭自动, type: url-test, tolerance: 1, url: https://www.gstatic.com/generate_204, interval: 300, lazy: true, timeout: 5000, max-failed-times: 5, include-all: true, hidden: true, filter: "(?i)(?:🇺🇾|(?:^|[\\s_-])(UY)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*UY(?=$|[\\s_-])|乌拉圭|Uruguay|(?:(?:^|[\\s_-])URY(?=$|[\\s_-])))" }
   - { name: 🇻🇪委内瑞拉自动, type: url-test, tolerance: 1, url: https://www.gstatic.com/generate_204, interval: 300, lazy: true, timeout: 5000, max-failed-times: 5, include-all: true, hidden: true, filter: "(?i)(?:🇻🇪|(?:^|[\\s_-])(VE)(?:(?=$|[\\s_-])|(?:[-_0-9]+(?=$|[\\s_-])))|(?:^|[\\s_-])[-_0-9]*VE(?=$|[\\s_-])|委内瑞拉|Venezuela|(?:(?:^|[\\s_-])VEN(?=$|[\\s_-])))" }
-  - { name: GLOBAL, type: select, include-all: true, proxies: [ 🚀全球代理, 🟢手动选择, 🪧广告拦截, 🔎HttpDNS, 💧泄漏拦截, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 📲 电报消息, 💬 OpenAi, 📹 油管视频, 🎥 奈飞视频, 📺 巴哈姆特, 📺 哔哩哔哩东南亚, 📺 哔哩哔哩, 🌍 国外媒体, 🌏 国内媒体, 📢 谷歌FCM, Ⓜ️ 微软Bing, Ⓜ️ 微软云盘, Ⓜ️ 微软服务, 🍎 苹果服务, 🎮 游戏平台, 🎶 网易音乐 ], icon: https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
+  - { name: GLOBAL, type: select, include-all: true, proxies: [ 🚀全球代理, 🟢手动选择, 🪧广告拦截, 🔎HttpDNS, 💧泄漏拦截, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 📲 电报消息, 💬 OpenAi, 📹 油管视频, 🎥 奈飞视频, 📺 巴哈姆特, 📺 哔哩哔哩东南亚, 📺 哔哩哔哩, 🌍 国外媒体, 🌏 国内媒体, 📢 谷歌FCM, Ⓜ️ 微软Bing, Ⓜ️ 微软云盘, Ⓜ️ 微软服务, 🍎 苹果服务, 🎮 游戏平台, 🎶 网易音乐 ], icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
 
 rules:
   - SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-RULES
@@ -327,141 +327,141 @@ sub-rules:
 rule-providers:
   ads_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
+    url: "https://cdn.jsdmirror.com/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
     path: ./ruleset/ads_Domain.mrs
   blockhttpdns_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_Domain.mrs"
     path: ./ruleset/Category_httpdns_Domain.mrs
   blockhttpdns_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_IP.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/BlockHttpDNS/BlockHttpDNS_OCD_IP.mrs"
     path: ./ruleset/Category_httpdns_IP.mrs
   stun_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/rules@main/rules/mihomo/STUN/STUN_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/rules@main/rules/mihomo/STUN/STUN_Domain.mrs"
     path: ./ruleset/STUN_Domain.mrs
   cn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/clash-rules@release/direct.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/direct.mrs"
     path: ./ruleset/CN_Domain.mrs
   cn_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/Kwisma/clash-rules@release/cncidr.mrs"
+    url: "https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/cncidr.mrs"
     path: ./ruleset/CN_IP.mrs
   private_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
     path: ./ruleset/Private_Domain.mrs
   private_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs"
     path: ./ruleset/Private_IP.mrs
 
   googlefcm_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs"
     path: ./ruleset/googlefcm_domain.mrs
   google_cn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google@cn.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google@cn.mrs"
   steam_cn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam@cn.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam@cn.mrs"
     path: ./ruleset/steam_cn_domain
   bing_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bing.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bing.mrs"
     path: ./ruleset/bing_domain.mrs
   onedrive_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/onedrive.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/onedrive.mrs"
     path: ./ruleset/onedrive_domain.mrs
   microsoft_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
     path: ./ruleset/microsoft_domain.mrs
   apple_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs"
     path: ./ruleset/apple_domain.mrs
   telegram_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
     path: ./ruleset/telegram_domain.mrs
   telegram_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs"
     path: ./ruleset/telegram_ip.mrs
   openai_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/openai.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/openai.mrs"
     path: ./ruleset/openai_domain.mrs
   neteasemusic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs"
+    url: "https://cdn.jsdmirror.com/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs"
     path: ./ruleset/NetEaseMusic_Domain.mrs
   epic_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/epicgames.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/epicgames.mrs"
     path: ./ruleset/epic_domain.mrs
   origin_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/origin.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/origin.mrs"
     path: ./ruleset/origin_domain.mrs
   sony_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/sony.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/sony.mrs"
     path: ./ruleset/sony_domain.mrs
   steam_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs"
     path: ./ruleset/steam_domain.mrs
   nintendo_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nintendo.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nintendo.mrs"
     path: ./ruleset/nintendo_domain.mrs
   youtube_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs"
     path: ./ruleset/youtube_domain.mrs
   netflix_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
     path: ./ruleset/netflix_domain.mrs
   netflix_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/netflix.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/netflix.mrs"
     path: ./ruleset/netflix_ip.mrs
   bahamut_domain:
     <<: *domain_mrs
-    url:  "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bahamut.mrs"
+    url:  "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bahamut.mrs"
     path: ./ruleset/bahamut_domain.mrs
   biliintl_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs"
     path: ./ruleset/biliintl_domain.mrs
   bilibili_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs"
     path: ./ruleset/bilibili_domain.mrs
   media_cn_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-media@cn.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-media@cn.mrs"
     path: ./ruleset/media_cn_domain.mrs
   media_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-media.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-media.mrs"
     path: ./ruleset/media_domain.mrs
   gfw_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs"
     path: ./ruleset/gfw_domain.mrs
   google_domain:
     <<: *domain_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
     path: ./ruleset/google_domain.mrs
   google_ip:
     <<: *ipcidr_mrs
-    url: "https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
+    url: "https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
     path: ./ruleset/google_IP.mrs
