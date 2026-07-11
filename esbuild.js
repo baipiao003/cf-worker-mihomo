@@ -52,6 +52,7 @@ const replaceOpenApiIsNode = {
             format: 'iife',
             outfile: artifact.dest,
             inject: [objectHasOwnPolyfill],
+            plugins: [replaceOpenApiIsNode],
         });
         console.log(`✔️ 打包完成: ${artifact.src} → ${artifact.dest}`);
     }
