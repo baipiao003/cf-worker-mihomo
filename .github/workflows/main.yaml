@@ -64,6 +64,7 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
+                  git add package.json pnpm-lock.yaml
                   git add src/core/Sub-Store
                   git add src/server.js
                   git commit -m "chore: 同步 Sub-store 至 V$(node -p "require('./src/core/Sub-Store/backend/package.json').version")"
@@ -90,13 +91,17 @@ jobs:
                     echo "release_tag=$SUBSTORE_RELEASE" >> $GITHUB_OUTPUT
                   fi
 
+            - name: Generate release notes
+              run: |
+                  bash .github/release.sh
+
             - name: Release
               uses: softprops/action-gh-release@v3
               with:
                   token: ${{ secrets.GITHUB_TOKEN  }}
                   tag_name: ${{ steps.tag.outputs.release_tag }}
-                  target_commitish: ${{ github.sha }}
-                  generate_release_notes: true
+                  body_path: release.md
+                  generate_release_notes: false
                   files: |
                       ./dist/_worker.js
 

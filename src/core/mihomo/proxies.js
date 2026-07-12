@@ -1,13 +1,8 @@
-import { fetchWithFallback, getNodeConversion } from '../../utils/index.js';
+import { processSubscription } from '../../utils/index.js';
+
 export default async function getProxies_Data(e) {
-    let results = {};
-    if (e.sub) {
-        results = await fetchWithFallback(e.urls, e);
-    } else {
-        const proce = await getNodeConversion();
-        results = await proce(e.urls, e.target, true);
-    }
-    if (results.data.data?.proxies?.length === 0) {
+    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target)
+    if (results.data?.data?.proxies?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }
     processProxies(results.data.data.proxies, e, results.data.names);

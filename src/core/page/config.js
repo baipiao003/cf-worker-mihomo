@@ -24,10 +24,8 @@ export default function configs(tplmh = null, tplsb = null) {
 ✔ 去广告dns: 去广告DNS
 
 ✔ 仅代理: 关闭tun，纯http/socks代理
-
-✔ fallback: 获取原节点格式和流量信息
             `,
-            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'tun', 'fallback', 'log'],
+            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'tun', 'log'],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -36,7 +34,6 @@ export default function configs(tplmh = null, tplsb = null) {
                 ea: '分IPCIDR代理',
                 adgdns: '去广告DNS',
                 tun: '仅代理',
-                fallback: 'fallback',
                 log: {
                     label: '日志等级',
                     levels: ['silent', 'error', 'warning', 'info', 'debug'],
@@ -126,9 +123,8 @@ export default function configs(tplmh = null, tplsb = null) {
 
 ✔ 仅代理: 关闭tun，纯http/socks代理
 
-✔ fallback: 获取原节点格式和流量信息
             `,
-            protocolList: ['udp', 'ech', 'relay', 'udp_frag', 'tls_frag', 'ep', 'ea', 'tailscale', 'adgdns', 'tun', 'fallback', 'log'],
+            protocolList: ['udp', 'ech', 'relay', 'udp_frag', 'tls_frag', 'ep', 'ea', 'tailscale', 'adgdns', 'tun', 'log'],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -140,7 +136,6 @@ export default function configs(tplmh = null, tplsb = null) {
                 tailscale: 'Tailscale',
                 adgdns: '去广告DNS',
                 tun: '仅代理',
-                fallback: 'fallback',
                 log: {
                     label: '日志等级',
                     levels: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'panic'],
@@ -174,16 +169,25 @@ export default function configs(tplmh = null, tplsb = null) {
     };
 
     if (tplmh) {
-        data.mihomo.templates.通用.unshift({
-            label: `自定义(${tplmh.split('/').pop().split('?')[0]})`,
+        data.mihomo.templates = {
+            ['自定义']: [],
+            ...data.mihomo.templates
+        };
+        data.mihomo.templates.自定义.push({
+            label: tplmh.split('/').pop().split('?')[0],
             value: tplmh,
         });
     }
     if (tplsb) {
-        data.singbox.templates.通用.unshift({
-            label: `自定义(${tplmh.split('/').pop().split('?')[0]})`,
+        data.singbox.templates = {
+            ['自定义']: [],
+            ...data.singbox.templates
+        };
+        data.singbox.templates.自定义.push({
+            label: tplmh.split('/').pop().split('?')[0],
             value: tplsb,
         });
     }
+    console.log(data.mihomo.templates.自定义)
     return JSON.stringify(data);
 }

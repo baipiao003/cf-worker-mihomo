@@ -70,10 +70,9 @@ async function fetchResponse(url, userAgent) {
  * 当启用 fallback 且原始请求结果不符合目标格式时，
  * 使用构建后的 API URL 重新请求。
  *
- * @param {string} url - 订阅源 URL
+ * @param {string[]} urls - 订阅源 URL 列表
  * @param {Object} [options={}] - 请求配置
  * @param {string} [options.userAgent] - 请求 User-Agent
- * @param {boolean} [options.fallback=false] - 是否启用备用 API 请求
  * @param {string} [options.sub] - API 订阅参数
  * @param {string} [options.target] - 目标格式，如 mihomo、singbox
  * @returns {Promise<{
@@ -82,23 +81,9 @@ async function fetchResponse(url, userAgent) {
  *   data: Object|string|null
  * }>} 请求响应结果
  */
-async function fetchWithFallback(url, options = {}) {
-    const { sub = '', target = '', userAgent, fallback = false } = options;
-    if (fallback) {
-        let res = await fetchResponse(url, userAgent);
-        if (target === 'mihomo') {
-            if (res?.data?.proxies && Array.isArray(res.data.proxies) && res.data.proxies.length > 0) {
-                return res;
-            }
-        }
-        if (target === 'singbox') {
-            if (res?.data?.outbounds && Array.isArray(res.data.outbounds)) {
-                return res;
-            }
-        }
-    }
-    // 如果第一次请求失败，尝试使用构建的API URL
-    const apiUrl = buildApiUrl(url, sub, target);
+async function fetchWithFallback(urls, options = {}) {
+    const { sub = '', target = '', userAgent} = options;
+    const apiUrl = buildApiUrl(urls, sub, target);
     return await fetchResponse(apiUrl, userAgent);
 }
 export { fetchResponse, fetchWithFallback };

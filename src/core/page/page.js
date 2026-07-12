@@ -13,7 +13,7 @@ export async function getFakePage(e) {
                     }
                 }
             }
-        } catch (_) {}
+        } catch (_) { }
     }
     const configJson = JSON.stringify(configData);
     return `
@@ -548,7 +548,7 @@ export async function getFakePage(e) {
         </div>
     </div>
 
-    <a href="https://github.com/Kwisma/cf-worker-mihomo" target="_blank" class="github-corner" aria-label="GitHub">
+    <a href="https://github.com/Kwisma/cf-SubCloud" target="_blank" class="github-corner" aria-label="GitHub">
         <svg width="48" height="48" viewBox="0 0 250 250" style="fill:#6366f1; color:white;">
             <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
             <path

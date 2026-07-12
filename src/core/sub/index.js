@@ -1,6 +1,6 @@
 import { ProxyUtils } from '../Sub-Store/backend/src/core/proxy-utils/index.js';
 import PROXY_PRODUCERS from '../Sub-Store/backend/src/core/proxy-utils/producers/index.js';
-import { fetchResponse } from '../../utils/index.js';
+import { fetchResponse, isUrl } from '../../utils/index.js';
 import YAML from 'yaml';
 
 /**
@@ -124,21 +124,6 @@ async function produceArtifact(urls, platform) {
         data = YAML.parse(data);
     }
     return { names, data, headers };
-}
-
-/**
- * 判断字符串是否为有效的 HTTP/HTTPS URL
- *
- * @param {string} str - 待检测的字符串
- * @returns {boolean} 是否为有效 URL
- */
-function isUrl(str) {
-    try {
-        const url = new URL(str);
-        return ['http:', 'https:'].includes(url.protocol);
-    } catch {
-        return false;
-    }
 }
 
 /**

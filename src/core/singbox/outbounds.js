@@ -1,4 +1,4 @@
-import { fetchWithFallback, getNodeConversion } from '../../utils/index.js';
+import { processSubscription } from '../../utils/index.js';
 
 /**
  * 获取并处理 outbound 节点数据
@@ -22,14 +22,8 @@ import { fetchWithFallback, getNodeConversion } from '../../utils/index.js';
  * @throws {Error} 当未找到有效节点时抛出异常
  */
 export default async function getOutbounds_Data(e) {
-    let results = {};
-    if (e.sub) {
-        results = await fetchWithFallback(e.urls, e);
-    } else {
-        const proce = await getNodeConversion();
-        results = await proce(e.urls, e.target, true);
-    }
-    if (results.data.data?.outbounds?.length === 0) {
+    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target)
+    if (results.data?.data?.outbounds?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }
     processOutbounds(results.data.data.outbounds, e, results.data.names);
