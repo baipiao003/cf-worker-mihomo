@@ -8,24 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@maxmind/geoip2-node':
-        specifier: ^5.0.0
-        version: 5.0.0
       core-js:
         specifier: ^3.49.0
         version: 3.49.0
-      cron:
-        specifier: ^3.5.0
-        version: 3.5.0
-      dotenv:
-        specifier: ^16.6.1
-        version: 16.6.1
-      fetch-socks:
-        specifier: ^1.3.3
-        version: 1.3.3
-      undici:
-        specifier: ^7.28.0
-        version: 7.28.0
       yaml:
         specifier: ^2.8.0
         version: 2.8.3

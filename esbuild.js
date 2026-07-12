@@ -41,7 +41,7 @@ const replaceOpenApiIsNode = {
         });
         console.log(`✔️ 打包完成: ${artifact.src} → ${artifact.dest}`);
     }
-    const verfacts = [{ src: 'src/vercel.js', dest: 'dist/vercel.js' }];
+    const verfacts = [{ src: 'src/vercel.js', dest: 'src/server.js' }];
     for (const artifact of verfacts) {
         await build({
             entryPoints: [artifact.src],
@@ -49,30 +49,10 @@ const replaceOpenApiIsNode = {
             minify: true,
             sourcemap: false,
             platform: 'node',
-            format: 'iife',
+            format: 'cjs',
             outfile: artifact.dest,
             inject: [objectHasOwnPolyfill],
             plugins: [replaceOpenApiIsNode],
-        });
-        console.log(`✔️ 打包完成: ${artifact.src} → ${artifact.dest}`);
-    }
-
-    code = await fs.readFile(verfacts[0].dest, 'utf8');
-    code = code.replace(/eval\(('|")(require\(('|").*?('|")\))('|")\)/g, '$2');
-    code = code.replace(/eval\((`[^`]*`|"[^"]*"S|'[^']*')\)/g, '$1');
-
-    await fs.writeFile(verfacts[0].dest, code);
-    const verserver = [{ src: verfacts[0].dest, dest: 'src/server.js' }];
-    for (const artifact of verserver) {
-        await build({
-            entryPoints: [artifact.src],
-            bundle: true,
-            minify: true,
-            sourcemap: false,
-            platform: 'node',
-            format: 'iife',
-            outfile: artifact.dest,
-            inject: [objectHasOwnPolyfill],
         });
         console.log(`✔️ 打包完成: ${artifact.src} → ${artifact.dest}`);
     }

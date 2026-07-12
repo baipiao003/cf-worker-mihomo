@@ -48,7 +48,9 @@ export function buildConfig(request, env, isNode = false) {
     data.beianurl = getEnv('BEIANURL', beiandizi);
     data.checkUA = getEnv('CHECKUA', true);
     data.tplmh = getEnv('TPLMH', null);
+    data.tplmh = data.tplmh ? data.tplmh.split('\n').map(line => line.trim()).filter(Boolean) : null;
     data.tplsb = getEnv('TPLSB', null);
+    data.tplsb = data.tplsb ? data.tplsb.split('\n').map(line => line.trim()).filter(Boolean) : null;
 
     const templateBaseUrl = getEnv('TEMPLATE_URL', '');
     if (templateBaseUrl) data.templateBaseUrl = templateBaseUrl;

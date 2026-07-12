@@ -170,24 +170,21 @@ export default function configs(tplmh = null, tplsb = null) {
 
     if (tplmh) {
         data.mihomo.templates = {
-            ['自定义']: [],
+            ['自定义']: tplmh.map(i => ({
+                label: i.split('/').pop().split('?')[0],
+                value: i,
+            })),
             ...data.mihomo.templates,
         };
-        data.mihomo.templates.自定义.push({
-            label: tplmh.split('/').pop().split('?')[0],
-            value: tplmh,
-        });
     }
     if (tplsb) {
         data.singbox.templates = {
-            ['自定义']: [],
+            ['自定义']: tplsb.map(i => ({
+                label: i.split('/').pop().split('?')[0],
+                value: i,
+            })),
             ...data.singbox.templates,
         };
-        data.singbox.templates.自定义.push({
-            label: tplmh.split('/').pop().split('?')[0],
-            value: tplsb,
-        });
     }
-    console.log(data.mihomo.templates.自定义);
     return JSON.stringify(data);
 }
