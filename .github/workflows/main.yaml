@@ -21,6 +21,8 @@ jobs:
               with:
                   ref: 'main'
                   submodules: recursive
+                  fetch-depth: '0'
+                  fetch-tags: 'true'
 
             - name: Install pnpm
               uses: pnpm/action-setup@v6
