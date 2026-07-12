@@ -4,4 +4,4 @@ export { buildApiUrl, splitUrlsAndProxies } from './ApiUrl.js';
 export { fetchpackExtract } from './pack.js';
 export { fetchipExtract } from './cidr.js';
 export { getNodeConversion } from './substore.js';
-export { processSubscription } from './processSubscription.js'
+export { processSubscription } from './processSubscription.js';

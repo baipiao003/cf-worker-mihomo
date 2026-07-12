@@ -41,9 +41,9 @@ export default async function processNodeConversion(urlArray, platform, api) {
         const { names, data, headers } = await produceArtifact(urlArray, platform);
         api
             ? (results.data = {
-                names,
-                data,
-            })
+                  names,
+                  data,
+              })
             : (results.data = data);
         if (headers.length) {
             results.headers = headers[Math.floor(Math.random() * headers.length)];
@@ -67,7 +67,9 @@ export default async function processNodeConversion(urlArray, platform, api) {
 async function produceArtifact(urls, platform) {
     let data = [],
         headers = [];
-    const responseProxies = [], validUrls = [], invalidUrls = [];
+    const responseProxies = [],
+        validUrls = [],
+        invalidUrls = [];
     const url = (Array.isArray(urls) ? urls : [urls]).map((i) => i.split(',')).flat();
     url.forEach((item) => {
         if (isUrl(item)) {

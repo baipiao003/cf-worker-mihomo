@@ -22,7 +22,7 @@ import { processSubscription } from '../../utils/index.js';
  * @throws {Error} 当未找到有效节点时抛出异常
  */
 export default async function getOutbounds_Data(e) {
-    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target)
+    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target);
     if (results.data?.data?.outbounds?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }

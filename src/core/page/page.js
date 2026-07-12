@@ -13,7 +13,7 @@ export async function getFakePage(e) {
                     }
                 }
             }
-        } catch (_) { }
+        } catch (_) {}
     }
     const configJson = JSON.stringify(configData);
     return `

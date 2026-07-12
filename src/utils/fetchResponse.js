@@ -82,7 +82,7 @@ async function fetchResponse(url, userAgent) {
  * }>} 请求响应结果
  */
 async function fetchWithFallback(urls, options = {}) {
-    const { sub = '', target = '', userAgent} = options;
+    const { sub = '', target = '', userAgent } = options;
     const apiUrl = buildApiUrl(urls, sub, target);
     return await fetchResponse(apiUrl, userAgent);
 }

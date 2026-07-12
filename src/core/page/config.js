@@ -171,7 +171,7 @@ export default function configs(tplmh = null, tplsb = null) {
     if (tplmh) {
         data.mihomo.templates = {
             ['自定义']: [],
-            ...data.mihomo.templates
+            ...data.mihomo.templates,
         };
         data.mihomo.templates.自定义.push({
             label: tplmh.split('/').pop().split('?')[0],
@@ -181,13 +181,13 @@ export default function configs(tplmh = null, tplsb = null) {
     if (tplsb) {
         data.singbox.templates = {
             ['自定义']: [],
-            ...data.singbox.templates
+            ...data.singbox.templates,
         };
         data.singbox.templates.自定义.push({
             label: tplmh.split('/').pop().split('?')[0],
             value: tplsb,
         });
     }
-    console.log(data.mihomo.templates.自定义)
+    console.log(data.mihomo.templates.自定义);
     return JSON.stringify(data);
 }
