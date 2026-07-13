@@ -1,4 +1,4 @@
-const Config114 = {
+const Config = {
     log: {
         disabled: false,
         level: 'info',
@@ -39,6 +39,10 @@ const Config114 = {
         ],
         rules: [
             {
+                ip_accept_any: true,
+                server: 'PROXY-DNS',
+            },
+            {
                 clash_mode: 'direct',
                 server: 'DIRECT-DNS',
             },
@@ -46,36 +50,16 @@ const Config114 = {
                 clash_mode: 'global',
                 server: 'PROXY-DNS',
             },
-            // evaluate 解析并储存ip > 如果等于 cnip 或 cn域名 或 私有域名 用 DIRECT-DNS 再次解析并覆盖结果 > 成功则拦截,失败则继续往下匹配 fallback
             {
-                action: 'evaluate',
-                server: 'PROXY-DNS',
-            },
-            {
-                type: 'logical',
-                mode: 'or',
-                rules: [
-                    {
-                        rule_set: ['cn_ip'],
-                        match_response: true,
-                    },
-                    {
-                        rule_set: ['cn_domain', 'private_domain'],
-                    },
-                ],
+                rule_set: ['cn_domain', 'private_domain'],
                 server: 'DIRECT-DNS',
             },
-            {
-                match_response: true,
-                response_rcode: 'NOERROR',
-                ip_accept_any: true,
-                action: 'respond',
-            },
         ],
+        disable_cache: true,
+        disable_expire: true,
+        independent_cache: true,
         final: 'PROXY-DNS',
         strategy: 'prefer_ipv4',
-        optimistic: true,
-        cache_capacity: 1000,
     },
     inbounds: [
         {
@@ -161,13 +145,6 @@ const Config114 = {
         ],
         rule_set: [
             {
-                tag: 'cn_ip',
-                type: 'remote',
-                url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs',
-                format: 'binary',
-                download_detour: '🎯 全球直连',
-            },
-            {
                 tag: 'private_domain',
                 type: 'remote',
                 url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs',
@@ -200,9 +177,10 @@ const Config114 = {
             path: 'cache.db',
             cache_id: '',
             store_fakeip: true,
-            store_dns: true,
+            store_rdrc: true,
             rdrc_timeout: '1d',
         },
     },
 };
-export default Object.freeze(Config114);
+const ConfigLatest = Object.freeze(Config)
+export { ConfigLatest }

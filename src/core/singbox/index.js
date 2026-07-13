@@ -1,7 +1,6 @@
 import { fetchpackExtract, fetchipExtract, fetchResponse } from '../../utils/index.js';
 import getOutbounds_Data from './outbounds.js';
-import { Config111, Config112, Config112Alpha, Config113, Config114Alpha } from '../../config/singbox.js';
-
+import { Verbose } from './Verbose.js';
 import { loadAndSetOutbound } from './grouping.js';
 export async function getsingbox_config(e) {
     const config = structuredClone(Verbose(e));
@@ -42,110 +41,6 @@ export async function getsingbox_config(e) {
     };
 }
 
-export function Verbose(e) {
-    const ua = e.userAgent;
-
-    if (e.checkUA && !/singbox|sing-box|sfa|sfm/i.test(ua)) {
-        throw new Error('不支持的客户端');
-    }
-
-    const getNum = (re) => {
-        const m = ua.match(re);
-        return m ? Number(m[1]) : null;
-    };
-    // 通用：注入 ECH DNS（112+ 用）
-    const injectECH = (data) => {
-        const next = structuredClone(data);
-        next.dns.servers.push({
-            type: 'https',
-            tag: 'ECH-DNS',
-            detour: '🎯 全球直连',
-            server: 'google.88366388.xyz',
-            path: '/marisa',
-            domain_resolver: 'local',
-        });
-
-        next.dns.rules = next.dns.rules.map((p) => {
-            const rule = { ...p };
-
-            if (rule.action === 'evaluate') {
-                rule.server = 'ECH-DNS';
-            }
-
-            if (rule.ip_accept_any && rule.server) {
-                rule.server = 'ECH-DNS';
-            }
-
-            return rule;
-        });
-
-        return next;
-    };
-
-    // 通用：旧版（111）ECH 注入
-    const injectECH111 = (data) => {
-        const next = structuredClone(data);
-        next.dns.servers.push({
-            tag: 'ECH-DNS',
-            address_resolver: 'local',
-            address: 'https://google.88366388.xyz/marisa',
-            detour: '🎯 全球直连',
-        });
-
-        next.dns.rules = next.dns.rules.map((p) => (p.outbound && p.server ? { ...p, server: 'ECH-DNS' } : p));
-
-        return next;
-    };
-    // sing-box 1.12.0-alpha.0 ~ 1.12.0-alpha.23
-    const v112alpha = getNum(/1\.12\.0-alpha\.(\d{1,2})\b/);
-    if (v112alpha !== null && v112alpha <= 23) {
-        return e.ech ? injectECH(Config112Alpha) : Config112Alpha;
-    }
-    // sing-box 1.11.x
-    // sing-box 1.12.0-beta.0 ~ 1.12.0-beta.9
-    const v112beta = getNum(/1\.12\.0-beta\.(\d{1,2})\b/);
-    if (/1\.11\.\d{1,2}/.test(ua) || (v112beta !== null && v112beta <= 9)) {
-        e.tailscale = false;
-        e.tls_fragment = false;
-        return e.ech ? injectECH111(Config111) : Config111;
-    }
-    // sing-box 1.12.x
-    if (/1\.12\.\d{1,2}/.test(ua)) {
-        return e.ech ? injectECH(Config112) : Config112;
-    }
-    // sing-box 1.13.x
-    // sing-box 1.14.0-alpha.0 ~ 1.14.0-alpha.9
-    const v114alpha = getNum(/1\.14\.0-alpha\.(\d{1,2})\b/);
-    if (/1\.13\.\d{1,2}/.test(ua) || (v114alpha !== null && v114alpha <= 9)) {
-        return e.ech ? injectECH(Config113) : Config113;
-    }
-    // 1.14.0-alpha.10 ~ 1.14.0-alpha.29
-    if (v114alpha !== null && v114alpha < 30) {
-        return e.ech ? injectECH(Config114Alpha) : Config114Alpha;
-    }
-    // 1.14.0-alpha.30+
-    if (v114alpha !== null && v114alpha >= 30) {
-        const config = structuredClone(Config114Alpha);
-        config.services.push({
-            type: 'api',
-            listen: '::',
-            listen_port: 9091,
-            secret: '',
-            access_control_allow_origin: ['*'],
-            access_control_allow_private_network: true,
-            dashboard: {
-                enabled: true,
-                path: 'dashboard',
-                download_url: 'https://ghfast.top/github.com/SagerNet/sing-box-dashboard/archive/refs/heads/gh-pages.zip',
-                http_client: 'DIRECT-clients',
-                update_interval: '1d',
-            },
-        });
-
-        return e.ech ? injectECH(config) : config;
-    }
-    throw new Error(`不支持的 Singbox 版本：${ua}`);
-}
 /**
  * 处理配置文件中的 outbounds 数组：
  * 1. 先排除特定类型（如 direct、dns 等）；
@@ -222,11 +117,11 @@ export function applyTemplate(top, rule, e) {
             if (e.udp) {
                 p.udp_disable_domain_unmapping = true;
                 p.udp_connect = true;
-                p.udp_timeout = '5m';
+                p.udp_timeout = '500ms';
             }
             if (e.tls_fragment) {
                 p.tls_fragment = true;
-                p.tls_fragment_fallback_delay = '5m';
+                p.tls_fragment_fallback_delay = '500ms';
             }
             // 如果既没有 udp 也没有 tls_fragment 参数，则过滤掉该规则
             return e.udp || e.tls_fragment ? p : [];
@@ -239,36 +134,36 @@ export function applyTemplate(top, rule, e) {
             if (p.tag === 'DIRECT-DNS') {
                 return isV112
                     ? {
-                          type: 'https',
-                          tag: 'DIRECT-DNS',
-                          detour: '🎯 全球直连',
-                          server: 'doh.18bit.cn',
-                          domain_resolver: 'local',
-                      }
+                        type: 'https',
+                        tag: 'DIRECT-DNS',
+                        detour: '🎯 全球直连',
+                        server: 'doh.18bit.cn',
+                        domain_resolver: 'local',
+                    }
                     : {
-                          tag: 'DIRECT-DNS',
-                          address_resolver: 'local',
-                          address: 'https://doh.18bit.cn/dns-query',
-                          detour: '🎯 全球直连',
-                      };
+                        tag: 'DIRECT-DNS',
+                        address_resolver: 'local',
+                        address: 'https://doh.18bit.cn/dns-query',
+                        detour: '🎯 全球直连',
+                    };
             }
             if (p.tag === 'PROXY-DNS') {
                 return isV112
                     ? {
-                          type: 'https',
-                          tag: 'PROXY-DNS',
-                          detour: '🚀 节点选择',
-                          server_port: 443,
-                          server: 'dns.adguard-dns.com',
-                          path: '/dns-query',
-                          domain_resolver: 'local',
-                      }
+                        type: 'https',
+                        tag: 'PROXY-DNS',
+                        detour: '🚀 节点选择',
+                        server_port: 443,
+                        server: 'dns.adguard-dns.com',
+                        path: '/dns-query',
+                        domain_resolver: 'local',
+                    }
                     : {
-                          tag: 'DIRECT-DNS',
-                          address_resolver: 'local',
-                          address: 'https://dns.adguard-dns.com/dns-query',
-                          detour: '🎯 全球直连',
-                      };
+                        tag: 'DIRECT-DNS',
+                        address_resolver: 'local',
+                        address: 'https://dns.adguard-dns.com/dns-query',
+                        detour: '🎯 全球直连',
+                    };
             }
             return p;
         });
