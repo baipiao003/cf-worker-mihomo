@@ -1,6 +1,6 @@
 {
 	"name": "cf-SubCloud",
-	"version": "1.3.39",
+	"version": "1.3.40",
 	"description": "Cloudflare Worker for Mihomo subscription service",
 	"private": true,
 	"license": "MIT",
