@@ -88,13 +88,14 @@ async function produceArtifact(urls, platform) {
             responseProxies.push(currentProxies);
         }
     }
-    const responses = await Promise.all(validUrls.map((url) => fetchResponse(url, 'v2ray')));
-    for (const res of responses) {
-        if (!res?.data) continue;
-        const raw = res.data;
+    const responses = await Promise.all(validUrls.map((url) => Promise.all([fetchResponse(url, 'v2ray'), fetchResponse(url, 'clashmeta')])));
+
+    for (const [dataRes, headerRes] of responses) {
+        if (!dataRes?.data) continue;
+        const raw = dataRes.data;
         let currentProxies = (Array.isArray(raw) ? raw : [raw]).map((i) => ProxyUtils.parse(i)).flat();
         responseProxies.push(currentProxies);
-        headers.push({ status: res.status, headers: res.headers });
+        headers.push(headerRes.headers);
     }
     data = responseProxies.flat();
     const nameCount = {};

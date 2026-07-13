@@ -58,4 +58,4 @@ function Verbose(e) {
     return e.ech ? injectECH(ConfigLatest) : ConfigLatest;
 }
 
-export { Verbose }
+export { Verbose };

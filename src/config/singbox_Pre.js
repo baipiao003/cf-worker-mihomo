@@ -198,7 +198,7 @@ const Config = {
                 http_client: 'DIRECT-clients',
                 update_interval: '1d',
             },
-        }
+        },
     ],
     experimental: {
         clash_api: {
@@ -222,4 +222,4 @@ const Config = {
     },
 };
 const ConfigPre = Object.freeze(Config);
-export { ConfigPre }
+export { ConfigPre };

@@ -182,5 +182,5 @@ const Config = {
         },
     },
 };
-const ConfigLatest = Object.freeze(Config)
-export { ConfigLatest }
+const ConfigLatest = Object.freeze(Config);
+export { ConfigLatest };

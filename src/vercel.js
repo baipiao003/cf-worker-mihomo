@@ -9,8 +9,7 @@ async function handler(req, res) {
 
     try {
         const result = await handleRequest(e);
-
-        for (const [key, value] of Object.entries(result.headers)) {
+        for (const [key, value] of result.headers) {
             res.setHeader(key, value);
         }
 

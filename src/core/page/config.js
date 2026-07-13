@@ -170,7 +170,7 @@ export default function configs(tplmh = null, tplsb = null) {
 
     if (tplmh) {
         data.mihomo.templates = {
-            ['自定义']: tplmh.map(i => ({
+            ['自定义']: tplmh.map((i) => ({
                 label: i.split('/').pop().split('?')[0],
                 value: i,
             })),
@@ -179,7 +179,7 @@ export default function configs(tplmh = null, tplsb = null) {
     }
     if (tplsb) {
         data.singbox.templates = {
-            ['自定义']: tplsb.map(i => ({
+            ['自定义']: tplsb.map((i) => ({
                 label: i.split('/').pop().split('?')[0],
                 value: i,
             })),
