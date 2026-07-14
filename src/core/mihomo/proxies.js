@@ -1,7 +1,7 @@
 import { processSubscription } from '../../utils/index.js';
 
 export default async function getProxies_Data(e) {
-    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target);
+    const results = await processSubscription(e.urls, e.userAgent, e.sub, e.target, e.heruser);
     if (results.data?.data?.proxies?.length === 0) {
         throw new Error('未从任何 URL 找到有效的节点');
     }

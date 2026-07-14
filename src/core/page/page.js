@@ -616,8 +616,8 @@ export async function getFakePage(e) {
                     protocolParams[protoName] = select.value;
                 }
             });
-            if (links.length === 0 && !templateVal) {
-                alert('请至少填写一个订阅链接或选择一个模板');
+            if (links.length === 0) {
+                alert('请至少填写一个订阅链接');
                 return;
             }
 

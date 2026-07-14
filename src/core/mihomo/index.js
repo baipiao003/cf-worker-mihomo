@@ -3,6 +3,10 @@ import getProxies_Data from './proxies.js';
 import clashConfig from '../../config/mihomo.js';
 import { getProxies_Grouping } from './grouping.js';
 export async function getmihomo_config(e) {
+    if (e.nodelist) {
+        const data = getProxies_Data(e);
+        return data.data;
+    }
     const config = structuredClone(clashConfig);
     // 客户端验证
     if (e.checkUA && !/meta|clash.meta|clash|clashverge|mihomo/i.test(e.userAgent)) {

@@ -12,13 +12,14 @@ import { getNodeConversion } from './substore';
  * @param {boolean} fallback - 是否启用备用请求方式
  * @param {boolean} sub - 是否为普通订阅模式
  * @param {string} target - 转换目标格式（如 clash、singbox 等）
+ * @param {boolean} heruser - 获取流量信息
  * @returns {Promise<any>} 处理后的订阅结果
  */
-export async function processSubscription(urls, userAgent, sub, target) {
+export async function processSubscription(urls, userAgent, sub, target, heruser = false) {
     if (sub) {
-        return await fetchWithFallback(urls, { userAgent, sub, target });
+        return await fetchWithFallback(urls, { userAgent, sub, target, heruser });
     }
 
     const proce = await getNodeConversion();
-    return await proce(urls, target, true);
+    return await proce(urls, target, true, heruser);
 }

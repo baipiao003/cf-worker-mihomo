@@ -82,8 +82,8 @@ async function fetchResponse(url, userAgent) {
  * }>} 请求响应结果
  */
 async function fetchWithFallback(urls, options = {}) {
-    const { sub = '', target = '', userAgent } = options;
-    const apiUrl = buildApiUrl(urls, sub, target);
+    const { sub = '', target = '', userAgent, heruser } = options;
+    const apiUrl = buildApiUrl(urls, sub, target, heruser);
     return await fetchResponse(apiUrl, userAgent);
 }
 export { fetchResponse, fetchWithFallback };

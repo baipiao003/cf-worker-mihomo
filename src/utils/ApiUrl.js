@@ -4,9 +4,10 @@
  * @param {string} rawUrl - 原始订阅 URL
  * @param {string} BASE_API - API 基础地址
  * @param {string} ua - 目标客户端类型
+ * @param {boolean} heruser 获取流量信息
  * @returns {string} API 请求地址
  */
-function buildApiUrl(rawUrl, BASE_API, ua) {
+function buildApiUrl(rawUrl, BASE_API, ua, heruser = false) {
     if (!BASE_API) {
         throw new Error('BASE_API is required');
     }
@@ -14,6 +15,7 @@ function buildApiUrl(rawUrl, BASE_API, ua) {
         target: ua,
         url: rawUrl,
         api: true,
+        heruser: heruser,
     });
     return `${BASE_API.replace(/\/$/, '')}/sub?${params}`;
 }

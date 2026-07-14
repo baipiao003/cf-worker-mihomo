@@ -3,6 +3,10 @@ import getOutbounds_Data from './outbounds.js';
 import { Verbose } from './Verbose.js';
 import { loadAndSetOutbound } from './grouping.js';
 export async function getsingbox_config(e) {
+    if (e.nodelist) {
+        const data = getOutbounds_Data(e);
+        return data.data;
+    }
     const config = structuredClone(Verbose(e));
     const alldata = await Promise.all([
         getOutbounds_Data(e),

@@ -25,7 +25,7 @@ export default function configs(tplmh = null, tplsb = null) {
 
 ✔ 仅代理: 关闭tun，纯http/socks代理
             `,
-            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'tun', 'log'],
+            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'heruser', 'tun', 'nodelist', 'log'],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -33,7 +33,9 @@ export default function configs(tplmh = null, tplsb = null) {
                 ep: '分应用代理',
                 ea: '分IPCIDR代理',
                 adgdns: '去广告DNS',
+                heruser: '获取流量信息',
                 tun: '仅代理',
+                nodelist: '仅节点',
                 log: {
                     label: '日志等级',
                     levels: ['silent', 'error', 'warning', 'info', 'debug'],
@@ -124,7 +126,7 @@ export default function configs(tplmh = null, tplsb = null) {
 ✔ 仅代理: 关闭tun，纯http/socks代理
 
             `,
-            protocolList: ['udp', 'ech', 'relay', 'udp_frag', 'tls_frag', 'ep', 'ea', 'tailscale', 'adgdns', 'tun', 'log'],
+            protocolList: ['udp', 'ech', 'relay', 'udp_frag', 'tls_frag', 'ep', 'ea', 'tailscale', 'adgdns', 'heruser', 'tun', 'nodelist', 'log'],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -135,7 +137,9 @@ export default function configs(tplmh = null, tplsb = null) {
                 ea: '分IPCIDR',
                 tailscale: 'Tailscale',
                 adgdns: '去广告DNS',
+                heruser: '获取流量信息',
                 tun: '仅代理',
+                nodelist: '仅节点',
                 log: {
                     label: '日志等级',
                     levels: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'panic'],
