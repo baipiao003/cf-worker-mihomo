@@ -157,10 +157,6 @@ const clashConfig = {
         'auto-route': true, // 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡。
         // 'auto-redirect': true, // 自动配置 iptables/nftables 以重定向 TCP 连接, 需要auto-route已启用, 需要root权限
         'auto-detect-interface': true, // 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
-        'dns-hijack': [
-            'any:53', // 劫持所有 1053 端口的 DNS 请求
-            'tcp://any:53', // 劫持 TCP 53 端口的 DNS 请求
-        ],
         'inet4-address': ['198.18.0.1/30'],
         'inet6-address': ['fdfe:dcba:9876::1/126'],
         device: 'mihomo', // 指定 TUN 设备名称，默认为 utun
@@ -206,6 +202,13 @@ const clashConfig = {
         ],
         'direct-nameserver': ['https://dns.alidns.com/dns-query#DIRECT'],
     },
+    proxies: [
+        {
+            name: 'dns-out',
+            type: 'dns',
+        },
+    ],
+    rules: ['DST-PORT,53,dns-out'],
     'rule-providers': {
         cn_domain: {
             type: 'http',
