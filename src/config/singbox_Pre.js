@@ -61,12 +61,10 @@ const Config = {
             {
                 match_response: true,
                 rule_set: ['cn_ip'],
-                action: 'respond',
+                server: 'DIRECT-DNS',
             },
             {
                 match_response: true,
-                ip_accept_any: true,
-                invert: true,
                 action: 'respond',
             },
         ],
