@@ -36,7 +36,6 @@ export default async function getOutbounds_Data(e) {
 
 // 处理 outbounds 数组
 function processOutbounds(outbounds, options, names) {
-    const isV113 = /1\.(1[3-9]|[3-9]\d)/i.test(options.userAgent);
     outbounds.forEach((outbound) => {
         if (options.relay && names[0].includes(outbound.tag)) {
             options.proxyname = names[0];
@@ -53,7 +52,7 @@ function processOutbounds(outbounds, options, names) {
                 ...outbound.tls,
                 ech: {
                     enabled: true,
-                    ...(isV113 && { query_server_name: 'cloudflare-ech.com' }),
+                    query_server_name: 'cloudflare-ech.com',
                 },
             };
         }

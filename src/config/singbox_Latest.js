@@ -40,7 +40,7 @@ const Config = {
         rules: [
             {
                 ip_accept_any: true,
-                server: 'PROXY-DNS',
+                server: 'hosts',
             },
             {
                 clash_mode: 'direct',

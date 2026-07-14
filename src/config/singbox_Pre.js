@@ -39,6 +39,10 @@ const Config = {
         ],
         rules: [
             {
+                preferred_by: ['hosts'],
+                server: 'hosts',
+            },
+            {
                 clash_mode: 'direct',
                 server: 'DIRECT-DNS',
             },
@@ -46,29 +50,23 @@ const Config = {
                 clash_mode: 'global',
                 server: 'PROXY-DNS',
             },
-            // evaluate 解析并储存ip > 如果等于 cnip 或 cn域名 或 私有域名 用 DIRECT-DNS 再次解析并覆盖结果 > 成功则拦截,失败则继续往下匹配 fallback
+            {
+                rule_set: ['cn_domain', 'private_domain'],
+                server: 'DIRECT-DNS',
+            },
             {
                 action: 'evaluate',
                 server: 'PROXY-DNS',
             },
             {
-                type: 'logical',
-                mode: 'or',
-                rules: [
-                    {
-                        rule_set: ['cn_ip'],
-                        match_response: true,
-                    },
-                    {
-                        rule_set: ['cn_domain', 'private_domain'],
-                    },
-                ],
-                server: 'DIRECT-DNS',
+                match_response: true,
+                rule_set: ['cn_ip'],
+                action: 'respond',
             },
             {
                 match_response: true,
-                response_rcode: 'NOERROR',
                 ip_accept_any: true,
+                invert: true,
                 action: 'respond',
             },
         ],

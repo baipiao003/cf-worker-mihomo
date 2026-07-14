@@ -215,6 +215,12 @@ export function applyTemplate(top, rule, e) {
         });
         top.route.default_http_client = 'DIRECT-clients';
     }
+    if (e.ech) {
+        top.dns.rules.unshift({
+            domain_suffix: ['cloudflare-ech.com'],
+            server: 'DIRECT-DNS',
+        });
+    }
     return top;
 }
 

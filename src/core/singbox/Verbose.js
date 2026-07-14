@@ -23,39 +23,10 @@ function Verbose(e) {
         throw new Error('不支持的客户端');
     }
 
-    // 注入 ECH DNS
-    const injectECH = (data) => {
-        const next = structuredClone(data);
-        next.dns.servers.push({
-            type: 'https',
-            tag: 'ECH-DNS',
-            detour: '🎯 全球直连',
-            server: 'google.88366388.xyz',
-            path: '/marisa',
-            domain_resolver: 'local',
-        });
-
-        next.dns.rules = next.dns.rules.map((p) => {
-            const rule = { ...p };
-
-            if (rule.action === 'evaluate') {
-                rule.server = 'ECH-DNS';
-            }
-
-            if (rule.ip_accept_any && rule.server) {
-                rule.server = 'ECH-DNS';
-            }
-
-            return rule;
-        });
-
-        return next;
-    };
-
     if (/1\.14\.0-alpha\.\d+/.test(ua)) {
-        return e.ech ? injectECH(ConfigPre) : ConfigPre;
+        return ConfigPre;
     }
-    return e.ech ? injectECH(ConfigLatest) : ConfigLatest;
+    return ConfigLatest;
 }
 
 export { Verbose };
