@@ -30,10 +30,10 @@ const clashConfig = {
     'geodata-loader': 'memconservative',
     'geox-url': {
         // Geo 数据库配置，用于地理位置和 ASN 匹配
-        geoip: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geoip.dat', // GeoIP 数据库
-        geosite: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geosite.dat', // GeoSite 数据库
-        mmdb: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb', // GeoIP mmdb 数据库
-        asn: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb', // ASN 数据库
+        geoip: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geoip.dat', // GeoIP 数据库
+        geosite: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geosite.dat', // GeoSite 数据库
+        mmdb: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb', // GeoIP mmdb 数据库
+        asn: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb', // ASN 数据库
     },
     'geo-auto-update': false, // 开启自动更新 Geo 数据库
     'geo-update-interval': 24, // Geo 数据库更新间隔 (单位: 小时)
@@ -216,7 +216,7 @@ const clashConfig = {
             behavior: 'domain',
             format: 'mrs',
             proxy: 'DIRECT',
-            url: 'https://jsd.onmicrosoft.cn/gh/Kwisma/clash-rules@release/direct.mrs',
+            url: 'https://cdn.jsdmirror.com/gh/Kwisma/clash-rules@release/direct.mrs',
             path: './ruleset/China_Domain.mrs',
         },
         private_domain: {
@@ -225,7 +225,7 @@ const clashConfig = {
             behavior: 'domain',
             format: 'mrs',
             proxy: 'DIRECT',
-            url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs',
+            url: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs',
             path: './ruleset/Private_Domain.mrs',
         },
         // fakeip_filter_domain: {
@@ -234,7 +234,7 @@ const clashConfig = {
         //     behavior: 'domain',
         //     format: 'mrs',
         //     proxy: 'DIRECT',
-        //     url: 'https://jsd.onmicrosoft.cn/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs',
+        //     url: 'https://cdn.jsdmirror.com/gh/DustinWin/ruleset_geodata@mihomo-ruleset/fakeip-filter.mrs',
         //     path: './ruleset/Fakeip_Filter_Domain.mrs',
         // },
     },

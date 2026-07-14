@@ -65,6 +65,7 @@ const Config = {
             },
             {
                 match_response: true,
+                ip_accept_any: true,
                 action: 'respond',
             },
         ],
@@ -159,21 +160,21 @@ const Config = {
             {
                 tag: 'cn_ip',
                 type: 'remote',
-                url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs',
+                url: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs',
                 format: 'binary',
                 download_detour: '🎯 全球直连',
             },
             {
                 tag: 'private_domain',
                 type: 'remote',
-                url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs',
+                url: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs',
                 format: 'binary',
                 download_detour: '🎯 全球直连',
             },
             {
                 tag: 'cn_domain',
                 type: 'remote',
-                url: 'https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs',
+                url: 'https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs',
                 format: 'binary',
                 download_detour: '🎯 全球直连',
             },
