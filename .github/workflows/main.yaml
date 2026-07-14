@@ -58,11 +58,13 @@ jobs:
                   rm -f submodules_before.txt submodules_after.txt
 
             - name: Update package version if submodules changed
+              id: update
               if: steps.check_submodules.outputs.has_updates == 'true' && github.event_name != 'push'
               run: |
                   pnpm version patch --no-git-tag-version
                   pnpm i
                   pnpm build
+
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -73,11 +75,20 @@ jobs:
 
                   git push origin main
 
+                  echo "pushed=true" >> "$GITHUB_OUTPUT"
+            - name: Refresh repository
+              if: steps.update.outputs.pushed == 'true'
+              run: |
+                  git fetch origin main
+                  git reset --hard origin/main
+
             - name: Install dependencies
+              if: steps.update.outputs.pushed != 'true'
               run: |
                   pnpm install
 
             - name: Bundle
+              if: steps.update.outputs.pushed != 'true'
               run: |
                   pnpm build
 

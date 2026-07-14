@@ -11,7 +11,7 @@
 		"dev": "concurrently \"pnpm dev:esbuild\" \"pnpm dev:run\"",
 		"dev:esbuild": "nodemon -w src -w package.json --exec node dev-esbuild.js",
 		"dev:run": "wait-on dist/min.js && nodemon -w dist/min.js --exec node dist/min.js",
-		"lint": "prettier --write \"**/*.js\""
+		"lint": "prettier --write ."
 	},
 	"devDependencies": {
 		"concurrently": "^10.0.3",

@@ -1,5 +1,9 @@
 /*.yaml
 template/**/*.yaml
+template/**/*.json
 test/**/*.yaml
 dist/
 src/core/Sub-Store/
+src/server.js
+*.json
+.*
