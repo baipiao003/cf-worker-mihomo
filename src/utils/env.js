@@ -44,6 +44,7 @@ export function buildConfig(request, env, isNode = false) {
     if (getParamBool('relay')) data.relay = true;
     if (getParamBool('heruser')) data.heruser = true;
     if (getParamBool('nodelist')) data.nodelist = true;
+    if (getParamBool('ipv6')) data.ipv6 = true;
 
     data.IMG = getEnv('IMG', backimg);
     data.sub = getEnv('SUB', null);

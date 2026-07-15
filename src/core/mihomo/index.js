@@ -54,6 +54,7 @@ export async function getmihomo_config(e) {
  */
 export function applyTemplate(top, rule, e) {
     if (e.log) top['log-level'] = e.log;
+    if (e.ipv6) top.ipv6 = true;
     top['proxy-providers'] = rule['proxy-providers'] || {};
     top.proxies = [...(top.proxies || []), ...(rule.proxies || [])];
     top['proxy-groups'] = rule['proxy-groups'] || [];

@@ -11,26 +11,21 @@ export default function configs(tplmh = null, tplsb = null) {
 - mixed(http+socks)端口: 7890，去广告 + 防DNS泄漏
 - **附加参数说明**  
 
-✔ UDP: 开启UDP代理
+**附加参数说明** 
 
-✔ ECH: 启用Encrypted Client Hello (ECH)
-
-✔ 链式代理: [启用链式代理](https://wiki.metacubex.one/config/proxies/dialer-proxy/) 必须填入两个以上的地址，第一个输入订阅将作为前置链式，第二个往后的不做为前置
-
-✔ 分应用代理: 排除CN应用(Android)
-
-✔ 分IPCIDR代理: 排除CN IP
-
-✔ 去广告dns: 去广告DNS
-
-✔ 获取流量信息：获取订阅的流量信息
-
-✔ 仅代理: 关闭tun，纯http/socks代理
-
-✔ 仅节点: 仅返回节点信息
+- UDP: 开启UDP代理
+- ECH: 启用Encrypted Client Hello (ECH)
+- 链式代理: [启用链式代理](https://wiki.metacubex.one/config/proxies/dialer-proxy/) 必须填入两个以上的地址，第一个输入订阅将作为前置链式，第二个往后的不做为前置
+- 分应用代理: 排除CN应用(Android)
+- 分IPCIDR代理: 排除CN IP
+- 去广告dns: 去广告DNS
+- 获取流量信息：获取订阅的流量信息
+- 仅代理: 关闭tun，纯http/socks代理
+- 仅节点: 仅返回节点信息
+- 开启ipv6: 开启ipv6路由（对于不支持ipv6出站的节点将使网络不可达）
 
             `,
-            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'heruser', 'tun', 'nodelist', 'log'],
+            protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'heruser', 'tun', 'nodelist', 'ipv6', 'log'],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -41,6 +36,7 @@ export default function configs(tplmh = null, tplsb = null) {
                 heruser: '获取流量信息',
                 tun: '仅代理',
                 nodelist: '仅节点',
+                ipv6: '开启ipv6',
                 log: {
                     label: '日志等级',
                     levels: ['silent', 'error', 'warning', 'info', 'debug'],
@@ -108,33 +104,23 @@ export default function configs(tplmh = null, tplsb = null) {
 - clash api 面板: http://127.0.0.1:9090 
 - singbox api 面板: http:// 127.0.0.1:9091
 - mixed(http+socks) 端口: 7890
-- **附加参数说明**  
 
-✔ UDP: 开启UDP代理
+**附加参数说明**  
 
-✔ ECH: 启用Encrypted Client Hello (ECH)
-
-✔ 链式代理: [启用链式代理](https://sing-box.sagernet.org/zh/configuration/shared/dial/) 必须填入两个以上的地址，第一个输入订阅将作为前置链式，第二个往后的不做为前置
-
-✔ UDP分段: 把大 UDP 包拆成多个小包发送
-
-✔ TLS分段: 拆分 TLS 握手数据
-
-✔ 分应用代理: 排除CN应用(Android)
-
-✔ 分IPCIDR代理: 排除CN IP
-
-✔ tailscale: [查看说明](https://sing-box.sagernet.org/zh/configuration/dns/server/tailscale/)
-
-✔ bridge:  [查看说明](https://sing-box.sagernet.org/zh/configuration/outbound/bridge/)
-
-✔ 去广告dns: 去广告DNS
-
-✔ 获取流量信息：获取订阅的流量信息
-
-✔ 仅代理: 关闭tun，纯http/socks代理
-
-✔ 仅节点: 仅返回节点信息
+- UDP: 开启UDP代理
+- ECH: 启用Encrypted Client Hello (ECH)
+- 链式代理: [启用链式代理](https://sing-box.sagernet.org/zh/configuration/shared/dial/) 必须填入两个以上的地址，第一个输入订阅将作为前置链式，第二个往后的不做为前置
+- UDP分段: 把大 UDP 包拆成多个小包发送
+- TLS分段: 拆分 TLS 握手数据
+- 分应用代理: 排除CN应用(Android)
+- 分IPCIDR代理: 排除CN IP
+- tailscale: [查看说明](https://sing-box.sagernet.org/zh/configuration/dns/server/tailscale/)
+- bridge:  [查看说明](https://sing-box.sagernet.org/zh/configuration/outbound/bridge/)
+- 去广告dns: 去广告DNS
+- 获取流量信息：获取订阅的流量信息
+- 仅代理: 关闭tun，纯http/socks代理
+- 仅节点: 仅返回节点信息
+- 开启ipv6: 开启ipv6路由（对于不支持ipv6出站的节点将使网络不可达）
 
             `,
             protocolList: [
@@ -151,6 +137,7 @@ export default function configs(tplmh = null, tplsb = null) {
                 'heruser',
                 'tun',
                 'nodelist',
+                'ipv6',
                 'log',
             ],
             protocolLabels: {
@@ -167,6 +154,7 @@ export default function configs(tplmh = null, tplsb = null) {
                 heruser: '获取流量信息',
                 tun: '仅代理',
                 nodelist: '仅节点',
+                ipv6: '开启ipv6',
                 log: {
                     label: '日志等级',
                     levels: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'panic'],
