@@ -115,10 +115,6 @@ const Config = {
     ],
     outbounds: [
         {
-            type: 'bridge',
-            tag: 'bridge-out',
-        },
-        {
             tag: '🎯 全局直连',
             type: 'direct',
         },
@@ -135,10 +131,6 @@ const Config = {
             strategy: 'prefer_ipv4',
         },
         rules: [
-            {
-                preferred_by: 'bridge-out',
-                outbound: 'bridge-out',
-            },
             {
                 action: 'sniff',
             },

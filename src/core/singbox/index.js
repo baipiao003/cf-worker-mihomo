@@ -108,14 +108,25 @@ export function applyTemplate(top, rule, e) {
             udp_timeout: '5m',
         });
     }
-
-    if (/ref1nd/i.test(e.userAgent)) {
-        for (const item of top.route.rules) {
-            if (item.action === 'resolve') {
-                item.match_only = true;
-            }
-        }
+    if (e.bridge && e.ispre) {
+        top.outbounds.push({
+            type: 'bridge',
+            tag: 'bridge-out',
+        });
+        top.route.rules.unshift({
+            preferred_by: 'bridge',
+            outbound: 'bridge-out',
+        });
     }
+
+    if (!e.ipv6) {
+        top.dns.rules.unshift({
+            ip_version: 6,
+            action: 'reject',
+            method: 'drop',
+        });
+    }
+
     // 处理 route-options 规则
     top.route.rules = top.route.rules.flatMap((p) => {
         if (p.action === 'route-options') {
@@ -133,64 +144,32 @@ export function applyTemplate(top, rule, e) {
         }
         return p;
     });
-    const isV112 = /1\.(1[2-9]|[2-9]\d)\.\d+/i.test(e.userAgent);
     if (e.adgdns) {
         top.dns.servers = top.dns.servers.map((p) => {
             if (p.tag === 'DIRECT-DNS') {
-                return isV112
-                    ? {
-                          type: 'https',
-                          tag: 'DIRECT-DNS',
-                          detour: '🎯 全球直连',
-                          server: 'doh.18bit.cn',
-                          domain_resolver: 'local',
-                      }
-                    : {
-                          tag: 'DIRECT-DNS',
-                          address_resolver: 'local',
-                          address: 'https://doh.18bit.cn/dns-query',
-                          detour: '🎯 全球直连',
-                      };
+                return {
+                    type: 'https',
+                    tag: 'DIRECT-DNS',
+                    detour: '🎯 全球直连',
+                    server: 'doh.18bit.cn',
+                    domain_resolver: 'local',
+                };
             }
             if (p.tag === 'PROXY-DNS') {
-                return isV112
-                    ? {
-                          type: 'https',
-                          tag: 'PROXY-DNS',
-                          detour: '🚀 节点选择',
-                          server_port: 443,
-                          server: 'dns.adguard-dns.com',
-                          path: '/dns-query',
-                          domain_resolver: 'local',
-                      }
-                    : {
-                          tag: 'DIRECT-DNS',
-                          address_resolver: 'local',
-                          address: 'https://dns.adguard-dns.com/dns-query',
-                          detour: '🎯 全球直连',
-                      };
+                return {
+                    type: 'https',
+                    tag: 'PROXY-DNS',
+                    detour: '🚀 节点选择',
+                    server_port: 443,
+                    server: 'dns.adguard-dns.com',
+                    path: '/dns-query',
+                    domain_resolver: 'local',
+                };
             }
             return p;
         });
     }
-    // Singbox v1.14.0-alpha.13 引入了 http_clients 代替 download_detour 字段
-    function parse(v) {
-        const m = v.match(/1\.(\d+)\.(\d+)(?:-alpha\.(\d+))?/i);
-        if (!m) return null;
-        return {
-            minor: +m[1],
-            patch: +m[2],
-            alpha: m[3] !== undefined ? +m[3] : Infinity,
-        };
-    }
-    function gt(a, b) {
-        if (a.minor !== b.minor) return a.minor > b.minor;
-        if (a.patch !== b.patch) return a.patch > b.patch;
-        return a.alpha > b.alpha;
-    }
-    const v = parse(e.userAgent);
-    const isV114 = v && gt(v, { minor: 14, patch: 0, alpha: 12 });
-    if (isV114) {
+    if (e.ispre) {
         const proxyname = rule.outbounds[0].tag;
         top.http_clients = [
             {

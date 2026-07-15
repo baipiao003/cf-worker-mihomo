@@ -23,7 +23,12 @@ export default function configs(tplmh = null, tplsb = null) {
 
 ✔ 去广告dns: 去广告DNS
 
+✔ 获取流量信息：获取订阅的流量信息
+
 ✔ 仅代理: 关闭tun，纯http/socks代理
+
+✔ 仅节点: 仅返回节点信息
+
             `,
             protocolList: ['udp', 'ech', 'relay', 'ep', 'ea', 'adgdns', 'heruser', 'tun', 'nodelist', 'log'],
             protocolLabels: {
@@ -121,12 +126,33 @@ export default function configs(tplmh = null, tplsb = null) {
 
 ✔ tailscale: [查看说明](https://sing-box.sagernet.org/zh/configuration/dns/server/tailscale/)
 
+✔ bridge:  [查看说明](https://sing-box.sagernet.org/zh/configuration/outbound/bridge/)
+
 ✔ 去广告dns: 去广告DNS
+
+✔ 获取流量信息：获取订阅的流量信息
 
 ✔ 仅代理: 关闭tun，纯http/socks代理
 
+✔ 仅节点: 仅返回节点信息
+
             `,
-            protocolList: ['udp', 'ech', 'relay', 'udp_frag', 'tls_frag', 'ep', 'ea', 'tailscale', 'adgdns', 'heruser', 'tun', 'nodelist', 'log'],
+            protocolList: [
+                'udp',
+                'ech',
+                'relay',
+                'udp_frag',
+                'tls_frag',
+                'ep',
+                'ea',
+                'tailscale',
+                'bridge',
+                'adgdns',
+                'heruser',
+                'tun',
+                'nodelist',
+                'log',
+            ],
             protocolLabels: {
                 udp: 'UDP',
                 ech: 'ECH',
@@ -136,6 +162,7 @@ export default function configs(tplmh = null, tplsb = null) {
                 ep: '分应用代理',
                 ea: '分IPCIDR',
                 tailscale: 'Tailscale',
+                bridge: 'bridge',
                 adgdns: '去广告DNS',
                 heruser: '获取流量信息',
                 tun: '仅代理',

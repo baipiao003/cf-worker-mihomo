@@ -37,6 +37,7 @@ export function buildConfig(request, env, isNode = false) {
     if (getParamBool('ep')) data.exclude_package = true;
     if (getParamBool('ea')) data.exclude_address = true;
     if (getParamBool('tailscale')) data.tailscale = true;
+    if (getParamBool('bridge')) data.bridge = true;
     if (getParamBool('adgdns')) data.adgdns = true;
     if (getParamBool('tun')) data.tun = true;
     if (getParamBool('ech')) data.ech = true;
