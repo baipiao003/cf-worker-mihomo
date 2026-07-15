@@ -102,8 +102,9 @@ export function applyTemplate(top, rule, e) {
         top.endpoints.push({
             type: 'tailscale',
             tag: 'ts-ep',
-            auth_key: '',
             hostname: 'singbox-tailscale',
+            accept_routes: true,
+            exit_node_allow_lan_access: true,
             udp_timeout: '5m',
         });
     }
@@ -121,11 +122,11 @@ export function applyTemplate(top, rule, e) {
             if (e.udp) {
                 p.udp_disable_domain_unmapping = true;
                 p.udp_connect = true;
-                p.udp_timeout = '500ms';
+                p.udp_timeout = '5m';
             }
             if (e.tls_fragment) {
                 p.tls_fragment = true;
-                p.tls_fragment_fallback_delay = '500ms';
+                p.tls_fragment_fallback_delay = '300ms';
             }
             // 如果既没有 udp 也没有 tls_fragment 参数，则过滤掉该规则
             return e.udp || e.tls_fragment ? p : [];
