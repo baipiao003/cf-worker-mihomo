@@ -204,11 +204,11 @@ const clashConfig = {
     },
     proxies: [
         {
-            name: 'dns-out',
+            name: 'DNS劫持',
             type: 'dns',
         },
     ],
-    rules: ['DST-PORT,53,dns-out'],
+    rules: ['DST-PORT,53,DNS劫持'],
     'rule-providers': {
         cn_domain: {
             type: 'http',

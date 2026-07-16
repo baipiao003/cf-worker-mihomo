@@ -12,8 +12,8 @@
 
 # ------------------------------------------------------------
 # 锚点区
-proxy: &proxy { type: select, include-all: true, proxies: [🚀全球代理, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 🇭🇰香港自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动] }
-direct: &direct { type: select, include-all: true, proxies: [🎯全球直连, 🚀全球代理, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 🇭🇰香港自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动] }
+proxy: &proxy { type: select, include-all: true, exclude-type: dns, proxies: [🚀全球代理, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 🇭🇰香港自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动] }
+direct: &direct { type: select, include-all: true, exclude-type: dns, proxies: [🎯全球直连, 🚀全球代理, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 🇭🇰香港自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动] }
 ipcidr_mrs: &ipcidr_mrs { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: 🎯全球直连 }
 domain_mrs: &domain_mrs { type: http, interval: 86400, behavior: domain, format: mrs, proxy: 🎯全球直连 }
 # 延迟检测 URL
@@ -48,6 +48,7 @@ u: &u
   timeout: 5000 # 健康检查超时时间，单位为毫秒
   max-failed-times: 5 # 最大失败次数，超过则触发一次强制健康检查，默认 5
   include-all: true # 引入所有代理集合
+  exclude-type: dns
 
 ######################## start ########################
 # 订阅链接配置区
@@ -257,9 +258,11 @@ dns:
     - "https://dns.alidns.com/dns-query#🎯全球直连"
   direct-nameserver: #  用于直连出口域名解析的 DNS 服务器
     - "https://dns.alidns.com/dns-query#🎯全球直连"
+
 proxies:
-  - name: "dns-out"
+  - name: "DNS劫持"
     type: dns
+
 proxy-groups:
   - { name: 🚀全球代理, type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动] }
 
@@ -410,7 +413,7 @@ proxy-groups:
   - { name: GLOBAL, type: select, include-all: true, proxies: [🚀全球代理, 🟢手动选择, 🪧广告拦截, 🔎HttpDNS, 💧泄漏拦截, 🎯全球直连, ♻️自动选择, ⚡️均衡负载, 🔯故障转移, 115, 12306, 4399, 4GTV, 58同城, 农业银行, AbemaTV, Adobe, 支付宝, 阿里巴巴, 亚马逊电商, 亚马逊TV, Apple, AppleCN, AppStore, Apple邮箱, Apple音乐, Apple新闻, Apple日报, AppleTV, 巴哈姆特, 百度贴吧, 百度, 哔哩哔哩, 哔哩东南亚, BT追踪器, 暴雪, 字节跳动, Beats, CCTV, 中国媒体, Cloudflare, 钉钉, Discord, Disney, Docker, 豆瓣, E站, EA, Epic, Emby, FCM, Facebook, Fastly, FitnessPlus, 高德, GitHub, Google, Google云盘, Google地图, GoogleVoice, Hoyoverse, Hulu, 虎扑, HBO, IMDB, 爱奇艺, Instagram, 因特尔, iCloud, 京东, 酷狗, 酷我, LastFM, LINE, 美团, 微软, Mihoyo, NGA, 网易, 网易云音乐, Netflix, ニコニコ, OpenAI, 微软云盘, 潘朵拉珠宝, PayPal, PikPak, 拼多多, Pixiv, PlayStation, 国际媒体, Qobuz, Reddit, Rockstar, 什么值得买, Google学术, 新浪, 索尼, SoundCloud, Speedtest, Spotify, Steam, Steam中国, Supercell, Signal, TVB, Telegram, 腾讯, 抖音, TikTok, Twitch, Twitter, Tor, Talkatone, 微信, 维基百科, Wise, YouTube, YouTubeMusic, 禁漫天堂, 哔咔哔咔], icon: https://cdn.jsdmirror.com/gh/Kwisma/rules@main/icon/webp/100/GLOBAL.webp }
 
 rules:
-  - DST-PORT,53,dns-out
+  - DST-PORT,53,DNS劫持
   - SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-RULES
   - MATCH,🚀全球代理
 

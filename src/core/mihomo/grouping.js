@@ -112,10 +112,19 @@ export function getProxies_Grouping(proxies, groups, e) {
         });
     }
 
-    // 清理临时属性
     updatedGroups.forEach((group) => {
+        // 清理临时属性
         delete group._regex;
         delete group._hasFilter;
+        // 处理 dns 劫持
+        const original = group['exclude-type'] || '';
+        if (original.includes('dns')) {
+            group['exclude-type'] = original;
+        } else if (original === '') {
+            group['exclude-type'] = 'dns';
+        } else {
+            group['exclude-type'] = ['dns', ...original.split('|')].filter(Boolean).join('|');
+        }
     });
 
     return updatedGroups;
