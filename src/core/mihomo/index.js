@@ -2,10 +2,15 @@ import { fetchpackExtract, fetchipExtract, fetchResponse } from '../../utils/ind
 import getProxies_Data from './proxies.js';
 import clashConfig from '../../config/mihomo.js';
 import { getProxies_Grouping } from './grouping.js';
+
 export async function getmihomo_config(e) {
     if (e.nodelist) {
-        const data = getProxies_Data(e);
-        return data.data;
+        const data = await getProxies_Data(e);
+        return {
+            status: data.status,
+            headers: data.headers,
+            data: JSON.stringify(data.data, null, 4),
+        };
     }
     const config = structuredClone(clashConfig);
     // 客户端验证

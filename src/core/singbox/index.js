@@ -4,8 +4,12 @@ import { Verbose } from './Verbose.js';
 import { loadAndSetOutbound } from './grouping.js';
 export async function getsingbox_config(e) {
     if (e.nodelist) {
-        const data = getOutbounds_Data(e);
-        return data.data;
+        const data = await getOutbounds_Data(e);
+        return {
+            status: data.status,
+            headers: data.headers,
+            data: JSON.stringify(data.data, null, 4),
+        };
     }
     const config = structuredClone(Verbose(e));
     const alldata = await Promise.all([
